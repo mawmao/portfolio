@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+@utility debug {
+    outline-style: dashed;
+    outline-width: 2px;
+    outline-color: red;
+}
