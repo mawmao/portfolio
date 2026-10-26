@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@theme inline {
+    --font-sans: var(--font-space-grotesk);
+    --font-mono: var(--font-jetbrains-mono)
+}
+
 @utility debug {
     outline-style: dashed;
     outline-width: 2px;
