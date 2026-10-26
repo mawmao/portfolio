@@ -12,27 +12,38 @@ const stack = [
   { name: "Supabase", icon: Supabase },
 ];
 ---
-<Overlay opacity={16}/>
 
-<section id="hero" class="h-[500px] px-24 py-16 flex flex-col justify-between gap-8 ">
-  <div class="flex flex-col gap-4">
-    <h1 class="font-bold text-7xl -tracking-tight-2">
+<section
+  id="hero"
+  class="min-h-[380px] sm:min-h-[500px] px-0 sm:px-4 md:px-8 lg:px-24 py-10 md:py-16 flex flex-col justify-between gap-8"
+>
+  <Overlay opacity={12} />
+
+  <div class="flex flex-col gap-3 sm:gap-4">
+    <h1
+      class="font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl -tracking-tight-2"
+    >
       I’m a full-stack engineer
     </h1>
-    <h2 class="text-3xl w-[34ch] text-foreground/80">
+    <h2
+      class="text-lg sm:text-xl md:text-2xl lg:text-3xl max-w-[34ch] text-foreground/80"
+    >
       I build internal tools, business dashboards, and secure data platforms
     </h2>
   </div>
-  <ul class="flex justify-end gap-4 ">
+  <ul
+    aria-label="Technology stack"
+    class="flex flex-wrap justify-start items-center gap-x-2 gap-y-3 md:justify-end sm:gap-x-4"
+  >
     {
-      stack.map(({ name, icon: Icon}) => {
+      stack.map(({ name, icon: Icon }) => {
         return (
           <li
-          class="inline-flex items-center gap-2 text-sm text-foreground/60 lowercase
+            class="inline-flex items-center gap-1 sm:gap-2 text-xs sm:text-sm text-foreground/60 lowercase
                  not-last:after:ml-2 not-last:after:h-4
                  not-last:after:w-px not-last:after:bg-foreground/30"
           >
-            <Icon width={20} height={20} aria-hidden="true"/>
+            <Icon width={20} height={20} aria-hidden="true" />
             <span>{name}</span>
           </li>
         );
@@ -40,5 +51,3 @@ const stack = [
     }
   </ul>
 </section>
-
-

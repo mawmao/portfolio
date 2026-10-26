@@ -8,10 +8,12 @@ import "@/styles/global.css";
 
 <html lang="en">
   <Head title="Mel Adry" />
-  <body class="w-[1440px] flex flex-col m-auto">
+  <body class="min-h-screen ">
     <Noise opacity={40} />
 
-    <Header />
-    <slot />
+    <div class="w-full max-w-[1440px] min-h-screen mx-auto px-4 flex flex-col">
+      <Header />
+      <slot />
+    </div>
   </body>
 </html>

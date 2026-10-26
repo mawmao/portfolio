@@ -5,24 +5,30 @@ interface Props {
 
 const { opacity = 15 } = Astro.props;
 
-const calculatedOpacity = opacity / 100
+const calculatedOpacity = opacity / 100;
 ---
 
 <div
-  class="pointer-events-none fixed w-full top-0 left-0 h-[580px]"
+  aria-hidden="true"
+  class="fixed top-0 left-0 w-full h-[460px] sm:h-[580px] pointer-events-none"
   style={{ opacity: calculatedOpacity }}
 >
   <div class="flex size-full">
     {
-      Array.from({ length: 12 }).map(() => (
-        <div class="flex-1 border-dashed border-r border-r-foreground"} />
+      Array.from({ length: 12 }).map((_, index) => (
+        <div
+          class:list={[
+            "flex-1 border-r border-dashed border-foreground",
+            index % 2 === 0 && "hidden sm:block",
+          ]}
+        />
       ))
     }
   </div>
 
   <div class="absolute inset-0 flex flex-col">
-        <div class="flex-1 border-dashed border-b border-b-foreground"} />
-        <div class="flex-1 border-dashed border-b border-b-foreground"} />
-        <div class="flex-1"} />
+    <div class="flex-1 border-dashed border-b border-b-foreground" }></div>
+    <div class="flex-1 border-dashed border-b border-b-foreground" }></div>
+    <div class="flex-1" }></div>
   </div>
 </div>
