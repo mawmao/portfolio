@@ -1,10 +1,10 @@
 ---
 interface Props {
   orientation?: "horizontal" | "vertical";
-  className?: string
+  class?: string
 }
 
-const { orientation = "horizontal", className } = Astro.props;
+const { orientation = "horizontal", class: className, ...rest } = Astro.props;
 ---
 
 <div
@@ -15,4 +15,5 @@ const { orientation = "horizontal", className } = Astro.props;
     orientation === "horizontal" ? "h-px w-full" : "w-px h-full",
     className
   ]}
+  {...rest}
 />
