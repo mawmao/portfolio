@@ -4,15 +4,24 @@ import Logo from "@/assets/icons/logo.svg";
 
 const navLinks = [
   { name: "index", path: "/" },
+  { name: "works", path: "/works" },
   { name: "about", path: "/about" },
   { name: "contact", path: "/contact" },
 ];
+
+const basePath = `/${Astro.url.pathname.split("/")[1] || ""}`;
 ---
 
-<header class="h-[80px] flex items-center justify-between shrink-0 ">
+<header
+  id="site-header"
+  data-scrolled="false"
+  class="top-0 sticky h-[80px] flex items-center justify-between shrink-0 bg-background border-b border-dashed border-transparent transition-colors duration-100 data-[scrolled=true]:border-foreground/20"
+>
   <a href="/" class="interactive-link inline-flex items-center gap-2 shrink-0">
     <Logo width={24} height={24} aria-hidden="true" />
-    <span class="hidden font-mono font-medium uppercase tracking-tight sm:inline">
+    <span
+      class="hidden font-mono font-medium uppercase tracking-tight sm:inline"
+    >
       Mel Adry
     </span>
     <span class="sr-only">Home</span>
@@ -22,7 +31,7 @@ const navLinks = [
     <ul class="flex gap-2 sm:gap-4 items-center">
       {
         navLinks.map(({ name, path }) => {
-          const isActive = path === Astro.url.pathname;
+          const isActive = path === basePath;
 
           return (
             <li>
@@ -55,3 +64,17 @@ const navLinks = [
     </ul>
   </nav>
 </header>
+
+<script>
+  const header = document.querySelector<HTMLElement>("#site-header");
+
+  if (header) {
+    const updateHeader = () => {
+      header.dataset.scrolled = String(window.scrollY > 50);
+    };
+
+    updateHeader();
+
+    window.addEventListener("scroll", updateHeader, { passive: true });
+  }
+</script>
