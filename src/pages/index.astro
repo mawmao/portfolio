@@ -1,25 +1,13 @@
 ---
-import "@/styles/global.css";
+import Layout from "@/layouts/Layout.astro";
 
-import { Font } from "astro:assets";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
-    <Font cssVariable="--font-space-grotesk" preload />
-    <Font cssVariable="--font-jetbrains-mono" preload />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Mel Adry</title>
-  </head>
-</html><body>
-  <div class="h-screen w-full flex items-center justify-center bg-neutral-100">
-    <div>
-      <h1 class="text-5xl font-medium text-neutral-900">Astro</h1>
-      <h2 class="text-xl text-neutral-700">Mel Adry</h2>
+<Layout>
+  <main class="h-screen w-full flex">
+    <div class="w-full flex items-center justify-center gap-2">
+      <h1 class="text-5xl font-medium text-neutral-900">Index</h1>
+      <h2 class="text-sm text-neutral-700">Mel Adry</h2>
     </div>
-  </div>
-</body>
+  </main>
+</Layout>

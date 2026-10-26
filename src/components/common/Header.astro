@@ -1,0 +1,57 @@
+---
+import Github from "@/assets/icons/github.svg";
+import Logo from "@/assets/icons/logo.svg";
+
+const navLinks = [
+  { name: "index", path: "/" },
+  { name: "about", path: "/about" },
+  { name: "contact", path: "/contact" },
+];
+---
+
+<header class="h-20 flex items-center justify-between">
+  <a href="/" class="interactive-link inline-flex items-center gap-2">
+    <Logo width={24} height={24} aria-hidden="true" />
+    <span class="font-mono font-medium uppercase tracking-tight">
+      Mel Adry
+    </span>
+    <span class="sr-only">Home</span>
+  </a>
+
+  <nav aria-label="Main navigation">
+    <ul class="flex gap-4 items-center">
+      {
+        navLinks.map(({ name, path }) => {
+          const isActive = path === Astro.url.pathname;
+
+          return (
+            <li>
+              <a
+                href={path}
+                aria-current={isActive ? "page" : undefined}
+                class:list={[
+                  "interactive-link text-sm uppercase ",
+                  isActive ? "underline underline-offset-4" : "opacity-50",
+                ]}
+              >
+                {name}
+              </a>
+            </li>
+          );
+        })
+      }
+
+      <li class="ml-2">
+        <a
+          class="interactive-link"
+          href="https://github.com/mawmao"
+          target="_blank"
+          aria-label="GitHub (opens in a new tab)"
+          rel="noopener"
+        >
+          <Github width={22} height={22} aria-hidden="true" />
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
