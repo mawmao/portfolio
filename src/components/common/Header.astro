@@ -15,12 +15,12 @@ const basePath = `/${Astro.url.pathname.split("/")[1] || ""}`;
 <header
   id="site-header"
   data-scrolled="false"
-  class="top-0 sticky h-[80px] flex items-center justify-between shrink-0 bg-background border-b border-dashed border-transparent transition-colors duration-100 data-[scrolled=true]:border-foreground/20"
+  class="top-0 sticky z-20 h-[80px] flex items-center justify-between shrink-0 bg-background border-b border-dashed border-transparent transition-colors duration-100 data-[scrolled=true]:border-foreground/20"
 >
   <a href="/" class="interactive-link inline-flex items-center gap-2 shrink-0">
     <Logo width={24} height={24} aria-hidden="true" />
     <span
-      class="hidden font-mono font-medium uppercase tracking-tight sm:inline"
+      class="hidden font-mono font-medium uppercase tracking-tight sm:inline bg-foreground text-background px-2 h-[24px]"
     >
       Mel Adry
     </span>
