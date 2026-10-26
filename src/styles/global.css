@@ -1,10 +1,5 @@
 @import "tailwindcss";
 
-@theme inline {
-    --font-sans: var(--font-space-grotesk);
-    --font-mono: var(--font-jetbrains-mono)
-}
-
 @utility debug {
     outline-style: dashed;
     outline-width: 2px;
@@ -24,4 +19,24 @@
       outline-width: 2px;
       outline-offset: 4px;
     }
+}
+
+
+@theme inline {
+    --font-sans: var(--font-space-grotesk);
+    --font-mono: var(--font-jetbrains-mono);
+
+    --color-foreground: var(--foreground);
+    --color-background: var(--background);
+}
+
+@layer base {
+    body {
+        @apply bg-background text-foreground;
+    }
+}
+
+:root {
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.145 0 0);
 }

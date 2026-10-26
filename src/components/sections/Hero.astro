@@ -1,7 +1,44 @@
 ---
+import TypeScript from "@/assets/icons/typescript.svg";
+import ReactJS from "@/assets/icons/react.svg";
+import AstroIcon from "@/assets/icons/astro.svg";
+import Supabase from "@/assets/icons/supabase.svg";
+import Overlay from "../Overlay.astro";
 
+const stack = [
+  { name: "TypeScript", icon: TypeScript },
+  { name: "React", icon: ReactJS },
+  { name: "Astro", icon: AstroIcon },
+  { name: "Supabase", icon: Supabase },
+];
 ---
+<Overlay opacity={16}/>
 
-<section id="hero">
-
+<section id="hero" class="h-[500px] px-24 py-16 flex flex-col justify-between gap-8 ">
+  <div class="flex flex-col gap-4">
+    <h1 class="font-bold text-7xl -tracking-tight-2">
+      I’m a full-stack engineer
+    </h1>
+    <h2 class="text-3xl w-[34ch] text-foreground/80">
+      I build internal tools, business dashboards, and secure data platforms
+    </h2>
+  </div>
+  <ul class="flex justify-end gap-4 ">
+    {
+      stack.map(({ name, icon: Icon}) => {
+        return (
+          <li
+          class="inline-flex items-center gap-2 text-sm text-foreground/60 lowercase
+                 not-last:after:ml-2 not-last:after:h-4
+                 not-last:after:w-px not-last:after:bg-foreground/30"
+          >
+            <Icon width={20} height={20} aria-hidden="true"/>
+            <span>{name}</span>
+          </li>
+        );
+      })
+    }
+  </ul>
 </section>
+
+

@@ -1,13 +1,16 @@
 ---
 import Head from "@/components/common/Head.astro";
 import Header from "@/components/common/Header.astro";
+import Noise from "@/components/Noise.astro";
 
 import "@/styles/global.css";
 ---
 
 <html lang="en">
   <Head title="Mel Adry" />
-  <body class="w-[1440px] flex flex-col m-auto px-24">
+  <body class="w-[1440px] flex flex-col m-auto">
+    <Noise opacity={40} />
+
     <Header />
     <slot />
   </body>
