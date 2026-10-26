@@ -1,18 +1,17 @@
 ---
-interface Props {
-  opacity?: number;
-}
+import noise from "../assets/noise.png";
 
-const { opacity = 80 } = Astro.props;
-
-const calculatedOpacity = opacity / 100
+const { class: className, ...rest } = Astro.props;
 ---
 
 <div
+  transition:persist
   aria-hidden="true"
-  class="pointer-events-none fixed inset-0 z-50 bg-repeat"
+  class:list={["pointer-events-none fixed inset-0 z-50", className]}
   style={{
-    backgroundImage: "url('/noise.svg')",
-    opacity: calculatedOpacity,
+    backgroundImage: `url(${noise.src})`,
+    backgroundRepeat: "repeat",
   }}
-></div>
+  {...rest}
+>
+</div>
