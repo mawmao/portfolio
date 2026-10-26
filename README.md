@@ -1,14 +1,23 @@
 # Developer Portfolio
 
-This is my dev portfolio built to showcase my recent projects, skills, and experience as an engineer
+My personal developer portfolio built to showcase my recent projects, skills, and experience as a software engineer.
 
+## Project Status
+
+**Under Construction**
+
+This portfolio is currently in development. The following sections of the homepage have been implemented:
+
+- Hero section
+- Works section
+
+Other sections and pages are still in progress.
 
 ## Live Site
 
-Not yet deployed
+[meladry.vercel.app](https://meladry.vercel.app)
 
 ## Tech Stack
 
-* Astro
-* Tailwind CSS
-
+- Astro
+- Tailwind CSS
