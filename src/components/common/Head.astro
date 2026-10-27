@@ -1,11 +1,12 @@
 ---
+import Analytics from "@vercel/analytics/astro";
+import { Font } from "astro:assets";
+
 interface Props {
   title: string;
 }
 
 const { title } = Astro.props;
-
-import { Font } from "astro:assets";
 ---
 
 <head>
@@ -19,4 +20,6 @@ import { Font } from "astro:assets";
   <title>{title}</title>
   <meta name="viewport" content="width=device-width" />
   <meta name="generator" content={Astro.generator} />
+
+  <Analytics />
 </head>
