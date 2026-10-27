@@ -21,3 +21,4 @@ Other sections and pages are still in progress.
 
 - Astro
 - Tailwind CSS
+- Vercel
