@@ -25,12 +25,12 @@ const { title, tags, organization, description, images, href, reverse } =
     reverse ? "md:flex-row-reverse" : "md:flex-row",
   ]}
 >
-  <div class="relative aspect-4/3 w-full flex-2 sm:aspect-auto sm:min-h-80">
+  <div class="relative aspect-4/3 w-full flex-3 sm:aspect-auto sm:min-h-80">
     <WorkImage orientation="top-left" src={images[0]} alt="" />
     <WorkImage orientation="bottom-right" src={images[1]} alt="" />
   </div>
 
-  <div class="flex flex-1 flex-col gap-6 sm:px-8 py-8">
+  <div class="flex flex-2 flex-col gap-6 sm:px-8 py-8">
     <header class="flex flex-col gap-2">
       <span class="text-xs font-light uppercase text-foreground/75">
         {organization}
@@ -38,10 +38,8 @@ const { title, tags, organization, description, images, href, reverse } =
 
       <h4 class="text-4xl font-medium uppercase">{title}</h4>
 
-     <div class="flex flex-wrap gap-2 mt-1">
-        {tags.map((tag) => (
-          <TechTag name={tag} />
-        ))}
+      <div class="flex flex-wrap gap-3 mt-4">
+        {tags.map((tag) => <TechTag name={tag} />)}
       </div>
     </header>
 
