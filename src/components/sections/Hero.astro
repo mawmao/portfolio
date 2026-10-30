@@ -5,19 +5,20 @@ import AstroIcon from "@/assets/icons/astro.svg";
 import Supabase from "@/assets/icons/supabase.svg";
 import Tailwind from "@/assets/icons/tailwind.svg";
 import Overlay from "../Overlay.astro";
+import SectionLayout from "@/layouts/SectionLayout.astro";
 
 const stack = [
   { name: "TypeScript", icon: TypeScript },
   { name: "React", icon: ReactJS },
   { name: "Astro", icon: AstroIcon },
   { name: "Supabase", icon: Supabase },
-  { name: "Tailwind", icon: Tailwind }
+  { name: "Tailwind", icon: Tailwind },
 ];
 ---
 
-<section
+<SectionLayout
   id="hero"
-  class="min-h-[380px] sm:min-h-[570px] py-10 md:py-16 flex flex-col justify-between gap-8"
+  class="min-h-[380px] sm:min-h-[570px] justify-between gap-8"
 >
   <Overlay opacity={12} />
 
@@ -52,4 +53,4 @@ const stack = [
       })
     }
   </ul>
-</section>
+</SectionLayout>

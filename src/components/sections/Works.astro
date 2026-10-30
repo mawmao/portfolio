@@ -7,18 +7,25 @@ import humay2 from "@/assets/images/humay-2.png";
 import pcahto1 from "@/assets/images/pcahto-1.png";
 import pcahto2 from "@/assets/images/pcahto-2.png";
 import Separator from "../ui/Separator.astro";
+import SectionLayout from "@/layouts/SectionLayout.astro";
 ---
 
-<section
-  id="works"
-  class="flex min-h-[500px] flex-col gap-16 py-10 md:py-16"
->
-  <h3 class="text-xl bg-foreground text-background w-fit px-2 py-1.5">My Works</h3>
+<SectionLayout id="works" class="min-h-[500px] gap-16 py-10">
+  <h3 class="text-xl bg-foreground text-background w-fit px-2 py-1.5">
+    My Works
+  </h3>
 
   <div class="flex flex-col gap-8 sm:gap-16">
     <WorkEntry
       title="Humay"
-      tags={["Astro", "TypeScript", "Supabase", "shadcn\\ui", "Tailwind CSS", "Cloudflare"]}
+      tags={[
+        "Astro",
+        "TypeScript",
+        "Supabase",
+        "shadcn\\ui",
+        "Tailwind CSS",
+        "Cloudflare",
+      ]}
       organization="Department of Agriculture VI - Philippines"
       description="A secure, role-based data collection and analytics platform that replaced manual spreadsheet reporting for field workers and managers."
       images={[humay1, humay2]}
@@ -37,4 +44,4 @@ import Separator from "../ui/Separator.astro";
       reverse
     />
   </div>
-</section>
+</SectionLayout>
