@@ -1,28 +1,61 @@
 ---
+import { Image } from "astro:assets";
+import Me from "@/assets/images/me-1.jpg";
+
 import SectionLayout from "@/layouts/SectionLayout.astro";
 import ArrowUp from "@/assets/icons/arrow-up.svg";
 ---
 
-<SectionLayout id="about-preview" class="min-h-[300px] justify-between gap-8">
-  <div class="flex flex-col gap-6 max-w-3xl">
-    <h3 class="text-xl bg-foreground text-background w-fit px-2 py-1.5">
-      About Me
-    </h3>
+<SectionLayout id="about-preview" class="py-16 sm:py-24">
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 items-center">
+    <div class="md:col-span-7 flex flex-col gap-8">
+      <h3
+        class="text-xl bg-foreground text-background w-fit px-2 py-1.5 font-medium"
+      >
+        About Me
+      </h3>
 
-    <p class="text-lg sm:text-xl md:text-2xl leading-relaxed text-foreground/80">
-      I'm a full-stack engineer based in the Philippines. I specialize in building resilient, clean, and highly functional web applications that solve real-world operational problems.
-    </p>
+      <p
+        class="text-2xl sm:text-3xl md:text-4xl leading-snug font-medium text-foreground/90 tracking-wide"
+      >
+        I'm a <span
+          class="text-foreground underline decoration-foreground/30 underline-offset-4"
+          >full-stack engineer</span
+        > based in the Philippines. I specialize in building secure, data-driven web
+        platforms and internal tools. I turn complex business workflows into clean,
+        resilient software that solves real operational problems.
+      </p>
 
-    <a
-      href="/about"
-      class="group inline-flex h-12 w-fit cursor-pointer items-center justify-center gap-1 border border-foreground/30 px-6 text-sm font-medium uppercase text-foreground/80 transition-colors duration-200 hover:border-foreground hover:bg-foreground hover:text-background"
+      <a
+        href="/about"
+        class="group inline-flex h-12 w-fit cursor-pointer items-center justify-center gap-2 border border-foreground/30 px-6 text-sm font-medium uppercase text-foreground/80 transition-colors duration-200 hover:border-foreground hover:bg-foreground hover:text-background"
+      >
+        <span>More about me</span>
+        <ArrowUp
+          width={16}
+          height={16}
+          class="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+        />
+      </a>
+    </div>
+
+    <div
+      class="md:col-span-5 relative aspect-square md:aspect-4/5 w-full max-w-md ml-auto"
     >
-      <span>More about me</span>
-      <ArrowUp
-        width={18}
-        height={18}
-        class="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-      />
-    </a>
+      <div
+        class="absolute inset-0 border border-foreground/20 bg-foreground/5 overflow-hidden"
+      >
+        <Image
+          src={Me}
+          alt="Portrait of Mel Adry"
+          class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+        />
+      </div>
+
+      <div
+        class="absolute -inset-2 border border-dashed border-foreground/20 -z-10 translate-x-4 translate-y-4"
+      >
+      </div>
+    </div>
   </div>
 </SectionLayout>
