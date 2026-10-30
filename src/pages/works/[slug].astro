@@ -1,0 +1,146 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Separator from "@/components/ui/Separator.astro";
+import TechTag from "@/components/ui/TechTag.astro";
+import { Image } from "astro:assets";
+import ArrowUp from "@/assets/icons/arrow-up.svg";
+import { works } from "@/data/works";
+
+export async function getStaticPaths() {
+  return works.map((work) => ({
+    params: { slug: work.slug },
+    props: { work },
+  }));
+}
+
+const { work } = Astro.props;
+---
+
+<Layout title={`${work.title} | Mel Adry`}>
+  <main class="w-full min-w-0 flex flex-col flex-1 py-16 sm:py-24">
+    <a
+      href="/works"
+      class="group inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-foreground/50 hover:text-foreground transition-colors mb-12 w-fit"
+    >
+      <ArrowUp width={14} height={14} class="-rotate-135 transition-transform group-hover:-translate-x-1" />
+      <span>Back to works</span>
+    </a>
+
+    <header class="flex flex-col gap-4 mb-12 sm:mb-16">
+      <span class="text-sm font-mono uppercase tracking-widest text-foreground/60">
+        {work.organization}
+      </span>
+      <h1
+        class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold uppercase -tracking-tight-2 leading-none text-balance"
+      >
+        {work.title}
+      </h1>
+      <p class="text-xl sm:text-2xl text-foreground/70 max-w-3xl leading-snug mt-2">
+        {work.description}
+      </p>
+    </header>
+
+    <div class="w-full max-w-5xl mx-auto mb-16 sm:mb-24 relative group">
+      <div
+        class="absolute -inset-3 border border-dashed border-foreground/20 -z-10 translate-x-4 translate-y-4 transition-transform duration-500 group-hover:translate-x-5 group-hover:translate-y-5"
+      >
+      </div>
+
+      <div class="w-full aspect-video border border-foreground/20 bg-foreground/5 relative overflow-hidden shadow-2xl">
+        <div class="absolute inset-0 animate-pulse bg-foreground/10"></div>
+
+        <Image
+          src={work.images[0]}
+          alt={work.title}
+          class="relative z-10 w-full h-full object-cover transition-all duration-700 group-hover:scale-[1.02]"
+          loading="eager"
+          widths={[800, 1200, 1600]}
+          sizes="(min-width: 1024px) 1024px, 100vw"
+        />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 border-y border-dashed border-foreground/20 py-8 mb-16 sm:mb-24 gap-8">
+      <div class="flex flex-col gap-2">
+        <span class="text-xs font-mono uppercase tracking-widest text-foreground/50">Role</span>
+        <span class="text-sm font-medium">{work.role}</span>
+      </div>
+      <div class="flex flex-col gap-2">
+        <span class="text-xs font-mono uppercase tracking-widest text-foreground/50">Timeline</span>
+        <span class="text-sm font-medium">{work.timeline}</span>
+      </div>
+      <div class="flex flex-col gap-2">
+        <span class="text-xs font-mono uppercase tracking-widest text-foreground/50">Year</span>
+        <span class="text-sm font-medium">{work.year}</span>
+      </div>
+      <div class="flex flex-col gap-2">
+        <span class="text-xs font-mono uppercase tracking-widest text-foreground/50">Stack</span>
+        <div class="flex flex-wrap gap-1.5 mt-1">
+          {work.tags.map((tag) => <TechTag name={tag} />)}
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 mb-16 sm:mb-24">
+      <div class="md:col-span-3">
+        <h2 class="text-xs font-mono uppercase tracking-widest text-foreground/50 sticky top-24">The Context</h2>
+      </div>
+
+      <div class="md:col-span-9 flex flex-col gap-12 max-w-prose">
+        <div class="flex flex-col gap-4">
+          <h3 class="text-2xl font-medium uppercase">The Challenge</h3>
+          <p class="text-base sm:text-lg text-foreground/70 leading-relaxed">
+            {work.challenge}
+          </p>
+        </div>
+
+        <div class="flex flex-col gap-4">
+          <h3 class="text-2xl font-medium uppercase">The Solution</h3>
+          <p class="text-base sm:text-lg text-foreground/70 leading-relaxed">
+            {work.solution}
+          </p>
+        </div>
+
+        <div class="flex flex-col gap-4 border-l-2 border-foreground/20 pl-6 py-2">
+          <h3 class="text-sm font-mono uppercase tracking-widest text-foreground/50">Impact</h3>
+          <p class="text-lg sm:text-xl font-medium leading-relaxed">
+            {work.impact}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="w-full max-w-5xl mx-auto mb-16 sm:mb-24 relative group">
+      <div
+        class="absolute -inset-3 border border-dashed border-foreground/20 -z-10 -translate-x-4 translate-y-4 transition-transform duration-500 group-hover:-translate-x-5 group-hover:translate-y-5"
+      >
+      </div>
+
+      <div class="w-full border border-foreground/20 bg-foreground/5 relative overflow-hidden shadow-2xl">
+        <Image
+          src={work.images[1]}
+          alt={`${work.title} secondary view`}
+          class="w-full h-auto object-contain transition-all duration-700 group-hover:scale-[1.02]"
+          loading="lazy"
+          widths={[800, 1200, 1600]}
+          sizes="(min-width: 1024px) 1024px, 100vw"
+        />
+      </div>
+    </div>
+
+    <Separator />
+
+    <div class="py-16 flex flex-col sm:flex-row items-center justify-between gap-8">
+      <h2 class="text-3xl sm:text-4xl font-bold uppercase -tracking-tight-2">Like what you see?</h2>
+      <div class="flex gap-4 w-full sm:w-auto">
+        <a
+          href="/contact"
+          class="group inline-flex h-12 w-full sm:w-fit cursor-pointer items-center justify-center gap-2 bg-foreground px-8 text-sm font-medium uppercase text-background transition-colors duration-200 hover:bg-foreground/80"
+        >
+          <span>Get in touch</span>
+          <ArrowUp width={16} height={16} class="rotate-90 transition-transform group-hover:translate-x-1" />
+        </a>
+      </div>
+    </div>
+  </main>
+</Layout>

@@ -1,10 +1,72 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import Separator from "@/components/ui/Separator.astro";
+import TechTag from "@/components/ui/TechTag.astro";
+import ArrowUp from "@/assets/icons/arrow-up.svg";
+import { Image } from "astro:assets";
+import { works } from "@/data/works";
 ---
 
 <Layout>
-  <div class="w-full h-[500px] flex items-center justify-center gap-2">
-    <h1 class="text-5xl font-medium text-neutral-900">Works</h1>
-    <h2 class="text-sm text-neutral-700">Mel Adry</h2>
-  </div>
+  <main class="w-full min-w-0 flex flex-col flex-1">
+    <section class="py-16 sm:py-24 md:py-32 flex flex-col gap-6">
+      <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold -tracking-tight-2 leading-none">
+        Selected Works.
+      </h1>
+      <p class="text-lg sm:text-xl md:text-2xl text-foreground/70 max-w-2xl leading-snug">
+        A collection of internal tools, dashboards, and data platforms I've designed and engineered.
+      </p>
+    </section>
+
+    <Separator />
+
+    <section class="py-8 sm:py-16">
+      <div class="flex flex-col border-t border-dashed border-foreground/20">
+        {
+          works.map((work) => (
+            <a
+              href={`/works/${work.slug}`}
+              class="group relative grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center py-8 md:py-12 border-b border-dashed border-foreground/20 hover:bg-foreground/[0.02] transition-colors"
+            >
+              <div class="md:col-span-1 text-sm font-mono text-foreground/40 group-hover:text-foreground/80 transition-colors">
+                {work.year}
+              </div>
+
+              <div class="md:col-span-4 flex flex-col gap-2">
+                <h2 class="text-3xl md:text-4xl font-medium uppercase group-hover:text-foreground/80 transition-colors">
+                  {work.title}
+                </h2>
+                <span class="text-xs font-mono uppercase tracking-widest text-foreground/50">{work.organization}</span>
+              </div>
+
+              <div class="hidden md:flex md:col-span-4 flex-wrap gap-2">
+                {work.tags.slice(0, 4).map((tag) => (
+                  <TechTag name={tag} />
+                ))}
+                {work.tags.length > 4 && (
+                  <span class="text-xs font-mono text-foreground/40 flex items-center">
+                    +{work.tags.length - 4} more
+                  </span>
+                )}
+              </div>
+
+              <div class="md:col-span-3 flex items-center justify-between md:justify-end gap-6">
+                <div class="relative w-24 h-16 sm:w-32 sm:h-20 overflow-hidden rounded-xs border border-foreground/10 bg-foreground/5">
+                  <Image
+                    src={work.images[0]}
+                    alt={work.title}
+                    class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
+                  />
+                </div>
+
+                <div class="h-10 w-10 flex items-center justify-center border border-foreground/20 rounded-full group-hover:border-foreground group-hover:bg-foreground group-hover:text-background transition-all duration-300">
+                  <ArrowUp width={18} height={18} class="rotate-45" />
+                </div>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+  </main>
 </Layout>
