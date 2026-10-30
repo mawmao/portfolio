@@ -26,31 +26,42 @@ const { title, tags, organization, description, images, href, reverse } =
   ]}
 >
   <div class="relative aspect-4/3 w-full flex-3 sm:aspect-auto sm:min-h-80">
-    <WorkImage orientation="top-left" src={images[0]} alt="" />
-    <WorkImage orientation="bottom-right" src={images[1]} alt="" />
+    <WorkImage
+      orientation="top-left"
+      src={images[0]}
+      alt={`${title} interface screenshot 1`}
+    />
+    <WorkImage
+      orientation="bottom-right"
+      src={images[1]}
+      alt={`${title} interface screenshot 2`}
+    />
   </div>
 
-  <div class="flex flex-2 flex-col gap-6 sm:px-8 py-8">
-    <header class="flex flex-col gap-2">
-      <span class="text-xs font-light uppercase text-foreground/75">
-        {organization}
-      </span>
+  <div class="flex flex-2 flex-col gap-6 sm:px-8 py-8 justify-between">
+    <div class="flex flex-col gap-6">
+      <header class="flex flex-col gap-3">
+        <span class="text-xs font-light uppercase tracking-wider text-foreground/75">
+          {organization}
+        </span>
 
-      <h4 class="text-4xl font-medium uppercase">{title}</h4>
+        <h4 class="text-4xl font-medium uppercase leading-none">{title}</h4>
 
-      <div class="flex flex-wrap gap-3 mt-4">
-        {tags.map((tag) => <TechTag name={tag} />)}
-      </div>
-    </header>
+        <div class="flex flex-wrap gap-2 mt-2">
+          {tags.map((tag) => <TechTag name={tag} />)}
+        </div>
+      </header>
 
-    <p class="leading-normal text-xs sm:text-sm text-foreground/80">
-      {description}
-    </p>
+      <p class="leading-relaxed text-xs sm:text-sm text-foreground/80 max-w-prose">
+        {description}
+      </p>
+    </div>
 
-    <footer>
+    <footer class="mt-4">
       <a
         href={href}
-        class="group inline-flex h-12 w-full cursor-pointer items-center justify-center gap-1 border border-foreground/30 px-4 text-sm font-medium uppercase text-foreground/80 transition-colors duration-200 hover:border-foreground hover:bg-foreground hover:text-background focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground"
+        aria-label={`Read more about ${title}`}
+        class="group inline-flex h-12 w-full cursor-pointer items-center justify-center gap-2 border border-foreground/30 px-4 text-sm font-medium uppercase text-foreground/80 transition-colors duration-200 hover:border-foreground hover:bg-foreground hover:text-background focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground"
       >
         <span>Read more</span>
         <ArrowUp
