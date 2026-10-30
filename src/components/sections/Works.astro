@@ -8,40 +8,30 @@ import pcahto1 from "@/assets/images/pcahto-1.png";
 import pcahto2 from "@/assets/images/pcahto-2.png";
 import Separator from "../ui/Separator.astro";
 import SectionLayout from "@/layouts/SectionLayout.astro";
+import { works } from "@/data/works";
+
+const featuredWorks = works.filter((work) => work.featured);
 ---
 
 <SectionLayout id="works" class="min-h-[500px] gap-16 py-10">
-  <h3 class="text-xl bg-foreground text-background w-fit px-2 py-1.5">
-    My Works
-  </h3>
+  <h3 class="text-xl bg-foreground text-background w-fit px-2 py-1.5">My Works</h3>
 
   <div class="flex flex-col gap-6 sm:gap-14">
-    <WorkEntry
-      title="Humay"
-      tags={[
-        "Astro",
-        "TypeScript",
-        "Supabase",
-        "shadcn\\ui",
-        "Tailwind CSS",
-        "Cloudflare",
-      ]}
-      organization="Department of Agriculture VI - Philippines"
-      description="A secure, role-based data collection and analytics platform that replaced manual spreadsheet reporting for field workers and managers."
-      images={[humay1, humay2]}
-      href="/works/humay"
-    />
-
-    <Separator hide/>
-
-    <WorkEntry
-      title="PCAHTO"
-      tags={["Astro", "Supabase", "shacn\\ui", "Tailwind CSS", "Cloudflare"]}
-      organization="Iloilo Provincial Culture, Arts, History and Tourism Office"
-      description="An SEO-optimized public website paired with a custom CMS, allowing non-technical staff to easily manage provincial tourist data."
-      images={[pcahto1, pcahto2]}
-      href="/works/pcahto"
-      reverse
-    />
+    {
+      featuredWorks.map((work, index) => (
+        <>
+          <WorkEntry
+            title={work.title}
+            tags={work.tags}
+            organization={work.organization}
+            description={work.description}
+            images={work.images}
+            href={`/works/${work.slug}`}
+            reverse={index % 2 !== 0}
+          />
+          {index !== featuredWorks.length - 1 && <Separator hide />}
+        </>
+      ))
+    }
   </div>
 </SectionLayout>
