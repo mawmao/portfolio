@@ -4,7 +4,8 @@ import ReactJS from "@/assets/icons/react.svg";
 import AstroIcon from "@/assets/icons/astro.svg";
 import Supabase from "@/assets/icons/supabase.svg";
 import Tailwind from "@/assets/icons/tailwind.svg";
-import Cloudflare  from "@/assets/icons/cloudflare.svg";
+import Cloudflare from "@/assets/icons/cloudflare.svg";
+import CodeBrackets from "@/assets/icons/code-brackets.svg";
 
 interface Props {
   name: string;
@@ -13,19 +14,21 @@ interface Props {
 const { name } = Astro.props;
 
 const iconMap: Record<string, any> = {
-  "Astro": AstroIcon,
-  "TypeScript": TypeScript,
-  "React": ReactJS,
-  "Supabase": Supabase,
+  Astro: AstroIcon,
+  TypeScript: TypeScript,
+  React: ReactJS,
+  Supabase: Supabase,
   "Tailwind CSS": Tailwind,
-  "Cloudflare": Cloudflare,
-  // "shadcn/ui": Shadcn, // Uncomment when you add the icon
+  Cloudflare: Cloudflare,
+  // "shadcn/ui": ...
 };
 
-const Icon = iconMap[name];
+const Icon = iconMap[name] ?? CodeBrackets;
 ---
 
-<span class="inline-flex items-center gap-1.5 rounded-full border border-foreground/20 bg-foreground/5 px-2.5 py-1 text-xs font-medium text-foreground/70">
-  {Icon && <Icon width={14} height={14} class="fill-current" />}
+<span
+  class="inline-flex items-center gap-1.5 rounded-full border border-foreground/20 bg-foreground/5 px-2.5 py-1 text-xs font-medium text-foreground/70"
+>
+  <Icon width={12} height={12} class="fill-current" />
   {name}
 </span>
