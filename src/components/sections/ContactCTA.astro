@@ -3,17 +3,24 @@ import SectionLayout from "@/layouts/SectionLayout.astro";
 import ArrowUp from "@/assets/icons/arrow-up.svg";
 ---
 
-<SectionLayout id="contact-cta" class="py-24 sm:py-32 items-center text-center">
-  <div class="flex flex-col items-center gap-8 max-w-2xl mx-auto">
-    <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold -tracking-tight-2">
+<SectionLayout id="contact-cta" class="py-24 sm:py-32">
+  <div class="max-w-4xl mt-4 mx-auto w-full border border-dashed border-foreground/30 p-8 sm:p-16 flex flex-col items-center text-center relative bg-background">
+
+    <span class="absolute -top-3 left-6 bg-background px-2 text-xs font-mono uppercase text-foreground/50 tracking-wider">
+      Available for work
+    </span>
+
+    <h2 class="text-3xl sm:text-4xl md:text-6xl font-bold -tracking-tight-2 leading-[1.1] mb-6">
       Let's build something <br class="hidden sm:block" /> together.
     </h2>
-    <p class="text-foreground/60">
-      Currently open for freelance opportunities and full-time roles.
+
+    <p class="text-foreground/60 text-lg sm:text-xl max-w-[40ch] mb-10">
+      Currently open for freelance opportunities and full-time roles. Let's talk about your next big project.
     </p>
+
     <a
       href="/contact"
-      class="group inline-flex h-14 w-full sm:w-auto cursor-pointer items-center justify-center gap-2 bg-foreground px-10 text-sm font-medium uppercase text-background transition-opacity duration-200 hover:opacity-80"
+      class="group inline-flex h-14 w-full sm:w-auto cursor-pointer items-center justify-center gap-2 border border-foreground bg-foreground px-10 text-sm font-medium uppercase text-background transition-all duration-300 hover:bg-background hover:text-foreground"
     >
       <span>Get in touch</span>
       <ArrowUp
@@ -22,5 +29,10 @@ import ArrowUp from "@/assets/icons/arrow-up.svg";
         class="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
       />
     </a>
+
+    <span class="mt-6 text-xs font-mono text-foreground/40 uppercase tracking-widest">
+      Or email me at meladry.co@gmail.com
+    </span>
+
   </div>
 </SectionLayout>
