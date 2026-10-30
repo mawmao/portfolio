@@ -33,10 +33,19 @@ import { works } from "@/data/works";
               </div>
 
               <div class="md:col-span-3 flex flex-col gap-2">
+                {work.isPrivate && (
+                  <span class="w-fit inline-flex items-center rounded-full border border-dashed border-foreground/40 px-2 py-0.5 text-[9px] font-mono uppercase tracking-widest text-foreground/60">
+                    Private
+                  </span>
+                )}
                 <h2 class="text-3xl md:text-4xl font-medium uppercase group-hover:text-foreground/80 transition-colors">
                   {work.title}
                 </h2>
-                <span class="text-xs font-mono uppercase tracking-widest text-foreground/50">{work.organization}</span>
+                <div class="flex flex-wrap items-center gap-2">
+                  <span class="text-xs font-mono uppercase tracking-widest text-foreground/50">
+                    {work.organization}
+                  </span>
+                </div>
               </div>
 
               <div class="hidden md:flex md:col-span-4 flex-wrap gap-2">

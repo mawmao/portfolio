@@ -13,6 +13,7 @@ export interface Work {
   images: [ImageMetadata, ImageMetadata];
   featured?: boolean;
 
+  isPrivate?: boolean;
   role: string;
   timeline: string;
   challenge: string;
@@ -27,6 +28,7 @@ export const works: Work[] = [
     year: "2025 - 2026",
     role: "Full-Stack Engineer",
     timeline: "March 2025 - May 2026",
+    isPrivate: true,
     tags: ["React", "TypeScript", "Kotlin", "Supabase", "PostgreSQL", "RLS"],
     organization: "Department of Agriculture VI - Philippines",
     description: "A secure, role-based data collection and analytics platform that replaced manual spreadsheet reporting for field workers and managers.",
