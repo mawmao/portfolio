@@ -28,11 +28,11 @@ import { works } from "@/data/works";
               href={`/works/${work.slug}`}
               class="group relative grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center py-8 md:py-12 border-b border-dashed border-foreground/20 hover:bg-foreground/[0.02] transition-colors"
             >
-              <div class="md:col-span-1 text-sm font-mono text-foreground/40 group-hover:text-foreground/80 transition-colors">
+              <div class="md:col-span-2 whitespace-nowrap text-sm font-mono text-foreground/40 group-hover:text-foreground/80 transition-colors">
                 {work.year}
               </div>
 
-              <div class="md:col-span-4 flex flex-col gap-2">
+              <div class="md:col-span-3 flex flex-col gap-2">
                 <h2 class="text-3xl md:text-4xl font-medium uppercase group-hover:text-foreground/80 transition-colors">
                   {work.title}
                 </h2>
