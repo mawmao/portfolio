@@ -3,10 +3,11 @@ import type { ImageMetadata } from "astro";
 
 import ArrowUp from "@/assets/icons/arrow-up.svg";
 import WorkImage from "./WorkImage.astro";
+import TechTag from "./ui/TechTag.astro";
 
 interface Props {
   title: string;
-  subtitle: string;
+  tags: string[];
   organization: string;
   description: string;
   images: [ImageMetadata, ImageMetadata];
@@ -14,7 +15,7 @@ interface Props {
   reverse?: boolean;
 }
 
-const { title, subtitle, organization, description, images, href, reverse } =
+const { title, tags, organization, description, images, href, reverse } =
   Astro.props;
 ---
 
@@ -31,13 +32,17 @@ const { title, subtitle, organization, description, images, href, reverse } =
 
   <div class="flex flex-1 flex-col gap-6 sm:px-8 py-8">
     <header class="flex flex-col gap-2">
-      <span class="text-sm font-light uppercase text-foreground/50">
+      <span class="text-xs font-light uppercase text-foreground/75">
         {organization}
       </span>
 
       <h4 class="text-4xl font-medium uppercase">{title}</h4>
 
-      <p class="text-foreground/75">{subtitle}</p>
+     <div class="flex flex-wrap gap-2 mt-1">
+        {tags.map((tag) => (
+          <TechTag name={tag} />
+        ))}
+      </div>
     </header>
 
     <p class="leading-normal text-xs sm:text-sm text-foreground/80">
