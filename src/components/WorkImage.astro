@@ -36,19 +36,20 @@ const positions: Record<Orientation, string> = {
 
 <div
   class:list={[
-    "absolute z-10 aspect-video w-[85%] sm:w-[80%] lg:w-[65%] overflow-hidden rounded-xs bg-neutral-400/70 shadow-xl",
+    "absolute z-10 aspect-video w-[85%] sm:w-[80%] lg:w-[65%] overflow-hidden rounded-xs border border-foreground/20 bg-foreground/5 shadow-xl",
     positions[orientation],
   ]}
 >
+  <div class="absolute inset-0 animate-pulse bg-foreground/10" aria-hidden="true"></div>
+
   <Image
     src={src}
     alt={alt}
-    class="h-full w-full object-cover"
+    class="relative z-10 h-full w-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
     format="webp"
     loading="lazy"
     decoding="async"
     quality={60}
-
     widths={[400, 800, 1200, 1600]}
     sizes="(min-width: 1024px) 65vw, (min-width: 640px) 80vw, 85vw"
     width={800}
