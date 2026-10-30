@@ -9,25 +9,16 @@ import ArrowUp from "@/assets/icons/arrow-up.svg";
 <SectionLayout id="about-preview" class="py-16 sm:py-24">
   <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 items-center">
     <div class="md:col-span-7 flex flex-col gap-8">
-      <h3
-        class="text-xl bg-foreground text-background w-fit px-2 py-1.5 font-medium"
-      >
+      <h3 class="text-xl bg-foreground text-background w-fit px-2 py-1.5 font-medium">
         About Me
       </h3>
 
       <div class="flex flex-col gap-6">
-        <p
-          class="text-2xl sm:text-3xl leading-tight font-medium text-foreground tracking-tight"
-        >
-          I'm a <span
-            class="underline decoration-foreground/30 underline-offset-4"
-            >full-stack engineer</span
-          > based in the Philippines.
+        <p class="text-2xl sm:text-3xl leading-tight font-medium text-foreground tracking-tight">
+          I'm a <span class="underline decoration-foreground/30 underline-offset-4">full-stack engineer</span> based in the Philippines.
         </p>
 
-        <p
-          class="text-base sm:text-lg leading-relaxed text-foreground/70 max-w-prose"
-        >
+        <p class="text-base sm:text-lg leading-relaxed text-foreground/70 max-w-prose">
           I specialize in building secure, data-driven web platforms and
           internal tools. I turn complex business workflows into clean,
           resilient software that solves real operational problems.
@@ -47,23 +38,17 @@ import ArrowUp from "@/assets/icons/arrow-up.svg";
       </a>
     </div>
 
-    <div
-      class="md:col-span-5 relative aspect-square md:aspect-4/5 w-full max-w-md ml-auto"
-    >
-      <div
-        class="absolute inset-0 border border-foreground/20 bg-foreground/5 overflow-hidden"
-      >
+    <div class="md:col-span-5 relative aspect-square md:aspect-4/5 w-full max-w-md ml-auto group">
+      <div class="absolute inset-0 border border-foreground/20 bg-foreground/5 overflow-hidden">
         <Image
           src={Me}
           alt=""
-          class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+          class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
         />
         <span class="sr-only">Portrait of Mel Adry</span>
       </div>
 
-      <div
-        class="absolute -inset-2 border border-dashed border-foreground/20 -z-10 translate-x-4 translate-y-4"
-      >
+      <div class="absolute -inset-2 border border-dashed border-foreground/20 -z-10 translate-x-4 translate-y-4 transition-transform duration-500 group-hover:translate-x-5 group-hover:translate-y-5">
       </div>
     </div>
   </div>
