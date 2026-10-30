@@ -46,6 +46,12 @@ const positions: Record<Orientation, string> = {
     class="h-full w-full object-cover"
     format="webp"
     loading="lazy"
+    decoding="async"
     quality={60}
+
+    widths={[400, 800, 1200, 1600]}
+    sizes="(min-width: 1024px) 65vw, (min-width: 640px) 80vw, 85vw"
+    width={800}
+    height={450}
   />
 </div>
