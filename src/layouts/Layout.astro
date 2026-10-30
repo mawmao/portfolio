@@ -4,6 +4,8 @@ import Head from "@/components/common/Head.astro";
 import Header from "@/components/common/Header.astro";
 import Noise from "@/components/Noise.astro";
 
+import Analytics from "@vercel/analytics/astro";
+
 import "@/styles/global.css";
 ---
 
@@ -17,5 +19,7 @@ import "@/styles/global.css";
       <slot />
       <Footer />
     </div>
+
+    <Analytics />
   </body>
 </html>

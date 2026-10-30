@@ -1,5 +1,4 @@
 ---
-import Analytics from "@vercel/analytics/astro";
 import { Font } from "astro:assets";
 
 interface Props {
@@ -14,12 +13,10 @@ const { title } = Astro.props;
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" href="/favicon.ico" />
 
-  <Font cssVariable="--font-space-grotesk" />
-  <Font cssVariable="--font-jetbrains-mono" />
+  <Font cssVariable="--font-space-grotesk" preload/>
+  <Font cssVariable="--font-jetbrains-mono" preload/>
 
   <title>{title}</title>
   <meta name="viewport" content="width=device-width" />
   <meta name="generator" content={Astro.generator} />
-
-  <Analytics />
 </head>
