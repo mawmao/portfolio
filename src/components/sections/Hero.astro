@@ -6,6 +6,7 @@ import Supabase from "@/assets/icons/supabase.svg";
 import Tailwind from "@/assets/icons/tailwind.svg";
 import Overlay from "../Overlay.astro";
 import SectionLayout from "@/layouts/SectionLayout.astro";
+import ArrowUp from "@/assets/icons/arrow-up.svg";
 
 const stack = [
   { name: "TypeScript", icon: TypeScript },
@@ -18,35 +19,69 @@ const stack = [
 
 <SectionLayout
   id="hero"
-  class="min-h-[380px] sm:min-h-[570px] justify-between gap-8"
+  class="min-h-[380px] sm:min-h-[610px] justify-between gap-12 pt-16 pb-8"
 >
   <Overlay opacity={12} />
 
-  <div class="flex flex-col gap-3 sm:gap-4">
-    <h1
-      class="font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl -tracking-tight-2"
-    >
-      I’m a full-stack engineer
-    </h1>
-    <h2
-      class="text-lg sm:text-xl md:text-2xl lg:text-3xl max-w-[34ch] text-foreground/80"
-    >
-      I build internal tools, business dashboards, and secure data platforms
-    </h2>
+  <div class="flex flex-col gap-6 sm:gap-8 max-w-4xl">
+    <div class="flex items-center gap-3">
+      <span class="relative flex h-2.5 w-2.5">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+      </span>
+      <span class="text-xs font-mono uppercase tracking-widest text-foreground/60">
+        Available for new projects
+      </span>
+    </div>
+
+    <div class="flex flex-col gap-3 sm:gap-4">
+      <h1
+        class="font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl -tracking-tight-2"
+      >
+        I’m a full-stack engineer
+      </h1>
+      <h2
+        class="text-lg sm:text-xl md:text-2xl lg:text-3xl max-w-[40ch] text-foreground/80 leading-snug"
+      >
+        I build internal tools, business dashboards, and secure data platforms.
+      </h2>
+    </div>
+
+    <div class="flex flex-wrap items-center gap-4 mt-4">
+      <a
+        href="#works"
+        class="group inline-flex h-12 cursor-pointer items-center justify-center gap-2 bg-foreground px-8 text-sm font-medium uppercase text-background transition-colors duration-200 hover:bg-foreground/80"
+      >
+        <span>View my work</span>
+        <ArrowUp
+          width={16}
+          height={16}
+          class="rotate-90 transition-transform duration-200 group-hover:translate-x-1"
+        />
+      </a>
+
+      <a
+        href="/contact"
+        class="group inline-flex h-12 cursor-pointer items-center justify-center gap-2 border border-foreground/30 px-8 text-sm font-medium uppercase text-foreground/80 transition-colors duration-200 hover:border-foreground hover:bg-foreground hover:text-background"
+      >
+        <span>Get in touch</span>
+      </a>
+    </div>
   </div>
+
   <ul
     aria-label="Technology stack"
-    class="flex flex-wrap justify-start items-center gap-x-2 gap-y-3 md:justify-end sm:gap-x-4"
+    class="flex flex-wrap justify-start items-center gap-x-3 gap-y-3 md:justify-end sm:gap-x-6 border-t border-dashed border-foreground/20 pt-6"
   >
     {
       stack.map(({ name, icon: Icon }) => {
         return (
           <li
-            class="inline-flex items-center gap-1 sm:gap-2 text-xs sm:text-sm text-foreground/60 lowercase
-                 not-last:after:ml-2 not-last:after:h-4
+            class="inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-foreground/60 lowercase hover:text-foreground transition-colors
+                 not-last:after:ml-3 sm:not-last:after:ml-6 not-last:after:h-4
                  not-last:after:w-px not-last:after:bg-foreground/30"
           >
-            <Icon width={20} height={20} aria-hidden="true" />
+            <Icon width={18} height={18} aria-hidden="true" />
             <span>{name}</span>
           </li>
         );
