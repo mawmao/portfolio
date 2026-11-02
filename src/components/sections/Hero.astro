@@ -7,6 +7,7 @@ import Tailwind from "@/assets/icons/tailwind.svg";
 import Overlay from "../Overlay.astro";
 import SectionLayout from "@/layouts/SectionLayout.astro";
 import ArrowUp from "@/assets/icons/arrow-up.svg";
+import GlobeBackground from "../GlobeBackground.astro";
 
 const stack = [
   { name: "TypeScript", icon: TypeScript },
@@ -17,10 +18,8 @@ const stack = [
 ];
 ---
 
-<SectionLayout
-  id="hero"
-  class="min-h-[380px] sm:min-h-[610px] justify-between gap-12 pt-16 pb-8"
->
+<SectionLayout id="hero" class="min-h-[380px] sm:min-h-[670px] justify-between gap-12 pt-16 pb-8">
+  <GlobeBackground />
   <Overlay opacity={12} />
 
   <div class="flex flex-col gap-6 sm:gap-8 max-w-4xl">
@@ -29,20 +28,14 @@ const stack = [
         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
         <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
       </span>
-      <span class="text-xs font-mono uppercase tracking-widest text-foreground/60">
-        Available for new projects
-      </span>
+      <span class="text-xs font-mono uppercase tracking-widest text-foreground/60"> Available for new projects </span>
     </div>
 
     <div class="flex flex-col gap-3 sm:gap-4">
-      <h1
-        class="font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl -tracking-tight-2"
-      >
+      <h1 class="font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl -tracking-tight-2">
         I’m a full-stack engineer
       </h1>
-      <h2
-        class="text-lg sm:text-xl md:text-2xl lg:text-3xl max-w-[40ch] text-foreground/80 leading-snug"
-      >
+      <h2 class="text-lg sm:text-xl md:text-2xl lg:text-3xl max-w-[40ch] text-foreground/80 leading-snug">
         I build internal tools, business dashboards, and secure data platforms.
       </h2>
     </div>
@@ -53,11 +46,7 @@ const stack = [
         class="group inline-flex h-12 cursor-pointer items-center justify-center gap-2 bg-foreground px-8 text-sm font-medium uppercase text-background transition-colors duration-200 hover:bg-foreground/80"
       >
         <span>View my work</span>
-        <ArrowUp
-          width={16}
-          height={16}
-          class="rotate-90 transition-transform duration-200 group-hover:translate-x-1"
-        />
+        <ArrowUp width={16} height={16} class="rotate-90 transition-transform duration-200 group-hover:translate-x-1" />
       </a>
 
       <a
