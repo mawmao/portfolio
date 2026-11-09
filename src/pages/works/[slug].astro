@@ -16,7 +16,7 @@ export async function getStaticPaths() {
 const { work } = Astro.props;
 ---
 
-<Layout title={`${work.title} | Mel Adry`}>
+<Layout title={`${work.title} - Case Study | Mel Adry | Full-Stack Engineer`} description={work.description} image={work.images[0].src}>
   <main class="w-full min-w-0 flex flex-col flex-1 py-16 sm:py-24">
     <a
       href="/works"

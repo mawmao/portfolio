@@ -36,10 +36,12 @@ const skills = {
 };
 ---
 
-<Layout>
+<Layout
+  title="About | Mel Adry | Full-Stack Engineer"
+  description="Learn more about Mel Adry, a full-stack engineer based in the Philippines specializing in building secure, data-driven web platforms and internal tools."
+>
   <main class="w-full min-w-0 flex flex-col flex-1">
     <section class="py-16 sm:py-24 md:py-32 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-
       <div class="lg:col-span-5 flex flex-col gap-8 lg:sticky lg:top-24 justify-center lg:justify-start">
         <div class="w-full max-w-sm mx-auto lg:mx-0 flex flex-col gap-8">
           <div class="relative aspect-square w-full group">
@@ -50,7 +52,10 @@ const skills = {
                 class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
               />
             </div>
-            <div class="absolute -inset-2 border border-dashed border-foreground/20 -z-10 translate-x-4 translate-y-4 transition-transform duration-500 group-hover:translate-x-5 group-hover:translate-y-5"></div>
+            <div
+              class="absolute -inset-2 border border-dashed border-foreground/20 -z-10 translate-x-4 translate-y-4 transition-transform duration-500 group-hover:translate-x-5 group-hover:translate-y-5"
+            >
+            </div>
           </div>
 
           <div class="flex flex-col gap-4 font-mono text-xs uppercase tracking-widest text-foreground/60">
@@ -99,7 +104,9 @@ const skills = {
 
     <section class="py-16 sm:py-24">
       <div class="flex flex-col gap-12">
-        <h3 class="text-xs font-mono uppercase tracking-widest text-foreground/50 border-b border-dashed border-foreground/20 pb-2">
+        <h3
+          class="text-xs font-mono uppercase tracking-widest text-foreground/50 border-b border-dashed border-foreground/20 pb-2"
+        >
           Experience
         </h3>
 
@@ -107,17 +114,13 @@ const skills = {
           {
             experience.map((job) => (
               <div class="flex flex-col lg:flex-row gap-4 lg:gap-12 items-start">
-
-                <div class="lg:w-48 shrink-0 text-sm font-mono text-foreground/50 pt-1">
-                  {job.period}
-                </div>
+                <div class="lg:w-48 shrink-0 text-sm font-mono text-foreground/50 pt-1">{job.period}</div>
 
                 <div class="flex flex-col gap-2 flex-1 lg:border-l lg:border-dashed lg:border-foreground/20 lg:pl-8">
                   <h4 class="text-xl sm:text-2xl font-medium uppercase">{job.role}</h4>
                   <span class="text-sm text-foreground/60 font-medium">{job.company}</span>
                   <p class="text-sm text-foreground/70 mt-2 max-w-2xl leading-relaxed">{job.description}</p>
                 </div>
-
               </div>
             ))
           }
@@ -129,9 +132,10 @@ const skills = {
 
     <section class="py-16 sm:py-24">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-
         <div class="lg:col-span-4">
-          <h3 class="text-xs font-mono uppercase tracking-widest text-foreground/50 border-b border-dashed border-foreground/20 pb-2">
+          <h3
+            class="text-xs font-mono uppercase tracking-widest text-foreground/50 border-b border-dashed border-foreground/20 pb-2"
+          >
             My Toolbox
           </h3>
           <p class="text-sm text-foreground/60 mt-4 leading-relaxed max-w-xs">
@@ -153,7 +157,6 @@ const skills = {
             ))
           }
         </div>
-
       </div>
     </section>
 

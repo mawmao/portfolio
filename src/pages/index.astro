@@ -7,7 +7,23 @@ import Separator from "@/components/ui/Separator.astro";
 import Layout from "@/layouts/Layout.astro";
 ---
 
-<Layout>
+<Layout
+  title="Mel Adry | Full-Stack Engineer"
+  description="I build internal tools, business dashboards, and secure data platforms. Based in the Philippines."
+>
+  <script
+    is:inline
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      name: "Mel Adry",
+      url: "https://meladry.dev/",
+      jobTitle: "Full-Stack Engineer",
+      knowsAbout: ["Web Development", "TypeScript", "React", "Astro", "Supabase"],
+      sameAs: ["https://github.com/mawmao", "https://linkedin.com/in/meladryco", "https://x.com/meladryco"],
+    })}
+  />
   <main class="w-full min-w-0 flex flex-col">
     <Hero />
     <Works />
