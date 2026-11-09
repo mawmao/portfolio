@@ -4,7 +4,7 @@ A personal developer portfolio built to showcase my recent projects, skills, and
 
 ## Live Site
 
-[meladry.vercel.app](https://meladry.dev)
+[meladry.dev](https://meladry.dev)
 
 ## Project Overview
 
