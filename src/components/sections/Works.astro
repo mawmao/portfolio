@@ -1,11 +1,5 @@
 ---
 import WorkEntry from "@/components/WorkEntry.astro";
-
-import humay1 from "@/assets/images/humay-1.png";
-import humay2 from "@/assets/images/humay-2.png";
-
-import pcahto1 from "@/assets/images/pcahto-1.png";
-import pcahto2 from "@/assets/images/pcahto-2.png";
 import Separator from "../ui/Separator.astro";
 import SectionLayout from "@/layouts/SectionLayout.astro";
 import { works } from "@/data/works";
@@ -14,7 +8,11 @@ const featuredWorks = works.filter((work) => work.featured);
 ---
 
 <SectionLayout id="works" class="min-h-[500px] gap-16 py-10">
-  <h3 class="text-xl bg-foreground text-background w-fit px-2 py-1.5">My Works</h3>
+  <h3 class="text-xl text-foreground font-bold w-fit flex items-center gap-1">
+    <span class="font-mono text-foreground/50 animate-pulse select-none">//</span>
+    <span class="font-mono font-normal text-foreground/75">My Works</span>
+    <span class="font-mono animate-pulse select-none">_</span>
+  </h3>
 
   <div class="flex flex-col gap-6 sm:gap-14">
     {
