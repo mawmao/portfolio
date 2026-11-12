@@ -12,13 +12,14 @@ interface Props {
   title: string;
   description?: string;
   image?: string;
+  schema?: Record<string, any>;
 }
 
-const { title, description, image } = Astro.props;
+const { title, description, image, schema } = Astro.props;
 ---
 
 <html lang="en">
-  <Head title={title} description={description} image={image} />
+  <Head title={title} description={description} image={image} schema={schema} />
   <body class="min-h-screen">
     <Noise class="opacity-20" />
 

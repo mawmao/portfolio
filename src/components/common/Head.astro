@@ -5,22 +5,35 @@ interface Props {
   title: string;
   description?: string;
   image?: string;
+  schema?: Record<string, any>;
 }
 
 const {
   title,
   description = "Mel Adry is a full-stack engineer building internal tools, business dashboards, and secure data platforms.",
   image = "/og-image.jpg",
+  schema,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const imageURL = new URL(image, Astro.site);
+const imageURL = image.startsWith("http") ? image : new URL(image, Astro.site).href;
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Mel Adry",
+  "url": "https://meladry.dev/",
+};
 ---
 
 <head>
   <meta charset="utf-8" />
+
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="icon" href="/favicon.ico" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
 
   <Font cssVariable="--font-space-grotesk" preload />
   <Font cssVariable="--font-jetbrains-mono" preload />
@@ -29,17 +42,26 @@ const imageURL = new URL(image, Astro.site);
   <meta name="description" content={description} />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="generator" content={Astro.generator} />
-  <link rel="canonical" href={canonicalURL} />
+  <link rel="canonical" href={canonicalURL.href} />
 
   <meta property="og:type" content="website" />
-  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:site_name" content="Mel Adry" />
+  <meta property="og:url" content={canonicalURL.href} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:image" content={imageURL} />
+  <meta property="og:image:alt" content={title} />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:url" content={canonicalURL} />
+  <meta name="twitter:url" content={canonicalURL.href} />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={imageURL} />
+  <meta name="twitter:image:alt" content={title} />
+
+  <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+
+  {schema && (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  )}
 </head>
