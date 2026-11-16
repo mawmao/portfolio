@@ -41,7 +41,8 @@ import { works } from "@/data/works";
                     Private
                   </span>
                 )}
-                <h2 class="text-3xl md:text-4xl font-medium uppercase group-hover:text-foreground/80 transition-colors">
+                <!-- Added a persistent underline to mimic a link -->
+                <h2 class="text-3xl md:text-4xl font-medium uppercase group-hover:text-foreground/80 transition-colors underline decoration-foreground/20 underline-offset-4 group-hover:decoration-foreground">
                   {work.title}
                 </h2>
                 <div class="flex flex-wrap items-center gap-2">
@@ -63,16 +64,18 @@ import { works } from "@/data/works";
               </div>
 
               <div class="md:col-span-3 flex items-center justify-between md:justify-end gap-6">
-                <div class="relative w-24 h-16 sm:w-32 sm:h-20 overflow-hidden rounded-xs border border-foreground/10 bg-foreground/5">
+                <!-- Removed the grayscale filter so the UI is visible immediately -->
+                <div class="relative w-24 h-16 sm:w-32 sm:h-20 overflow-hidden rounded-xs border border-foreground/20 bg-foreground/5">
                   <Image
                     src={work.images[0]}
                     alt={work.title}
-                    class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500"
                   />
                 </div>
 
-                <div class="h-10 w-10 flex items-center justify-center border border-foreground/20 rounded-full group-hover:border-foreground group-hover:bg-foreground group-hover:text-background transition-all duration-300">
-                  <ArrowUp width={18} height={18} class="rotate-45" />
+                <!-- Made the arrow button solid by default to act as a clear "Go" button -->
+                <div class="h-10 w-10 flex items-center justify-center rounded-full bg-foreground text-background border border-foreground group-hover:bg-foreground/80 transition-all duration-300">
+                  <ArrowUp width={18} height={18} class="rotate-45 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </div>
               </div>
             </a>
