@@ -14,25 +14,26 @@ const experience = [
       "Independently designing and developing custom internal tools, CRMs, and data platforms using React, Next.js, and Supabase.",
   },
   {
+    role: "Full-Stack Engineer",
+    company: "Department of Agriculture VI",
+    period: "Mar 2025 - May 2026",
+    description:
+      "Independently designed and shipped a full-stack data platform for a government agency. Implemented complex PostgreSQL Row Level Security (RLS) across 3 user roles and achieved an ISO 25010 Excellent rating.",
+  },
+  {
     role: "Web Developer Intern",
     company: "Iloilo Provincial Tourism Office (PCAHTO)",
     period: "Jan 2026 - Apr 2026",
     description:
       "Co-developed an SEO-optimized tourism portal and custom CMS using Astro, React, and Supabase, enabling non-technical staff to manage provincial data.",
   },
-  {
-    role: "Full-Stack Developer",
-    company: "Department of Agriculture VI",
-    period: "Mar 2025 - May 2026",
-    description:
-      "Independently designed and built a secure data collection and analytics platform featuring a React dashboard, Kotlin mobile app, and PostgreSQL RLS.",
-  },
 ];
+
 
 const skills = {
   Frontend: ["React", "Next.js", "TypeScript", "Astro", "Tailwind CSS", "shadcn/ui"],
-  Backend: ["Node.js", "Supabase", "PostgreSQL", "Go", "REST APIs"],
-  "Mobile & Tools": ["Kotlin", "Jetpack Compose", "Git", "Vercel", "Cloudflare"],
+  Backend: ["Node.js", "Supabase", "PostgreSQL", "Go", "Stripe API", "REST APIs"],
+  "Mobile & Tools": ["React Native / Expo", "Kotlin", "Jetpack Compose", "Git", "Vercel", "Cloudflare"],
 };
 ---
 
@@ -40,130 +41,137 @@ const skills = {
   title="About | Mel Adry | Full-Stack Engineer"
   description="Learn more about Mel Adry, a full-stack engineer based in the Philippines specializing in building secure, data-driven web platforms and internal tools."
 >
-  <main class="w-full min-w-0 flex flex-col flex-1">
-    <section class="py-16 sm:py-24 md:py-32 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-      <div class="lg:col-span-5 flex flex-col gap-8 lg:sticky lg:top-24 justify-center lg:justify-start">
-        <div class="w-full max-w-sm mx-auto lg:mx-0 flex flex-col gap-8">
-          <div class="relative aspect-square w-full group">
-            <div class="absolute inset-0 border border-foreground/20 bg-foreground/5 overflow-hidden">
-              <Image
-                src={Me}
-                alt="Portrait of Mel Adry"
-                class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
-              />
-            </div>
-            <div
-              class="absolute -inset-2 border border-dashed border-foreground/20 -z-10 translate-x-4 translate-y-4 transition-transform duration-500 group-hover:translate-x-5 group-hover:translate-y-5"
-            >
-            </div>
-          </div>
+  <main class="w-full min-w-0 flex flex-col flex-1 py-16 sm:py-24 md:py-32">
+    <div class="flex flex-col lg:flex-row justify-between gap-12 lg:gap-20 items-start">
 
-          <div class="flex flex-col gap-4 font-mono text-xs uppercase tracking-widest text-foreground/60">
-            <div class="flex justify-between gap-4 border-b border-dashed border-foreground/20 pb-2">
-              <span class="shrink-0">Location</span>
-              <span class="text-foreground text-right">Philippines</span>
-            </div>
-            <div class="flex justify-between gap-4 border-b border-dashed border-foreground/20 pb-2">
-              <span class="shrink-0">Status</span>
-              <span class="text-foreground text-right">Available for work</span>
-            </div>
-            <div class="flex justify-between gap-4 border-b border-dashed border-foreground/20 pb-2">
-              <span class="shrink-0">Focus</span>
-              <span class="text-foreground text-right">Full-Stack & Internal Tools</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      <!-- LEFT COLUMN: Scrolling Content -->
+      <div class="flex flex-col flex-1 w-full max-w-4xl gap-20">
 
-      <div class="lg:col-span-7 flex flex-col gap-8">
-        <h3 class="text-xl text-foreground font-bold w-fit flex items-center gap-1">
-          <span class="font-mono text-foreground/50 animate-pulse select-none">//</span>
-          <span class="font-mono font-normal text-foreground/75">About Me</span>
-          <span class="font-mono animate-pulse select-none">_</span>
-        </h3>
-
-        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold -tracking-tight-2 leading-tight text-balance">
-          I turn complex workflows into <span class="text-foreground/40">clean software.</span>
-        </h1>
-
-        <div class="flex flex-col gap-6 text-base sm:text-lg text-foreground/70 leading-relaxed max-w-prose">
-          <p>
-            I'm Mel Adry, a full-stack engineer based in the Philippines. I specialize in building secure, data-driven
-            web platforms and internal tools using React, TypeScript, and PostgreSQL.
-          </p>
-          <p>
-            My approach to engineering is rooted in empathy for the end-user. Whether it's a field worker logging data
-            or a manager reviewing analytics, I believe software should be resilient, secure, and highly functional. I
-            don't just write code; I build solutions that solve real operational problems.
-          </p>
-          <p>
-            I am highly independent, comfortable reading source code to solve hard problems, and I leverage AI tools to
-            accelerate development while maintaining strict code quality.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <Separator />
-
-    <section class="py-16 sm:py-24">
-      <div class="flex flex-col gap-12">
-        <h3
-          class="text-xs font-mono uppercase tracking-widest text-foreground/50 border-b border-dashed border-foreground/20 pb-2"
-        >
-          Experience
-        </h3>
-
-        <div class="flex flex-col gap-12 lg:gap-16">
-          {
-            experience.map((job) => (
-              <div class="flex flex-col lg:flex-row gap-4 lg:gap-12 items-start">
-                <div class="lg:w-48 shrink-0 text-sm font-mono text-foreground/50 pt-1">{job.period}</div>
-
-                <div class="flex flex-col gap-2 flex-1 lg:border-l lg:border-dashed lg:border-foreground/20 lg:pl-8">
-                  <h4 class="text-xl sm:text-2xl font-medium uppercase">{job.role}</h4>
-                  <span class="text-sm text-foreground/60 font-medium">{job.company}</span>
-                  <p class="text-sm text-foreground/70 mt-2 max-w-2xl leading-relaxed">{job.description}</p>
-                </div>
-              </div>
-            ))
-          }
-        </div>
-      </div>
-    </section>
-
-    <Separator />
-
-    <section class="py-16 sm:py-24">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-        <div class="lg:col-span-4">
-          <h3
-            class="text-xs font-mono uppercase tracking-widest text-foreground/50 border-b border-dashed border-foreground/20 pb-2"
-          >
-            My Toolbox
+        <!-- About Section -->
+        <section class="flex flex-col gap-8">
+          <h3 class="text-xl text-foreground font-bold w-fit flex items-center gap-1">
+            <span class="font-mono text-foreground/50 animate-pulse select-none">//</span>
+            <span class="font-mono font-normal text-foreground/75">About Me</span>
+            <span class="font-mono animate-pulse select-none">_</span>
           </h3>
-          <p class="text-sm text-foreground/60 mt-4 leading-relaxed max-w-xs">
-            The technologies and tools I use daily to design, build, and deploy robust applications.
-          </p>
-        </div>
 
-        <div class="lg:col-span-8 flex flex-col gap-8">
-          {
-            Object.entries(skills).map(([category, items]) => (
-              <div class="flex flex-col gap-4 border-b border-dashed border-foreground/10 pb-8 last:border-0 last:pb-0">
-                <h4 class="text-xs font-mono uppercase tracking-widest text-foreground/50">{category}</h4>
-                <div class="flex flex-wrap gap-2">
-                  {items.map((item) => (
-                    <TechTag name={item} />
-                  ))}
+          <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold -tracking-tight-2 leading-[1.1] text-balance">
+            I architect <span class="text-foreground/40">secure systems</span> for the web and mobile.
+          </h1>
+
+          <div class="flex flex-col gap-6 text-base sm:text-lg text-foreground/70 leading-relaxed max-w-prose mt-2">
+            <p>
+              I'm <span class="text-foreground font-medium">Mel Adry</span>, a <span class="text-foreground font-medium">full-stack engineer</span> based in the <span class="text-foreground font-medium">Philippines</span>. I specialize in building secure internal tools and data-driven platforms for the web and mobile.
+            </p>
+            <p>
+              My approach to engineering is rooted in <span class="text-foreground font-medium">empathy for the end-user</span>. Whether it's a field worker logging data on a mobile app or a manager reviewing analytics on a dashboard, I believe software should be <span class="text-foreground font-medium">resilient, secure, and highly functional</span>. I don't just write code; I build solutions that solve <span class="text-foreground font-medium">real operational problems</span>.
+            </p>
+            <p>
+              Because I build{" "}
+              <a href="/works/verori" class="text-foreground font-semibold border-b border-dashed border-foreground/40 hover:bg-foreground/5 transition-colors">
+                my own Micro-SaaS
+              </a>{", "}
+              I understand the business side of shipping software. I am <span class="text-foreground font-medium">highly independent</span>, comfortable reading source code to solve hard problems, and I leverage <span class="text-foreground font-medium">AI tools</span> to accelerate development while maintaining strict code quality.
+            </p>
+            <p>
+              If you need a developer who takes <span class="text-foreground font-medium">full ownership</span> from <span class="text-foreground font-medium">database schema to production deployment</span>, I'm ready to build.
+            </p>
+          </div>
+        </section>
+
+        <Separator />
+
+        <section class="flex flex-col gap-10">
+          <h3 class="text-xl text-foreground font-bold w-fit flex items-center gap-1">
+            <span class="font-mono text-foreground/50 animate-pulse select-none">//</span>
+            <span class="font-mono font-normal text-foreground/75">Experience</span>
+            <span class="font-mono animate-pulse select-none">_</span>
+          </h3>
+
+          <div class="flex flex-col gap-12 lg:gap-16">
+            {
+              experience.map((job) => (
+                <div class="flex flex-col lg:flex-row gap-4 lg:gap-12 items-start">
+                  <!-- Fixed-width Date Column -->
+                  <div class="lg:w-40 shrink-0 text-sm font-mono text-foreground/50 pt-1">
+                    {job.period}
+                  </div>
+
+                  <!-- Content Column with dashed left border -->
+                  <div class="flex flex-col gap-2 flex-1 lg:border-l lg:border-dashed lg:border-foreground/20 lg:pl-8">
+                    <h4 class="text-xl sm:text-2xl font-medium uppercase leading-tight">{job.role}</h4>
+                    <span class="text-xs font-mono uppercase tracking-widest text-foreground/60 mt-1">{job.company}</span>
+                    <p class="text-sm sm:text-base text-foreground/70 mt-3 max-w-2xl leading-relaxed">{job.description}</p>
+                  </div>
                 </div>
-              </div>
-            ))
-          }
-        </div>
-      </div>
-    </section>
+              ))
+            }
+          </div>
+        </section>
 
-    <Separator />
+        <Separator />
+
+        <section class="flex flex-col gap-10">
+          <div class="flex flex-col gap-4">
+            <h3 class="text-xl text-foreground font-bold w-fit flex items-center gap-1">
+              <span class="font-mono text-foreground/50 animate-pulse select-none">//</span>
+              <span class="font-mono font-normal text-foreground/75">Toolbox</span>
+              <span class="font-mono animate-pulse select-none">_</span>
+            </h3>
+            <p class="text-sm sm:text-base text-foreground/60 leading-relaxed max-w-md">
+              The technologies and tools I use daily to design, build, and deploy robust applications.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {
+              Object.entries(skills).map(([category, items]) => (
+                <div class="flex flex-col gap-4">
+                  <h4 class="text-xs font-mono uppercase tracking-widest text-foreground/50 border-b border-dashed border-foreground/20 pb-2">
+                    {category}
+                  </h4>
+                  <div class="flex flex-wrap gap-2">
+                    {items.map((item) => (
+                      <TechTag name={item} />
+                    ))}
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </section>
+
+      </div>
+
+      <div class="w-full lg:w-[380px] shrink-0 flex flex-col gap-8 lg:sticky lg:top-24">
+
+        <div class="relative aspect-square w-full group">
+          <div class="absolute inset-0 border border-foreground/20 bg-foreground/5 overflow-hidden">
+            <Image
+              src={Me}
+              alt="Portrait of Mel Adry"
+              class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+            />
+          </div>
+          <div class="absolute -inset-2 border border-dashed border-foreground/20 -z-10 translate-x-4 translate-y-4 transition-transform duration-500 group-hover:translate-x-5 group-hover:translate-y-5"></div>
+        </div>
+
+        <div class="flex flex-col border border-dashed border-foreground/20 p-5 font-mono text-xs uppercase tracking-widest text-foreground/60 bg-foreground/[0.01]">
+          <div class="flex justify-between gap-4 border-b border-dashed border-foreground/10 pb-3">
+            <span class="shrink-0">Location</span>
+            <span class="text-foreground text-right">Philippines</span>
+          </div>
+          <div class="flex justify-between gap-4 border-b border-dashed border-foreground/10 py-3">
+            <span class="shrink-0">Status</span>
+            <span class="text-foreground text-right">Available for work</span>
+          </div>
+          <div class="flex justify-between gap-4 pt-3">
+            <span class="shrink-0">Focus</span>
+            <span class="text-foreground text-right">SaaS, Internal Tools & Mobile</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </main>
 </Layout>
