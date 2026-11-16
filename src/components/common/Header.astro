@@ -17,14 +17,12 @@ const basePath = `/${Astro.url.pathname.split("/")[1] || ""}`;
   data-scrolled="false"
   class="top-0 sticky z-20 h-[80px] flex items-center justify-between shrink-0 bg-background border-b border-dashed border-transparent transition-colors duration-100 data-[scrolled=true]:border-foreground/20"
 >
-  <a href="/" class="interactive-link inline-flex items-center gap-2 shrink-0">
-    <Logo width={24} height={24} aria-hidden="true" />
+  <a href="/" class="interactive-link group inline-flex items-center shrink-0" aria-label="Mel Adry - Home">
     <span
-      class="hidden font-mono font-medium uppercase tracking-tight sm:inline bg-foreground text-background px-2 h-[24px]"
+      class="flex items-center justify-center font-mono font-bold uppercase tracking-tighter text-foreground leading-none transition-colors duration-200"
     >
       Mel Adry
     </span>
-    <span class="sr-only">Home</span>
   </a>
 
   <nav aria-label="Main navigation">
