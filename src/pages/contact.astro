@@ -12,8 +12,8 @@ const formSpreeId = "https://formspree.io/f/mdeelzro";
 ---
 
 <Layout
-  title="Contact | Mel Adry | Full-Stack Engineer"
-  description="Get in touch with Mel Adry for freelance opportunities and full-time roles."
+  title="Contact | Mel Adry | SaaS & Mobile Developer"
+  description="Have a SaaS idea, need a secure dashboard, or want to harden your existing app? Let's discuss your next project."
 >
   <main class="w-full min-w-0 flex flex-col flex-1">
     <section class="py-16 sm:py-24 md:py-32 flex flex-col gap-6 max-w-4xl">
@@ -28,7 +28,8 @@ const formSpreeId = "https://formspree.io/f/mdeelzro";
       <h1 class="font-bold text-5xl sm:text-6xl md:text-7xl lg:text-8xl -tracking-tight-2 leading-none">Let's talk.</h1>
 
       <p class="text-lg sm:text-xl md:text-2xl text-foreground/70 max-w-[45ch] leading-snug">
-        Have a project in mind, want to collaborate, or just want to say hi? Drop a message below or reach out directly.
+        Have a SaaS idea, need a secure dashboard, or want to harden your existing codebase?
+        Whether you're building from scratch or need an expert to fix what's broken, I'm here to help.
       </p>
     </section>
 
@@ -56,6 +57,7 @@ const formSpreeId = "https://formspree.io/f/mdeelzro";
           <div class="flex flex-col gap-2 mt-4">
             <span class="text-sm text-foreground/60">Location</span>
             <span class="text-xl sm:text-2xl font-medium">Iloilo, Philippines</span>
+            <span class="text-xs font-mono text-foreground/50 mt-1">(Open to remote work worldwide)</span>
           </div>
         </div>
 
@@ -89,6 +91,7 @@ const formSpreeId = "https://formspree.io/f/mdeelzro";
                 id="name"
                 name="name"
                 required
+                autocomplete="name"
                 class="w-full bg-transparent border border-foreground/20 px-4 py-3 text-sm focus:outline-none focus:border-foreground transition-colors placeholder:text-foreground/30"
                 placeholder="John Doe"
               />
@@ -101,6 +104,7 @@ const formSpreeId = "https://formspree.io/f/mdeelzro";
                 id="email"
                 name="email"
                 required
+                autocomplete="email"
                 class="w-full bg-transparent border border-foreground/20 px-4 py-3 text-sm focus:outline-none focus:border-foreground transition-colors placeholder:text-foreground/30"
                 placeholder="john@example.com"
               />
@@ -115,20 +119,26 @@ const formSpreeId = "https://formspree.io/f/mdeelzro";
               required
               rows="6"
               class="w-full bg-transparent border border-foreground/20 px-4 py-3 text-sm focus:outline-none focus:border-foreground transition-colors resize-none placeholder:text-foreground/30"
-              placeholder="Tell me about your project..."></textarea>
+              placeholder="Briefly describe your project, tech stack, and timeline..."></textarea>
           </div>
 
-          <button
-            type="submit"
-            class="group inline-flex h-12 w-full sm:w-fit cursor-pointer items-center justify-center gap-2 bg-foreground px-8 text-sm font-medium uppercase text-background transition-colors duration-200 hover:bg-foreground/80 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground mt-2"
-          >
-            <span>Send Message</span>
-            <ArrowUp
-              width={16}
-              height={16}
-              class="rotate-90 transition-transform duration-200 group-hover:translate-x-1"
-            />
-          </button>
+          <div class="flex flex-col gap-4 mt-2">
+            <button
+              type="submit"
+              class="group inline-flex h-12 w-full sm:w-fit cursor-pointer items-center justify-center gap-2 bg-foreground px-8 text-sm font-medium uppercase text-background transition-colors duration-200 hover:bg-foreground/80 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground"
+            >
+              <span>Send Message</span>
+              <ArrowUp
+                width={16}
+                height={16}
+                class="rotate-90 transition-transform duration-200 group-hover:translate-x-1"
+              />
+            </button>
+
+            <p class="text-xs font-mono text-foreground/50">
+              * I typically reply within 24 hours.
+            </p>
+          </div>
         </form>
       </div>
     </section>
