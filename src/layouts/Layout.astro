@@ -20,10 +20,12 @@ const { title, description, image, schema } = Astro.props;
 
 <html lang="en">
   <Head title={title} description={description} image={image} schema={schema} />
-  <body class="min-h-screen">
+  <body
+    class="min-h-screen bg-background text-foreground antialiased selection:bg-foreground selection:text-background"
+  >
     <Noise class="opacity-20" />
 
-    <div class="w-full max-w-[1440px] min-h-screen mx-auto px-4 flex flex-col">
+    <div class="w-full max-w-[1440px] min-h-screen mx-auto px-4 sm:px-6 lg:px-8 flex flex-col">
       <Header />
       <slot />
       <Footer />

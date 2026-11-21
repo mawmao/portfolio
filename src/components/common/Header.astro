@@ -1,6 +1,5 @@
 ---
 import Github from "@/assets/icons/github.svg";
-import Logo from "@/assets/icons/logo.svg";
 
 const navLinks = [
   { name: "index", path: "/" },
@@ -9,24 +8,29 @@ const navLinks = [
   { name: "contact", path: "/contact" },
 ];
 
-const basePath = `/${Astro.url.pathname.split("/")[1] || ""}`;
+const currentPath = Astro.url.pathname;
+const basePath = currentPath === "/" ? "/" : `/${currentPath.split("/")[1]}`;
 ---
 
 <header
   id="site-header"
   data-scrolled="false"
-  class="top-0 sticky z-20 h-[80px] flex items-center justify-between shrink-0 bg-background border-b border-dashed border-transparent transition-colors duration-100 data-[scrolled=true]:border-foreground/20"
+  class="top-0 sticky z-20 h-[76px] sm:h-[80px] flex items-center justify-between shrink-0 bg-background/95 backdrop-blur-xs border-b border-dashed border-transparent transition-colors duration-150 data-[scrolled=true]:border-foreground/20"
 >
-  <a href="/" class="interactive-link group inline-flex items-center shrink-0" aria-label="Mel Adry - Home">
+  <a
+    href="/"
+    class="interactive-link group inline-flex items-center shrink-0 py-1"
+    aria-label="Mel Adry - Home"
+  >
     <span
-      class="flex items-center justify-center font-mono font-bold uppercase tracking-tighter text-foreground leading-none transition-colors duration-200"
+      class="flex items-center justify-center font-mono text-sm sm:text-base font-bold uppercase tracking-tighter text-foreground leading-none transition-colors duration-200 group-hover:text-foreground/75"
     >
       Mel Adry
     </span>
   </a>
 
   <nav aria-label="Main navigation">
-    <ul class="flex gap-2 sm:gap-4 items-center">
+    <ul class="flex gap-3 sm:gap-6 items-center">
       {
         navLinks.map(({ name, path }) => {
           const isActive = path === basePath;
@@ -37,8 +41,10 @@ const basePath = `/${Astro.url.pathname.split("/")[1] || ""}`;
                 href={path}
                 aria-current={isActive ? "page" : undefined}
                 class:list={[
-                  "interactive-link text-xs sm:text-sm uppercase ",
-                  isActive ? "underline underline-offset-4" : "opacity-50",
+                  "interactive-link text-xs sm:text-sm uppercase tracking-wider transition-opacity",
+                  isActive
+                    ? "font-medium underline decoration-foreground underline-offset-4 opacity-100"
+                    : "opacity-55 hover:opacity-100",
                 ]}
               >
                 {name}
@@ -48,15 +54,15 @@ const basePath = `/${Astro.url.pathname.split("/")[1] || ""}`;
         })
       }
 
-      <li class="ml-2">
+      <li class="pl-1 sm:pl-5 border-l inline-flex border-dashed border-foreground/20">
         <a
-          class="interactive-link"
+          class="interactive-link inline-flex items-center justify-center opacity-75 hover:opacity-100 transition-opacity"
           href="https://github.com/mawmao"
           target="_blank"
           aria-label="GitHub (opens in a new tab)"
-          rel="noopener"
+          rel="noopener noreferrer"
         >
-          <Github width={22} height={22} aria-hidden="true" />
+          <Github width={20} height={20} aria-hidden="true" />
         </a>
       </li>
     </ul>
@@ -64,15 +70,18 @@ const basePath = `/${Astro.url.pathname.split("/")[1] || ""}`;
 </header>
 
 <script>
-  const header = document.querySelector<HTMLElement>("#site-header");
+  function initHeaderScroll() {
+    const header = document.querySelector<HTMLElement>("#site-header");
+    if (!header) return;
 
-  if (header) {
     const updateHeader = () => {
-      header.dataset.scrolled = String(window.scrollY > 50);
+      header.dataset.scrolled = String(window.scrollY > 24);
     };
 
     updateHeader();
-
     window.addEventListener("scroll", updateHeader, { passive: true });
   }
+
+  initHeaderScroll();
+  document.addEventListener("astro:page-load", initHeaderScroll);
 </script>
