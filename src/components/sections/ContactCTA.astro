@@ -2,13 +2,12 @@
 import SectionLayout from "@/layouts/SectionLayout.astro";
 import ArrowUp from "@/assets/icons/arrow-up.svg";
 
-const email = "hello@meladry.dev"
+const email = "hello@meladry.dev";
 ---
 
-<SectionLayout id="contact-cta" class="py-24 sm:py-32">
-  <div class="max-w-4xl mt-4 mx-auto w-full border border-dashed border-foreground/30 p-8 sm:p-16 flex flex-col items-center text-center relative bg-background">
-
-    <span class="absolute -top-3 left-6 bg-background px-2 text-xs font-mono uppercase text-foreground/50 tracking-wider">
+<SectionLayout id="contact-cta" class="py-20 sm:py-28">
+  <div class="max-w-4xl mx-auto w-full border border-dashed border-foreground/30 p-8 sm:p-16 flex flex-col items-center text-center relative bg-background">
+    <span class="absolute -top-3 left-6 bg-background px-2 text-xs font-mono uppercase text-foreground/60 tracking-widest">
       Available for work
     </span>
 
@@ -16,25 +15,30 @@ const email = "hello@meladry.dev"
       Let's build something <br class="hidden sm:block" /> resilient.
     </h2>
 
-    <p class="text-foreground/60 text-lg sm:text-xl max-w-[45ch] mb-10 text-balance">
+    <p class="text-foreground/65 text-base sm:text-xl max-w-[45ch] mb-10 text-balance">
       Whether you need a secure SaaS platform built from scratch, or an existing codebase fixed and hardened for production, I'm ready to help.
     </p>
 
     <a
       href="/contact"
-      class="group inline-flex h-14 w-full sm:w-auto cursor-pointer items-center justify-center gap-2 border border-foreground bg-foreground px-10 text-sm font-medium uppercase text-background transition-all duration-300 hover:bg-background hover:text-foreground"
+      class="group inline-flex h-14 w-full sm:w-auto items-center justify-center gap-2 border border-foreground bg-foreground px-10 text-xs sm:text-sm font-mono uppercase tracking-wider text-background transition-all duration-300 hover:bg-background hover:text-foreground"
     >
       <span>Start a project</span>
       <ArrowUp
-        width={18}
-        height={18}
-        class="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+        width={16}
+        height={16}
+        class="rotate-45 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
       />
     </a>
 
-    <span class="mt-6 text-xs font-mono text-foreground/40 uppercase tracking-widest">
-      Or email me directly at <a href={`mailto:${email}`} class="hover:text-foreground/80 underline decoration-foreground/20 underline-offset-4 transition-colors">{email}</a>
+    <span class="mt-6 text-xs font-mono text-foreground/50 uppercase tracking-widest">
+      Or email me directly at{" "}
+      <a
+        href={`mailto:${email}`}
+        class="text-foreground/80 hover:text-foreground underline decoration-foreground/30 underline-offset-4 transition-colors"
+      >
+        {email}
+      </a>
     </span>
-
   </div>
 </SectionLayout>

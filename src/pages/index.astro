@@ -12,17 +12,19 @@ const personSchema = {
   name: "Mel Adry",
   url: "https://meladry.dev/",
   jobTitle: "Full-Stack Engineer",
-  knowsAbout: ["Web Development", "Next.js", "React", "TypeScript", "Astro", "Supabase"],
+  knowsAbout: ["Web Development", "Next.js", "React", "TypeScript", "Astro", "Supabase", "PostgreSQL"],
   sameAs: ["https://github.com/mawmao", "https://linkedin.com/in/meladryco", "https://x.com/meladryco"],
 };
 ---
+
 <Layout
   title="Mel Adry | Full-Stack Engineer"
   description="I build internal tools, business dashboards, and secure data platforms. Based in the Philippines."
   schema={personSchema}
 >
-  <main class="w-full min-w-0 flex flex-col">
+  <main class="w-full min-w-0 flex flex-col flex-1">
     <Hero />
+    <Separator />
     <Works />
     <Separator />
     <AboutPreview />

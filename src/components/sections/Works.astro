@@ -2,19 +2,34 @@
 import WorkEntry from "@/components/WorkEntry.astro";
 import Separator from "../ui/Separator.astro";
 import SectionLayout from "@/layouts/SectionLayout.astro";
+import ArrowUp from "@/assets/icons/arrow-up.svg";
 import { works } from "@/data/works";
 
 const featuredWorks = works.filter((work) => work.featured);
 ---
 
-<SectionLayout id="works" class="min-h-[500px] gap-16 py-10">
-  <h3 class="text-xl text-foreground font-bold w-fit flex items-center gap-1">
-    <span class="font-mono text-foreground/50 animate-pulse select-none">//</span>
-    <span class="font-mono font-normal text-foreground/75">My Works</span>
-    <span class="font-mono animate-pulse select-none">_</span>
-  </h3>
+<SectionLayout id="works" class="gap-12 sm:gap-16 py-12 sm:py-20">
+  <div class="flex items-center justify-between gap-4">
+    <h2 class="text-sm sm:text-base text-foreground font-bold w-fit flex items-center gap-1.5">
+      <span class="font-mono text-foreground/45 select-none">//</span>
+      <span class="font-mono font-normal uppercase tracking-widest text-foreground/75">Selected Works</span>
+      <span class="font-mono animate-pulse select-none">_</span>
+    </h2>
 
-  <div class="flex flex-col gap-6 sm:gap-14">
+    <a
+      href="/works"
+      class="group inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-widest text-foreground/60 hover:text-foreground transition-colors"
+    >
+      <span>All Works</span>
+      <ArrowUp
+        width={13}
+        height={13}
+        class="rotate-45 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+      />
+    </a>
+  </div>
+
+  <div class="flex flex-col gap-12 sm:gap-16">
     {
       featuredWorks.map((work, index) => (
         <>

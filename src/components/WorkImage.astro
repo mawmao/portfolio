@@ -36,12 +36,10 @@ const positions: Record<Orientation, string> = {
 
 <div
   class:list={[
-    "absolute z-10 aspect-video w-[85%] sm:w-[80%] lg:w-[65%] overflow-hidden rounded-xs border border-foreground/20 bg-foreground/5 shadow-xl group",
+    "absolute z-10 aspect-video w-[85%] sm:w-[80%] lg:w-[65%] overflow-hidden rounded-xs border border-foreground/20 bg-foreground/5 shadow-xl",
     positions[orientation],
   ]}
 >
-  <div class="absolute inset-0 animate-pulse bg-foreground/10" aria-hidden="true"></div>
-
   <Image
     src={src}
     alt={alt}
@@ -49,10 +47,8 @@ const positions: Record<Orientation, string> = {
     format="webp"
     loading="lazy"
     decoding="async"
-    quality={60}
-    widths={[400, 800, 1200, 1600]}
+    quality={70}
+    widths={[400, 800, 1200]}
     sizes="(min-width: 1024px) 65vw, (min-width: 640px) 80vw, 85vw"
-    width={800}
-    height={450}
   />
 </div>
