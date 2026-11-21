@@ -1,39 +1,44 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import Separator from "@/components/ui/Separator.astro";
+import TechTag from "@/components/ui/TechTag.astro";
 import { Image } from "astro:assets";
 import Me from "@/assets/images/me-1.jpg";
-import TechTag from "@/components/ui/TechTag.astro";
+import ArrowUp from "@/assets/icons/arrow-up.svg";
 
 const experience = [
   {
     role: "Full-Stack Engineer",
-    company: "Freelance / Personal Projects",
+    company: "Freelance / Personal Products",
     period: "2026 - Present",
+    current: true,
+    relatedWork: { label: "View Verori Case Study", href: "/works/verori" },
     description:
-      "Independently designing and developing custom internal tools, CRMs, and data platforms using React, Next.js, and Supabase.",
+      "Independently designing, shipping, and monetizing full-stack SaaS products, custom internal tools, and data platforms using Next.js, React, and Supabase.",
   },
   {
     role: "Full-Stack Engineer",
     company: "Department of Agriculture VI",
     period: "Mar 2025 - May 2026",
+    current: false,
+    relatedWork: { label: "View Humay Case Study", href: "/works/humay" },
     description:
-      "Independently designed and shipped a full-stack data platform for a government agency. Implemented complex PostgreSQL Row Level Security (RLS) across 3 user roles and achieved an ISO 25010 Excellent rating.",
+      "Independently architected and shipped an offline-capable Kotlin Android app and React analytics dashboard. Engineered complex PostgreSQL Row Level Security (RLS) across 3 user roles and achieved an ISO 25010 Excellent rating.",
   },
   {
     role: "Web Developer Intern",
     company: "Iloilo Provincial Tourism Office (PCAHTO)",
     period: "Jan 2026 - Apr 2026",
+    current: false,
     description:
       "Co-developed an SEO-optimized tourism portal and custom CMS using Astro, React, and Supabase, enabling non-technical staff to manage provincial data.",
   },
 ];
 
-
 const skills = {
   Frontend: ["React", "Next.js", "TypeScript", "Astro", "Tailwind CSS", "shadcn/ui"],
-  Backend: ["Node.js", "Supabase", "PostgreSQL", "Go", "Stripe API", "REST APIs"],
-  "Mobile & Tools": ["React Native / Expo", "Kotlin", "Jetpack Compose", "Git", "Vercel", "Cloudflare"],
+  Backend: ["Node.js", "Supabase", "PostgreSQL", "Go", "Polar.sh / Stripe", "REST APIs"],
+  "Mobile & Ops": ["React Native / Expo", "Kotlin", "Jetpack Compose", "Git", "Vercel", "Cloudflare"],
 };
 ---
 
@@ -41,69 +46,118 @@ const skills = {
   title="About | Mel Adry | Full-Stack Engineer"
   description="Learn more about Mel Adry, a full-stack engineer based in the Philippines specializing in building secure, data-driven web platforms and internal tools."
 >
-  <main class="w-full min-w-0 flex flex-col flex-1 py-16 sm:py-24 md:py-32">
-    <div class="flex flex-col lg:flex-row justify-between gap-12 lg:gap-20 items-start">
-
-      <!-- LEFT COLUMN: Scrolling Content -->
-      <div class="flex flex-col flex-1 w-full max-w-4xl gap-20">
-
-        <!-- About Section -->
-        <section class="flex flex-col gap-8">
-          <h3 class="text-xl text-foreground font-bold w-fit flex items-center gap-1">
-            <span class="font-mono text-foreground/50 animate-pulse select-none">//</span>
-            <span class="font-mono font-normal text-foreground/75">About Me</span>
+  <main class="w-full min-w-0 flex flex-col flex-1 py-12 sm:py-20 lg:py-28">
+    <div class="flex flex-col lg:flex-row justify-between gap-12 lg:gap-16 xl:gap-24 items-start">
+      <div class="flex flex-col flex-1 w-full max-w-3xl gap-16 sm:gap-20">
+        <section aria-labelledby="about-heading" class="flex flex-col gap-6 sm:gap-8">
+          <div class="text-sm sm:text-base text-foreground font-bold w-fit flex items-center gap-1.5">
+            <span class="font-mono text-foreground/45 select-none">//</span>
+            <span class="font-mono font-normal uppercase tracking-widest text-foreground/75">About Me</span>
             <span class="font-mono animate-pulse select-none">_</span>
-          </h3>
+          </div>
 
-          <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold -tracking-tight-2 leading-[1.1] text-balance">
-            I architect <span class="text-foreground/40">secure systems</span> for the web and mobile.
+          <h1
+            id="about-heading"
+            class="text-4xl sm:text-5xl md:text-6xl font-bold -tracking-tight-2 leading-[1.08] text-balance"
+          >
+            I architect <span class="text-foreground/45">secure systems</span> for the web and mobile.
           </h1>
 
-          <div class="flex flex-col gap-6 text-base sm:text-lg text-foreground/70 leading-relaxed max-w-prose mt-2">
+          <div class="flex flex-col gap-5 text-base sm:text-lg text-foreground/75 leading-relaxed max-w-prose mt-1">
             <p>
-              I'm <span class="text-foreground font-medium">Mel Adry</span>, a <span class="text-foreground font-medium">full-stack engineer</span> based in the <span class="text-foreground font-medium">Philippines</span>. I specialize in building secure internal tools and data-driven platforms for the web and mobile.
+              I'm <strong class="text-foreground font-semibold">Mel Adry</strong>, a{" "}
+              <strong class="text-foreground font-semibold">full-stack engineer</strong> based in the{" "}
+              <strong class="text-foreground font-semibold">Philippines</strong>. I specialize in building secure
+              internal tools and data-driven platforms for the web and mobile.
             </p>
             <p>
-              My approach to engineering is rooted in <span class="text-foreground font-medium">empathy for the end-user</span>. Whether it's a field worker logging data on a mobile app or a manager reviewing analytics on a dashboard, I believe software should be <span class="text-foreground font-medium">resilient, secure, and highly functional</span>. I don't just write code; I build solutions that solve <span class="text-foreground font-medium">real operational problems</span>.
+              My approach to engineering is rooted in{" "}
+              <strong class="text-foreground font-semibold">empathy for the end-user</strong>. Whether it's a field
+              worker logging data offline on a mobile app or a manager reviewing analytics on a dashboard, software
+              should be <strong class="text-foreground font-semibold">resilient, secure, and fast</strong>. I don't just
+              write code; I solve <strong class="text-foreground font-semibold">real operational bottlenecks</strong>.
             </p>
             <p>
-              Because I build{" "}
-              <a href="/works/verori" class="text-foreground font-semibold border-b border-dashed border-foreground/40 hover:bg-foreground/5 transition-colors">
+              Because I build and monetize{" "}
+              <a
+                href="/works/verori"
+                class="text-foreground font-semibold border-b border-dashed border-foreground/50 hover:border-foreground hover:bg-foreground/5 transition-colors"
+              >
                 my own Micro-SaaS
-              </a>{", "}
-              I understand the business side of shipping software. I am <span class="text-foreground font-medium">highly independent</span>, comfortable reading source code to solve hard problems, and I leverage <span class="text-foreground font-medium">AI tools</span> to accelerate development while maintaining strict code quality.
+              </a>
+              , I understand the business side of shipping software. I operate with{" "}
+              <strong class="text-foreground font-semibold">high autonomy</strong>, read library source code when docs
+              fall short, and leverage <strong class="text-foreground font-semibold">AI workflows</strong> to ship fast
+              without compromising architectural rigor.
             </p>
             <p>
-              If you need a developer who takes <span class="text-foreground font-medium">full ownership</span> from <span class="text-foreground font-medium">database schema to production deployment</span>, I'm ready to build.
+              If you need an engineer who takes <strong class="text-foreground font-semibold">full ownership</strong>{" "}
+              from <strong class="text-foreground font-semibold">PostgreSQL schema to production deployment</strong>,
+              I'm ready to build.
             </p>
           </div>
         </section>
 
         <Separator />
 
-        <section class="flex flex-col gap-10">
-          <h3 class="text-xl text-foreground font-bold w-fit flex items-center gap-1">
-            <span class="font-mono text-foreground/50 animate-pulse select-none">//</span>
-            <span class="font-mono font-normal text-foreground/75">Experience</span>
+        <section aria-labelledby="experience-heading" class="flex flex-col gap-10">
+          <h2 id="experience-heading" class="text-sm sm:text-base text-foreground font-bold w-fit flex items-center gap-1.5">
+            <span class="font-mono text-foreground/45 select-none">//</span>
+            <span class="font-mono font-normal uppercase tracking-widest text-foreground/75">Experience</span>
             <span class="font-mono animate-pulse select-none">_</span>
-          </h3>
+          </h2>
 
-          <div class="flex flex-col gap-12 lg:gap-16">
+          <div class="flex flex-col gap-10 sm:gap-12">
             {
               experience.map((job) => (
-                <div class="flex flex-col lg:flex-row gap-4 lg:gap-12 items-start">
-                  <!-- Fixed-width Date Column -->
-                  <div class="lg:w-40 shrink-0 text-sm font-mono text-foreground/50 pt-1">
-                    {job.period}
+                <article class="group relative flex flex-col sm:flex-row gap-3 sm:gap-8 items-start">
+                  <div class="sm:w-40 shrink-0 flex items-center gap-2 text-xs sm:text-sm font-mono text-foreground/55 pt-1">
+                    <span>{job.period}</span>
                   </div>
 
-                  <!-- Content Column with dashed left border -->
-                  <div class="flex flex-col gap-2 flex-1 lg:border-l lg:border-dashed lg:border-foreground/20 lg:pl-8">
-                    <h4 class="text-xl sm:text-2xl font-medium uppercase leading-tight">{job.role}</h4>
-                    <span class="text-xs font-mono uppercase tracking-widest text-foreground/60 mt-1">{job.company}</span>
-                    <p class="text-sm sm:text-base text-foreground/70 mt-3 max-w-2xl leading-relaxed">{job.description}</p>
+                  <div class="relative flex flex-col gap-2 flex-1 border-l border-dashed border-foreground/25 pl-5 sm:pl-8 pb-2 transition-colors group-hover:border-foreground/50">
+                    <span
+                      aria-hidden="true"
+                      class:list={[
+                        "absolute -left-[4.5px] top-2 h-2 w-2 rounded-full border transition-colors",
+                        job.current
+                          ? "bg-foreground border-foreground"
+                          : "bg-background border-foreground/40 group-hover:border-foreground",
+                      ]}
+                    />
+
+                    <div class="flex flex-wrap items-center gap-2.5">
+                      <h3 class="text-lg sm:text-xl font-semibold uppercase tracking-tight leading-snug">
+                        {job.role}
+                      </h3>
+                      {job.current && (
+                        <span class="border border-dashed border-foreground/30 bg-foreground/[0.04] px-2 py-0.5 text-[10px] font-mono uppercase tracking-widest text-foreground/75">
+                          Current
+                        </span>
+                      )}
+                    </div>
+
+                    <span class="text-xs font-mono uppercase tracking-widest text-foreground/60">
+                      {job.company}
+                    </span>
+
+                    <p class="text-sm sm:text-base text-foreground/75 mt-2 max-w-2xl leading-relaxed">
+                      {job.description}
+                    </p>
+
+                    {job.relatedWork && (
+                      <a
+                        href={job.relatedWork.href}
+                        class="mt-2 inline-flex w-fit items-center gap-1.5 text-xs font-mono uppercase tracking-widest text-foreground/70 hover:text-foreground transition-colors"
+                      >
+                        <span class="border-b border-dashed border-foreground/40 pb-0.5">
+                          {job.relatedWork.label}
+                        </span>
+                        <ArrowUp width={12} height={12} class="rotate-45" />
+                      </a>
+                    )}
                   </div>
-                </div>
+                </article>
               ))
             }
           </div>
@@ -111,26 +165,26 @@ const skills = {
 
         <Separator />
 
-        <section class="flex flex-col gap-10">
-          <div class="flex flex-col gap-4">
-            <h3 class="text-xl text-foreground font-bold w-fit flex items-center gap-1">
-              <span class="font-mono text-foreground/50 animate-pulse select-none">//</span>
-              <span class="font-mono font-normal text-foreground/75">Toolbox</span>
+        <section aria-labelledby="toolbox-heading" class="flex flex-col gap-8">
+          <div class="flex flex-col gap-3">
+            <h2 id="toolbox-heading" class="text-sm sm:text-base text-foreground font-bold w-fit flex items-center gap-1.5">
+              <span class="font-mono text-foreground/45 select-none">//</span>
+              <span class="font-mono font-normal uppercase tracking-widest text-foreground/75">Toolbox</span>
               <span class="font-mono animate-pulse select-none">_</span>
-            </h3>
-            <p class="text-sm sm:text-base text-foreground/60 leading-relaxed max-w-md">
-              The technologies and tools I use daily to design, build, and deploy robust applications.
+            </h2>
+            <p class="text-sm sm:text-base text-foreground/65 leading-relaxed max-w-lg">
+              The core stack I rely on daily to architect, build, and deploy production software.
             </p>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {
               Object.entries(skills).map(([category, items]) => (
-                <div class="flex flex-col gap-4">
-                  <h4 class="text-xs font-mono uppercase tracking-widest text-foreground/50 border-b border-dashed border-foreground/20 pb-2">
+                <div class="flex flex-col gap-4 border border-dashed border-foreground/20 bg-foreground/[0.015] p-5 transition-colors hover:border-foreground/40">
+                  <h3 class="text-xs font-mono uppercase tracking-widest text-foreground/60 border-b border-dashed border-foreground/15 pb-2.5">
                     {category}
-                  </h4>
-                  <div class="flex flex-wrap gap-2">
+                  </h3>
+                  <div class="flex flex-wrap gap-1.5">
                     {items.map((item) => (
                       <TechTag name={item} />
                     ))}
@@ -141,37 +195,89 @@ const skills = {
           </div>
         </section>
 
+        <Separator />
+
+        <section aria-label="Next Steps" class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-2">
+          <a
+            href="/works"
+            class="group inline-flex h-12 items-center justify-center gap-2 border border-foreground/30 px-6 text-xs font-mono uppercase tracking-widest text-foreground transition-colors hover:border-foreground hover:bg-foreground/5"
+          >
+            <span>Explore Selected Works</span>
+            <ArrowUp width={14} height={14} class="rotate-90 transition-transform group-hover:translate-x-1" />
+          </a>
+
+          <a
+            href="/contact"
+            class="group inline-flex h-12 items-center justify-center gap-2 bg-foreground px-8 text-xs font-mono uppercase tracking-widest text-background transition-colors hover:bg-foreground/85"
+          >
+            <span>Start a Conversation</span>
+            <ArrowUp width={14} height={14} class="rotate-90 transition-transform group-hover:translate-x-1" />
+          </a>
+        </section>
       </div>
 
-      <div class="w-full lg:w-[380px] shrink-0 flex flex-col gap-8 lg:sticky lg:top-24">
-
+      <aside class="order-first lg:order-last w-full sm:max-w-sm lg:w-[340px] xl:w-[360px] shrink-0 flex flex-col gap-6 lg:sticky lg:top-24">
         <div class="relative aspect-square w-full group">
-          <div class="absolute inset-0 border border-foreground/20 bg-foreground/5 overflow-hidden">
+          <div class="absolute inset-0 border border-foreground/20 bg-foreground/5 overflow-hidden shadow-xl">
             <Image
               src={Me}
               alt="Portrait of Mel Adry"
-              class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+              loading="eager"
+              widths={[400, 720]}
+              sizes="(min-width: 1024px) 360px, 100vw"
+              class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-[1.02]"
             />
           </div>
-          <div class="absolute -inset-2 border border-dashed border-foreground/20 -z-10 translate-x-4 translate-y-4 transition-transform duration-500 group-hover:translate-x-5 group-hover:translate-y-5"></div>
+          <div class="hidden sm:block absolute -inset-2 border border-dashed border-foreground/20 -z-10 translate-x-3 translate-y-3 transition-transform duration-500 group-hover:translate-x-4 group-hover:translate-y-4"></div>
         </div>
 
-        <div class="flex flex-col border border-dashed border-foreground/20 p-5 font-mono text-xs uppercase tracking-widest text-foreground/60 bg-foreground/[0.01]">
-          <div class="flex justify-between gap-4 border-b border-dashed border-foreground/10 pb-3">
-            <span class="shrink-0">Location</span>
-            <span class="text-foreground text-right">Philippines</span>
+        <dl class="flex flex-col border border-dashed border-foreground/20 p-5 font-mono text-xs uppercase tracking-widest text-foreground/60 bg-foreground/[0.015]">
+          <div class="flex justify-between items-center gap-4 border-b border-dashed border-foreground/15 pb-3">
+            <dt class="shrink-0">Status</dt>
+            <dd class="text-foreground text-right inline-flex items-center gap-2">
+              <span class="relative flex h-2 w-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              <span>Available</span>
+            </dd>
           </div>
-          <div class="flex justify-between gap-4 border-b border-dashed border-foreground/10 py-3">
-            <span class="shrink-0">Status</span>
-            <span class="text-foreground text-right">Available for work</span>
+
+          <div class="flex justify-between gap-4 border-b border-dashed border-foreground/15 py-3">
+            <dt class="shrink-0">Location</dt>
+            <dd class="text-foreground text-right">Iloilo, Philippines</dd>
           </div>
+
+          <div class="flex justify-between gap-4 border-b border-dashed border-foreground/15 py-3">
+            <dt class="shrink-0">Local Time</dt>
+            <dd id="ph-local-time" class="text-foreground text-right">UTC+8</dd>
+          </div>
+
           <div class="flex justify-between gap-4 pt-3">
-            <span class="shrink-0">Focus</span>
-            <span class="text-foreground text-right">SaaS, Internal Tools & Mobile</span>
+            <dt class="shrink-0">Focus</dt>
+            <dd class="text-foreground text-right">SaaS, Internal Tools & Mobile</dd>
           </div>
-        </div>
-
-      </div>
+        </dl>
+      </aside>
     </div>
   </main>
 </Layout>
+
+<script>
+  function updateLocalTime() {
+    const el = document.getElementById("ph-local-time");
+    if (!el) return;
+
+    const formatter = new Intl.DateTimeFormat("en-US", {
+      timeZone: "Asia/Manila",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    });
+
+    el.textContent = `${formatter.format(new Date())} (PHT)`;
+  }
+
+  updateLocalTime();
+  document.addEventListener("astro:page-load", updateLocalTime);
+</script>
