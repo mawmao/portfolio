@@ -7,164 +7,502 @@ import ArrowUp from "@/assets/icons/arrow-up.svg";
 import { works } from "@/data/works";
 
 export async function getStaticPaths() {
-  return works.map((work) => ({
-    params: { slug: work.slug },
-    props: { work },
-  }));
+  return works.map((work, index) => {
+    const nextWork = works[(index + 1) % works.length];
+    return {
+      params: { slug: work.slug },
+      props: { work, nextWork },
+    };
+  });
 }
 
-const { work } = Astro.props;
+const { work, nextWork } = Astro.props;
+const [mainImage, ...moreImages] = work.images;
+const hasDecisions = work.technicalDecisions && work.technicalDecisions.length > 0;
 ---
 
-<Layout title={`${work.title} - Case Study | Mel Adry | Full-Stack Engineer`} description={work.description} image={work.images[0].src}>
-  <main class="w-full min-w-0 flex flex-col flex-1 py-16 sm:py-24">
-    <a
-      href="/works"
-      class="group inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-foreground/50 hover:text-foreground transition-colors mb-12 w-fit"
-    >
-      <ArrowUp width={14} height={14} class="-rotate-135 transition-transform group-hover:-translate-x-1" />
-      <span>Back to works</span>
-    </a>
+<Layout
+  title={`${work.title} - Case Study | Mel Adry | Full-Stack Engineer`}
+  description={work.description}
+  image={mainImage?.src}
+>
+  <main class="w-full min-w-0 flex flex-col flex-1 py-12 sm:py-20">
+    <nav aria-label="Breadcrumb" class="mb-10 sm:mb-14">
+      <a
+        href="/works"
+        class="group inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-foreground/60 hover:text-foreground transition-colors w-fit py-1"
+      >
+        <ArrowUp
+          width={14}
+          height={14}
+          class="-rotate-135 transition-transform duration-200 group-hover:-translate-x-1"
+        />
+        <span>All Works</span>
+      </a>
+    </nav>
 
-    <header class="flex flex-col gap-4 mb-12 sm:mb-16">
-      <div class="flex flex-col gap-3">
-        {
-          work.isPrivate && (
-            <span class="inline-flex w-fit items-center gap-1.5 rounded-full border border-dashed border-foreground/40 bg-foreground/5 px-2.5 py-1 text-[10px] font-mono uppercase tracking-widest text-foreground/70">
-              <svg
-                width="10"
-                height="10"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-              </svg>
-              Internal & Private
-            </span>
-          )
-        }
-
-        <span class="text-sm font-mono uppercase tracking-widest text-foreground/60">
+    <header class="flex flex-col gap-6 mb-12 sm:mb-16">
+      <div class="flex flex-wrap items-center gap-3">
+        <span class="text-xs sm:text-sm font-mono uppercase tracking-widest text-foreground/60">
           {work.organization}
         </span>
+
+        {
+          work.isPrivate && (
+            <>
+              <span class="text-foreground/30">•</span>
+              <span class="inline-flex items-center gap-1.5 rounded-full border border-dashed border-foreground/40 bg-foreground/5 px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-widest text-foreground/75">
+                <svg
+                  width="10"
+                  height="10"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                </svg>
+                Internal & Private
+              </span>
+            </>
+          )
+        }
       </div>
 
       <h1
-        class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold uppercase -tracking-tight-2 leading-none text-balance"
+        class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold uppercase -tracking-tight-2 leading-[0.95] text-balance"
       >
         {work.title}
       </h1>
-      <p class="text-xl sm:text-2xl text-foreground/70 max-w-3xl leading-snug mt-2">
-        {work.description}
-      </p>
+
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mt-2">
+        <p class="text-lg sm:text-2xl text-foreground/75 max-w-3xl leading-snug">
+          {work.description}
+        </p>
+
+        {
+          (work.liveUrl || work.repoUrl) && (
+            <div class="flex flex-wrap items-center gap-3 shrink-0">
+              {work.liveUrl && (
+                <a
+                  href={work.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="group inline-flex h-10 items-center justify-center gap-2 bg-foreground px-5 text-xs font-mono uppercase tracking-widest text-background transition-colors hover:bg-foreground/85"
+                >
+                  <span>Live Site</span>
+                  <ArrowUp
+                    width={14}
+                    height={14}
+                    class="rotate-45 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  />
+                </a>
+              )}
+              {work.repoUrl && (
+                <a
+                  href={work.repoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="group inline-flex h-10 items-center justify-center gap-2 border border-foreground/30 px-5 text-xs font-mono uppercase tracking-widest text-foreground transition-colors hover:border-foreground hover:bg-foreground/5"
+                >
+                  <span>Source Code</span>
+                  <ArrowUp
+                    width={14}
+                    height={14}
+                    class="rotate-45 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  />
+                </a>
+              )}
+            </div>
+          )
+        }
+      </div>
     </header>
 
-    <div class="w-full max-w-5xl mx-auto mb-16 sm:mb-24 relative group">
-      <div
-        class="absolute -inset-3 border border-dashed border-foreground/20 -z-10 translate-x-4 translate-y-4 transition-transform duration-500 group-hover:translate-x-5 group-hover:translate-y-5"
-      >
-      </div>
+    {
+      mainImage && (
+        <figure class="w-full max-w-5xl mx-auto mb-16 sm:mb-24 relative group">
+          <div class="absolute -inset-2 sm:-inset-3 border border-dashed border-foreground/20 -z-10 translate-x-2 translate-y-2 sm:translate-x-4 sm:translate-y-4 transition-transform duration-500 group-hover:translate-x-3 group-hover:translate-y-3 sm:group-hover:translate-x-5 sm:group-hover:translate-y-5" />
 
-      <div class="w-full aspect-video border border-foreground/20 bg-foreground/5 relative overflow-hidden shadow-2xl">
-        <div class="absolute inset-0 animate-pulse bg-foreground/10"></div>
+          <div class="w-full aspect-video border border-foreground/20 bg-foreground/5 relative overflow-hidden shadow-2xl">
+            <Image
+              src={mainImage}
+              alt={`${work.title} main showcase`}
+              class="relative z-10 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.015]"
+              loading="eager"
+              widths={[800, 1200, 1600]}
+              sizes="(min-width: 1024px) 1024px, 100vw"
+            />
+          </div>
+        </figure>
+      )
+    }
 
-        <Image
-          src={work.images[0]}
-          alt={work.title}
-          class="relative z-10 w-full h-full object-cover transition-all duration-700 group-hover:scale-[1.02]"
-          loading="eager"
-          widths={[800, 1200, 1600]}
-          sizes="(min-width: 1024px) 1024px, 100vw"
-        />
-      </div>
-    </div>
-
-    <div class="grid grid-cols-2 md:grid-cols-4 border-y border-dashed border-foreground/20 py-8 mb-16 sm:mb-24 gap-8">
-      <div class="flex flex-col gap-2">
+    <section
+      aria-label="Project Specifications"
+      class="grid grid-cols-2 lg:grid-cols-12 border-y border-dashed border-foreground/20 py-8 mb-16 sm:mb-24 gap-y-8 gap-x-6"
+    >
+      <div class="lg:col-span-3 flex flex-col gap-1.5">
         <span class="text-xs font-mono uppercase tracking-widest text-foreground/50">Role</span>
-        <span class="text-sm font-medium">{work.role}</span>
+        <span class="text-sm sm:text-base font-medium">{work.role}</span>
       </div>
-      <div class="flex flex-col gap-2">
+      <div class="lg:col-span-2 flex flex-col gap-1.5">
         <span class="text-xs font-mono uppercase tracking-widest text-foreground/50">Timeline</span>
-        <span class="text-sm font-medium">{work.timeline}</span>
+        <span class="text-sm sm:text-base font-medium">{work.timeline}</span>
       </div>
-      <div class="flex flex-col gap-2">
+      <div class="lg:col-span-2 flex flex-col gap-1.5">
         <span class="text-xs font-mono uppercase tracking-widest text-foreground/50">Year</span>
-        <span class="text-sm font-medium">{work.year}</span>
+        <span class="text-sm sm:text-base font-medium">{work.year}</span>
       </div>
-      <div class="flex flex-col gap-2">
-        <span class="text-xs font-mono uppercase tracking-widest text-foreground/50">Stack</span>
-        <div class="flex flex-wrap gap-1.5 mt-1">
+      <div class="col-span-2 lg:col-span-5 flex flex-col gap-2">
+        <span class="text-xs font-mono uppercase tracking-widest text-foreground/50">Tech Stack</span>
+        <div class="flex flex-wrap gap-1.5">
           {work.tags.map((tag) => <TechTag name={tag} />)}
         </div>
       </div>
-    </div>
+    </section>
 
     <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 mb-16 sm:mb-24">
-      <div class="md:col-span-3">
-        <h2 class="text-xs font-mono uppercase tracking-widest text-foreground/50 sticky top-24">The Context</h2>
-      </div>
+      <aside class="md:col-span-3">
+        <div class="sticky top-24 flex flex-col gap-4">
+          <span class="text-xs font-mono uppercase tracking-widest text-foreground/40"> Case Study Index </span>
+          <nav
+            aria-label="Table of contents"
+            class="hidden md:flex flex-col gap-2.5 border-l border-dashed border-foreground/20 pl-4"
+          >
+            <a
+              href="#challenge"
+              data-toc-link
+              class="text-xs font-mono uppercase tracking-wider text-foreground/60 hover:text-foreground transition-colors"
+            >
+              01. The Challenge
+            </a>
+            <a
+              href="#solution"
+              data-toc-link
+              class="text-xs font-mono uppercase tracking-wider text-foreground/60 hover:text-foreground transition-colors"
+            >
+              02. The Solution
+            </a>
+            {
+              hasDecisions && (
+                <a
+                  href="#architecture"
+                  data-toc-link
+                  class="text-xs font-mono uppercase tracking-wider text-foreground/60 hover:text-foreground transition-colors"
+                >
+                  03. Key Decisions
+                </a>
+              )
+            }
+            <a
+              href="#impact"
+              data-toc-link
+              class="text-xs font-mono uppercase tracking-wider text-foreground/60 hover:text-foreground transition-colors"
+            >
+              {hasDecisions ? "04. Impact" : "03. Impact"}
+            </a>
+            {
+              moreImages.length > 0 && (
+                <a
+                  href="#more-images"
+                  data-toc-link
+                  class="text-xs font-mono uppercase tracking-wider text-foreground/60 hover:text-foreground transition-colors"
+                >
+                  {hasDecisions ? "05. More Images" : "04. More Images"}
+                </a>
+              )
+            }
+          </nav>
+        </div>
+      </aside>
 
-      <div class="md:col-span-9 flex flex-col gap-12 max-w-prose">
-        <div class="flex flex-col gap-4">
-          <h3 class="text-2xl font-medium uppercase">The Challenge</h3>
-          <p class="text-base sm:text-lg text-foreground/70 leading-relaxed">
+      <article class="md:col-span-9 flex flex-col gap-16 max-w-prose">
+        <section id="challenge" class="scroll-mt-28 flex flex-col gap-4">
+          <h2 class="text-2xl sm:text-3xl font-semibold uppercase tracking-tight">The Challenge</h2>
+          <p class="text-base sm:text-lg text-foreground/75 leading-relaxed">
             {work.challenge}
           </p>
-        </div>
+        </section>
 
-        <div class="flex flex-col gap-4">
-          <h3 class="text-2xl font-medium uppercase">The Solution</h3>
-          <p class="text-base sm:text-lg text-foreground/70 leading-relaxed">
+        <section id="solution" class="scroll-mt-28 flex flex-col gap-4">
+          <h2 class="text-2xl sm:text-3xl font-semibold uppercase tracking-tight">The Solution</h2>
+          <p class="text-base sm:text-lg text-foreground/75 leading-relaxed">
             {work.solution}
           </p>
-        </div>
+        </section>
 
-        <div class="flex flex-col gap-4 border-l-2 border-foreground/20 pl-6 py-2">
-          <h3 class="text-sm font-mono uppercase tracking-widest text-foreground/50">Impact</h3>
-          <p class="text-lg sm:text-xl font-medium leading-relaxed">
+        {
+          hasDecisions && (
+            <section id="architecture" class="scroll-mt-28 flex flex-col gap-6">
+              <h2 class="text-2xl sm:text-3xl font-semibold uppercase tracking-tight">Key Technical Decisions</h2>
+              <ol class="flex flex-col gap-6">
+                {work.technicalDecisions &&
+                  work.technicalDecisions.map((decision, index) => (
+                    <li class="flex gap-4 sm:gap-6 border border-dashed border-foreground/20 bg-foreground/[0.02] p-5 sm:p-6 transition-colors hover:border-foreground/40">
+                      <span class="text-xs font-mono uppercase tracking-widest text-foreground/45 pt-1 select-none">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <div class="flex flex-col gap-2">
+                        <h3 class="text-lg font-semibold text-foreground leading-snug">{decision.title}</h3>
+                        <p class="text-sm sm:text-base text-foreground/75 leading-relaxed">{decision.description}</p>
+                      </div>
+                    </li>
+                  ))}
+              </ol>
+            </section>
+          )
+        }
+
+        <section
+          id="impact"
+          class="scroll-mt-28 flex flex-col gap-3 border-l-2 border-foreground bg-foreground/[0.03] p-6 sm:p-8"
+        >
+          <span class="text-xs font-mono uppercase tracking-widest text-foreground/60"> Outcomes & Impact </span>
+          <p class="text-lg sm:text-xl font-medium text-foreground leading-relaxed">
             {work.impact}
           </p>
-        </div>
-      </div>
+        </section>
+      </article>
     </div>
 
-    <div class="w-full max-w-5xl mx-auto mb-16 sm:mb-24 relative group">
-      <div
-        class="absolute -inset-3 border border-dashed border-foreground/20 -z-10 -translate-x-4 translate-y-4 transition-transform duration-500 group-hover:-translate-x-5 group-hover:translate-y-5"
-      >
-      </div>
+    {moreImages.length > 0 && (
+        <section
+          id="more-images"
+          aria-label="More Images"
+          class="scroll-mt-28 w-full max-w-5xl mx-auto mb-16 sm:mb-24 flex flex-col gap-8"
+        >
+          <div class="flex items-center justify-between border-b border-dashed border-foreground/20 pb-4">
+            <h2 class="text-xs sm:text-sm font-mono uppercase tracking-widest text-foreground/60">More Images</h2>
+            <span class="text-xs font-mono uppercase tracking-widest text-foreground/40">
+              {String(moreImages.length).padStart(2, "0")} {moreImages.length === 1 ? "Shot" : "Shots"}
+            </span>
+          </div>
 
-      <div class="w-full border border-foreground/20 bg-foreground/5 relative overflow-hidden shadow-2xl">
-        <Image
-          src={work.images[1]}
-          alt={`${work.title} secondary view`}
-          class="w-full h-auto object-contain transition-all duration-700 group-hover:scale-[1.02]"
-          loading="lazy"
-          widths={[800, 1200, 1600]}
-          sizes="(min-width: 1024px) 1024px, 100vw"
-        />
-      </div>
-    </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
+            {moreImages.map((img, idx) => (
+              <figure class="group flex flex-col gap-3">
+                <button
+                  type="button"
+                  data-lightbox-open={idx}
+                  aria-label={`Expand ${work.title} screen ${idx + 2} in lightbox`}
+                  class="relative w-full text-left cursor-zoom-in focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground"
+                >
+                  <div class="hidden sm:block absolute -inset-2.5 border border-dashed border-foreground/20 -z-10 translate-x-2 translate-y-2 transition-transform duration-500 group-hover:translate-x-3 group-hover:translate-y-3" />
+
+                  <div class="w-full aspect-video border border-foreground/20 bg-foreground/5 relative overflow-hidden shadow-lg">
+                    <Image
+                      src={img}
+                      alt={`${work.title} gallery image ${idx + 2}`}
+                      class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                      loading="lazy"
+                      widths={[600, 900, 1200]}
+                      sizes="(min-width: 768px) 50vw, 100vw"
+                    />
+
+                    <div class="pointer-events-none absolute inset-0 bg-background/0 group-hover:bg-background/15 transition-colors duration-300 flex items-end justify-end p-3">
+                      <span class="opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 inline-flex items-center gap-1.5 border border-foreground/25 bg-background/90 backdrop-blur-xs px-2.5 py-1 text-[10px] font-mono uppercase tracking-widest text-foreground">
+                        <span>Inspect</span>
+                        <ArrowUp width={11} height={11} class="rotate-45" />
+                      </span>
+                    </div>
+                  </div>
+                </button>
+
+                <figcaption class="flex items-center justify-between text-xs font-mono uppercase tracking-widest text-foreground/50 pt-0.5">
+                  <span>
+                    {work.title} — Screen {String(idx + 2).padStart(2, "0")}
+                  </span>
+                  <span>
+                    {String(idx + 1).padStart(2, "0")} / {String(moreImages.length).padStart(2, "0")}
+                  </span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+
+          <!-- Lightbox Modal -->
+          <dialog
+            id="gallery-lightbox"
+            aria-label="Image Lightbox Viewer"
+            class="m-auto w-full max-w-6xl bg-background text-foreground border border-foreground/25 p-0 shadow-2xl backdrop:bg-background/85 backdrop:backdrop-blur-xs open:flex open:flex-col"
+          >
+            <div class="flex items-center justify-between border-b border-dashed border-foreground/20 px-4 sm:px-6 py-3.5">
+              <span id="lightbox-caption" class="text-xs font-mono uppercase tracking-widest text-foreground/70 truncate pr-4" />
+              <div class="flex items-center gap-2 shrink-0">
+                <button
+                  type="button"
+                  id="lightbox-prev"
+                  aria-label="Previous image"
+                  class="inline-flex h-8 w-8 items-center justify-center border border-foreground/20 text-xs font-mono hover:border-foreground hover:bg-foreground/5 transition-colors cursor-pointer"
+                >
+                  <ArrowUp width={14} height={14} class="-rotate-90" />
+                </button>
+                <button
+                  type="button"
+                  id="lightbox-next"
+                  aria-label="Next image"
+                  class="inline-flex h-8 w-8 items-center justify-center border border-foreground/20 text-xs font-mono hover:border-foreground hover:bg-foreground/5 transition-colors cursor-pointer"
+                >
+                  <ArrowUp width={14} height={14} class="rotate-90" />
+                </button>
+                <button
+                  type="button"
+                  id="lightbox-close"
+                  aria-label="Close lightbox"
+                  class="ml-1 inline-flex h-8 items-center justify-center border border-foreground/20 px-3 text-[11px] font-mono uppercase tracking-widest hover:border-foreground hover:bg-foreground/5 transition-colors cursor-pointer"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+
+            <div class="p-4 sm:p-8 flex items-center justify-center bg-foreground/2 min-h-[260px] sm:min-h-[420px]">
+              <img
+                id="lightbox-img"
+                src=""
+                alt=""
+                class="max-h-[75vh] w-auto max-w-full object-contain border border-foreground/15 shadow-lg"
+              />
+            </div>
+          </dialog>
+        </section>
+      )
+    }
+
 
     <Separator />
 
-    <div class="py-16 flex flex-col sm:flex-row items-center justify-between gap-8">
-      <h2 class="text-3xl sm:text-4xl font-bold uppercase -tracking-tight-2">Like what you see?</h2>
-      <div class="flex gap-4 w-full sm:w-auto">
+    <footer class="pt-16 flex flex-col gap-16">
+      {
+        nextWork && nextWork.slug !== work.slug && (
+          <a
+            href={`/works/${nextWork.slug}`}
+            class="group flex flex-col sm:flex-row sm:items-center justify-between gap-6 border border-dashed border-foreground/25 p-6 sm:p-10 transition-colors hover:border-foreground/60 hover:bg-foreground/[0.02]"
+          >
+            <div class="flex flex-col gap-2">
+              <span class="text-xs font-mono uppercase tracking-widest text-foreground/50">
+                Next Case Study — {nextWork.organization}
+              </span>
+              <span class="text-2xl sm:text-4xl font-bold uppercase -tracking-tight-2 group-hover:translate-x-1 transition-transform">
+                {nextWork.title}
+              </span>
+            </div>
+            <div class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-foreground/70 group-hover:text-foreground">
+              <span>Read Study</span>
+              <ArrowUp width={16} height={16} class="rotate-90 transition-transform group-hover:translate-x-1" />
+            </div>
+          </a>
+        )
+      }
+
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+        <div class="flex flex-col gap-1">
+          <h2 class="text-2xl sm:text-4xl font-bold uppercase -tracking-tight-2">Have a similar project in mind?</h2>
+          <p class="text-sm sm:text-base text-foreground/60">
+            Let's discuss architecture, product engineering, or collaboration.
+          </p>
+        </div>
         <a
           href="/contact"
-          class="group inline-flex h-12 w-full sm:w-fit cursor-pointer items-center justify-center gap-2 bg-foreground px-8 text-sm font-medium uppercase text-background transition-colors duration-200 hover:bg-foreground/80"
+          class="group inline-flex h-12 w-full sm:w-fit shrink-0 cursor-pointer items-center justify-center gap-2 bg-foreground px-8 text-sm font-medium uppercase text-background transition-colors duration-200 hover:bg-foreground/85"
         >
           <span>Get in touch</span>
           <ArrowUp width={16} height={16} class="rotate-90 transition-transform group-hover:translate-x-1" />
         </a>
       </div>
-    </div>
+    </footer>
   </main>
 </Layout>
+
+
+<script is:inline define:vars={{ workTitle: work.title, gallerySrcs: moreImages.map((img) => img.src) }}>
+  function initGalleryLightbox() {
+    const dialog = document.getElementById("gallery-lightbox");
+    const imgEl = document.getElementById("lightbox-img");
+    const captionEl = document.getElementById("lightbox-caption");
+    const prevBtn = document.getElementById("lightbox-prev");
+    const nextBtn = document.getElementById("lightbox-next");
+    const closeBtn = document.getElementById("lightbox-close");
+    const triggers = document.querySelectorAll("[data-lightbox-open]");
+
+    if (!dialog || !imgEl || !captionEl || !gallerySrcs?.length) return;
+
+    let currentIndex = 0;
+
+    function renderSlide(index) {
+      currentIndex = (index + gallerySrcs.length) % gallerySrcs.length;
+      const screenNum = String(currentIndex + 2).padStart(2, "0");
+      const pos = `${String(currentIndex + 1).padStart(2, "0")} / ${String(gallerySrcs.length).padStart(2, "0")}`;
+
+      imgEl.src = gallerySrcs[currentIndex];
+      imgEl.alt = `${workTitle} screen ${screenNum}`;
+      captionEl.textContent = `${workTitle} — Screen ${screenNum} (${pos})`;
+    }
+
+    triggers.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const idx = Number(btn.getAttribute("data-lightbox-open") || 0);
+        renderSlide(idx);
+        if (typeof dialog.showModal === "function") {
+          dialog.showModal();
+        }
+      });
+    });
+
+    prevBtn?.addEventListener("click", () => renderSlide(currentIndex - 1));
+    nextBtn?.addEventListener("click", () => renderSlide(currentIndex + 1));
+    closeBtn?.addEventListener("click", () => dialog.close());
+
+    dialog.addEventListener("click", (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+
+    dialog.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        renderSlide(currentIndex - 1);
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        renderSlide(currentIndex + 1);
+      }
+    });
+  }
+
+  initGalleryLightbox();
+  document.addEventListener("astro:page-load", initGalleryLightbox);
+</script>
+
+<script>
+  function initTocScrollSpy() {
+    const sections = document.querySelectorAll("section[id]");
+    const navLinks = document.querySelectorAll("[data-toc-link]");
+    if (!sections.length || !navLinks.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute("id");
+            navLinks.forEach((link) => {
+              const isActive = link.getAttribute("href") === `#${id}`;
+              link.classList.toggle("text-foreground", isActive);
+              link.classList.toggle("font-semibold", isActive);
+              link.classList.toggle("text-foreground/60", !isActive);
+            });
+          }
+        });
+      },
+      { rootMargin: "-20% 0px -65% 0px" },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+  }
+
+  initTocScrollSpy();
+  document.addEventListener("astro:page-load", initTocScrollSpy);
+</script>
