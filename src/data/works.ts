@@ -2,6 +2,8 @@ import humay1 from "@/assets/images/humay-1.png";
 import humay2 from "@/assets/images/humay-2.png";
 import verori1 from "@/assets/images/verori-1.png";
 import verori2 from "@/assets/images/verori-2.png";
+import verori3 from "@/assets/images/verori-3.png";
+import verori4 from "@/assets/images/verori-4.png";
 
 export interface Work {
   title: string;
@@ -10,7 +12,9 @@ export interface Work {
   organization: string;
   description: string;
   tags: string[];
-  images: [ImageMetadata, ImageMetadata];
+  images: [ImageMetadata, ...ImageMetadata[]];
+  liveUrl?: string;
+  repoUrl?: string;
   featured?: boolean;
 
   isPrivate?: boolean;
@@ -18,6 +22,7 @@ export interface Work {
   timeline: string;
   challenge: string;
   solution: string;
+  technicalDecisions?: { title: string; description: string }[];
   impact: string;
 }
 
@@ -29,17 +34,41 @@ export const works: Work[] = [
     role: "Creator & Full-Stack Engineer",
     timeline: "Nov 2026 - Present",
     isPrivate: false,
-    tags: ["Next.js", "React", "TypeScript", "Supabase", "PostgreSQL", "Tailwind CSS"],
-    organization: "Personal Project",
-    description: "A minimalist client-approval portal that provides a permanent, timestamped record for every deliverable so freelancers can invoice faster.",
-    images: [verori1, verori2],
+    liveUrl: "https://verori.app",
+    tags: ["Next.js", "React", "TypeScript", "Supabase", "PostgreSQL", "Tailwind CSS", "Polar.sh"],
+    organization: "Open-Core SaaS",
+    description:
+      "An open-core client-approval SaaS providing timestamped, tamper-proof audit trails for freelance deliverables. Eliminates payment disputes and accelerates invoicing.",
+    images: [verori1, verori2, verori3, verori4],
     featured: true,
     challenge:
-      "Freelancers and consultants lose weeks of billable time chasing clients for formal sign-offs. When relying on email threads, there is no proof of delivery or approval. This 'ghosting' phenomenon delays invoicing, stalls project kickoffs, and creates payment disputes when clients claim they never reviewed the work.",
+      "Freelancers rely on email for deliverable sign-offs, which lacks cryptographic proof and enables client delays. This stalls invoicing and causes payment disputes. The technical constraint is delivering strict data isolation and auditability with zero client friction (no logins or onboarding).",
     solution:
-      "I independently designed and built a production-ready SaaS application that replaces the messy email thread with a single, secure link. To eliminate client friction, I implemented tokenized access so clients never have to create an account. The platform tracks every view and approval with strict timestamps. Under the hood, I architected the app using Next.js 16 (App Router, Server Actions, PPR) and Supabase, enforcing strict multi-tenant Row Level Security (RLS) policies and signed URLs for private file storage.",
+      "Architected and shipped a full-stack SaaS replacing email threads with secure, tokenized approval portals.",
+    technicalDecisions: [
+      {
+        title: "Zero-Friction Client Access",
+        description:
+          "Tokenized, single-use URLs requiring no client authentication, ensuring immediate access to deliverables.",
+      },
+      {
+        title: "Direct-to-Storage Uploads",
+        description:
+          "Client-side uploads directly to Supabase Storage. Bypasses Vercel's 4.5MB serverless payload limits, enabling reliable 10MB+ file handling without execution timeouts.",
+      },
+      {
+        title: "Atomic Quota Enforcement",
+        description:
+          "Replaced vulnerable COUNT(*) checks with a PostgreSQL SECURITY DEFINER function using row-level locking. Prevents race conditions during concurrent free-tier limit checks and credit deductions.",
+      },
+      {
+        title: "Open-Core Architecture",
+        description:
+          "Public codebase demonstrating production-grade patterns, secured strictly via Supabase Row Level Security (RLS) and environment isolation, not code obscurity.",
+      },
+    ],
     impact:
-      "Shipped a fully functional, open-source MVP that gives freelancers the exact paper trail they need to invoice immediately. The project demonstrates deep expertise in modern full-stack architecture, secure data isolation, and zero-friction UX design. It is currently live in Public Beta and available for free to the freelance community."
+      "Delivered a monetized, production-ready application. Demonstrates senior full-stack competency: balancing frictionless UX with strict security boundaries, optimizing Merchant-of-Record (Polar.sh) margins via strategic PAYG pricing, and writing race-condition-proof database logic. The codebase is open-source and actively maintained.",
   },
   {
     title: "Humay",
@@ -50,7 +79,8 @@ export const works: Work[] = [
     isPrivate: true,
     tags: ["React", "TypeScript", "Kotlin", "Supabase", "PostgreSQL", "RLS"],
     organization: "Department of Agriculture VI - Philippines",
-    description: "A secure, role-based data collection and analytics platform that replaced manual spreadsheet reporting for field workers and managers.",
+    description:
+      "A secure, role-based data collection and analytics platform that replaced manual spreadsheet reporting for field workers and managers.",
     images: [humay1, humay2],
     featured: true,
     challenge:
@@ -58,6 +88,6 @@ export const works: Work[] = [
     solution:
       "I independently architected an integrated platform to eliminate manual data exports. I built a native Kotlin Android app for field workers to collect data with offline synchronization, paired with a React web dashboard for administrators to view automated analytics. On the backend, I designed the PostgreSQL schema and implemented complex Row Level Security (RLS) policies.",
     impact:
-      "Digitized the entire data workflow, completely removing the reliance on external software and manual spreadsheets. The platform provided near real-time visibility into field conditions, drastically reducing the time between data collection and decision-making. The strict RLS architecture ensured data privacy while empowering administrators to identify emerging agricultural patterns and respond to issues faster."
+      "Digitized the entire data workflow, completely removing the reliance on external software and manual spreadsheets. The platform provided near real-time visibility into field conditions, drastically reducing the time between data collection and decision-making. The strict RLS architecture ensured data privacy while empowering administrators to identify emerging agricultural patterns and respond to issues faster.",
   },
 ];
