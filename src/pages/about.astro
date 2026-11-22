@@ -36,10 +36,12 @@ const experience = [
 ];
 
 const skills = {
-  Frontend: ["React", "Next.js", "TypeScript", "Astro", "Tailwind CSS", "shadcn/ui"],
-  Backend: ["Node.js", "Supabase", "PostgreSQL", "Go", "Polar.sh / Stripe", "REST APIs"],
-  "Mobile & Ops": ["React Native / Expo", "Kotlin", "Jetpack Compose", "Git", "Vercel", "Cloudflare"],
+  Frontend: ["React", "Next.js", "TypeScript", "JavaScript", "Astro", "Tailwind CSS", "shadcn/ui", "Vue.js (Familiar)"],
+  Backend: ["Node.js", "Supabase", "PostgreSQL", "MySQL", "REST APIs", "OAuth 2.0", "Go", "Polar.sh / Stripe"],
+  Mobile: ["Kotlin", "Jetpack Compose", "React Native / Expo"],
+  Tools: ["Git", "GitHub", "Docker", "Linux CLI", "Vercel", "Cloudflare"],
 };
+
 ---
 
 <Layout
@@ -87,11 +89,13 @@ const skills = {
               </a>
               , I understand the business side of shipping software. I operate with{" "}
               <strong class="text-foreground font-semibold">high autonomy</strong>, read library source code when docs
-              fall short, and leverage <strong class="text-foreground font-semibold">AI workflows</strong> to ship fast
-              without compromising architectural rigor.
+              fall short, and leverage <strong class="text-foreground font-semibold">AI workflows</strong> to ship fast without
+              compromising architectural rigor.
             </p>
             <p>
-              If you need an engineer who takes <strong class="text-foreground font-semibold">full ownership</strong>{" "}
+              If you need an engineer who takes <strong class="text-foreground font-semibold">full ownership</strong>{
+                " "
+              }
               from <strong class="text-foreground font-semibold">PostgreSQL schema to production deployment</strong>,
               I'm ready to build.
             </p>
@@ -101,7 +105,10 @@ const skills = {
         <Separator />
 
         <section aria-labelledby="experience-heading" class="flex flex-col gap-10">
-          <h2 id="experience-heading" class="text-sm sm:text-base text-foreground font-bold w-fit flex items-center gap-1.5">
+          <h2
+            id="experience-heading"
+            class="text-sm sm:text-base text-foreground font-bold w-fit flex items-center gap-1.5"
+          >
             <span class="font-mono text-foreground/45 select-none">//</span>
             <span class="font-mono font-normal uppercase tracking-widest text-foreground/75">Experience</span>
             <span class="font-mono animate-pulse select-none">_</span>
@@ -127,9 +134,7 @@ const skills = {
                     />
 
                     <div class="flex flex-wrap items-center gap-2.5">
-                      <h3 class="text-lg sm:text-xl font-semibold uppercase tracking-tight leading-snug">
-                        {job.role}
-                      </h3>
+                      <h3 class="text-lg sm:text-xl font-semibold uppercase tracking-tight leading-snug">{job.role}</h3>
                       {job.current && (
                         <span class="border border-dashed border-foreground/30 bg-foreground/[0.04] px-2 py-0.5 text-[10px] font-mono uppercase tracking-widest text-foreground/75">
                           Current
@@ -137,9 +142,7 @@ const skills = {
                       )}
                     </div>
 
-                    <span class="text-xs font-mono uppercase tracking-widest text-foreground/60">
-                      {job.company}
-                    </span>
+                    <span class="text-xs font-mono uppercase tracking-widest text-foreground/60">{job.company}</span>
 
                     <p class="text-sm sm:text-base text-foreground/75 mt-2 max-w-2xl leading-relaxed">
                       {job.description}
@@ -150,9 +153,7 @@ const skills = {
                         href={job.relatedWork.href}
                         class="mt-2 inline-flex w-fit items-center gap-1.5 text-xs font-mono uppercase tracking-widest text-foreground/70 hover:text-foreground transition-colors"
                       >
-                        <span class="border-b border-dashed border-foreground/40 pb-0.5">
-                          {job.relatedWork.label}
-                        </span>
+                        <span class="border-b border-dashed border-foreground/40 pb-0.5">{job.relatedWork.label}</span>
                         <ArrowUp width={12} height={12} class="rotate-45" />
                       </a>
                     )}
@@ -167,7 +168,10 @@ const skills = {
 
         <section aria-labelledby="toolbox-heading" class="flex flex-col gap-8">
           <div class="flex flex-col gap-3">
-            <h2 id="toolbox-heading" class="text-sm sm:text-base text-foreground font-bold w-fit flex items-center gap-1.5">
+            <h2
+              id="toolbox-heading"
+              class="text-sm sm:text-base text-foreground font-bold w-fit flex items-center gap-1.5"
+            >
               <span class="font-mono text-foreground/45 select-none">//</span>
               <span class="font-mono font-normal uppercase tracking-widest text-foreground/75">Toolbox</span>
               <span class="font-mono animate-pulse select-none">_</span>
@@ -197,7 +201,10 @@ const skills = {
 
         <Separator />
 
-        <section aria-label="Next Steps" class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-2">
+        <section
+          aria-label="Next Steps"
+          class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-2"
+        >
           <a
             href="/works"
             class="group inline-flex h-12 items-center justify-center gap-2 border border-foreground/30 px-6 text-xs font-mono uppercase tracking-widest text-foreground transition-colors hover:border-foreground hover:bg-foreground/5"
@@ -216,7 +223,9 @@ const skills = {
         </section>
       </div>
 
-      <aside class="order-first lg:order-last w-full sm:max-w-sm lg:w-[340px] xl:w-[360px] shrink-0 flex flex-col gap-6 lg:sticky lg:top-24">
+      <aside
+        class="order-first lg:order-last w-full sm:max-w-sm lg:w-[340px] xl:w-[360px] shrink-0 flex flex-col gap-6 lg:sticky lg:top-24"
+      >
         <div class="relative aspect-square w-full group">
           <div class="absolute inset-0 border border-foreground/20 bg-foreground/5 overflow-hidden shadow-xl">
             <Image
@@ -228,15 +237,21 @@ const skills = {
               class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-[1.02]"
             />
           </div>
-          <div class="hidden sm:block absolute -inset-2 border border-dashed border-foreground/20 -z-10 translate-x-3 translate-y-3 transition-transform duration-500 group-hover:translate-x-4 group-hover:translate-y-4"></div>
+          <div
+            class="hidden sm:block absolute -inset-2 border border-dashed border-foreground/20 -z-10 translate-x-3 translate-y-3 transition-transform duration-500 group-hover:translate-x-4 group-hover:translate-y-4"
+          >
+          </div>
         </div>
 
-        <dl class="flex flex-col border border-dashed border-foreground/20 p-5 font-mono text-xs uppercase tracking-widest text-foreground/60 bg-foreground/[0.015]">
+        <dl
+          class="flex flex-col border border-dashed border-foreground/20 p-5 font-mono text-xs uppercase tracking-widest text-foreground/60 bg-foreground/[0.015]"
+        >
           <div class="flex justify-between items-center gap-4 border-b border-dashed border-foreground/15 pb-3">
             <dt class="shrink-0">Status</dt>
             <dd class="text-foreground text-right inline-flex items-center gap-2">
               <span class="relative flex h-2 w-2">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"
+                ></span>
                 <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
               </span>
               <span>Available</span>
