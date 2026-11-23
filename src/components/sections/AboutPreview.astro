@@ -6,62 +6,73 @@ import SectionLayout from "@/layouts/SectionLayout.astro";
 import ArrowUp from "@/assets/icons/arrow-up.svg";
 ---
 
-<SectionLayout id="about-preview" class="py-16 sm:py-24">
-  <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-center">
-    <div class="md:col-span-7 flex flex-col gap-8">
-      <h2 class="text-sm sm:text-base text-foreground font-bold w-fit flex items-center gap-1.5">
-        <span class="font-mono text-foreground/45 select-none">//</span>
-        <span class="font-mono font-normal uppercase tracking-widest text-foreground/75">About</span>
-        <span class="font-mono animate-pulse select-none">_</span>
-      </h2>
+<SectionLayout id="about-preview" class="gap-12 sm:gap-16 py-16 sm:py-24">
+  <div class="flex flex-col gap-6">
+    <div class="h-[3px] w-full bg-foreground" aria-hidden="true"></div>
 
-      <div class="flex flex-col gap-5">
-        <p class="text-2xl sm:text-3xl leading-tight font-semibold text-foreground -tracking-tight-2">
-          I'm a <span class="underline decoration-foreground/30 underline-offset-4">full-stack engineer</span> based in
-          the Philippines.
-        </p>
+    <div class="grid grid-cols-6 sm:grid-cols-12 gap-x-6 gap-y-10 items-start">
+      <div class="col-span-6 sm:col-span-2 flex sm:flex-col justify-between sm:justify-start gap-2 pt-1">
+        <span class="text-xs uppercase tracking-wider font-medium text-foreground/60">
+          02 / About
+        </span>
+        <span class="text-xs font-mono uppercase tracking-wider text-foreground/50">
+          Philippines (UTC+8)
+        </span>
+      </div>
 
-        <p class="text-base sm:text-lg leading-relaxed text-foreground/75 max-w-prose">
-          I specialize in building secure, multi-tenant SaaS platforms and internal dashboards. Whether it's for the web
-          or mobile, I focus heavily on database architecture and strict Row Level Security (RLS) to keep sensitive data
-          isolated. Right now, I'm building{" "}
+      <div class="col-span-6 sm:col-span-6 flex flex-col justify-between gap-8">
+        <div class="flex flex-col gap-5">
+          <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight leading-[1.15] text-foreground text-balance">
+            Full-stack engineer focused on multi-tenant security and reliable product delivery.
+          </h2>
+
+          <p class="text-base leading-relaxed text-foreground/80 max-w-[50ch] text-pretty">
+            Based in the Philippines, I build multi-tenant SaaS platforms, internal dashboards and offline-capable mobile apps. My work centers on clean database architecture and strict <strong class="font-medium text-foreground">PostgreSQL Row-Level Security (RLS)</strong> so sensitive data stays isolated by default.
+          </p>
+
+          <p class="text-base leading-relaxed text-foreground/75 max-w-[50ch] text-pretty">
+            From shipping{" "}
+            <a
+              href="/works/verori"
+              class="font-medium text-foreground underline decoration-foreground/35 underline-offset-4 hover:decoration-foreground transition-colors"
+            >
+              Verori
+            </a>{" "}
+            to helping product teams move early prototypes into production, I take ownership of architecture, performance and long-term maintainability.
+          </p>
+        </div>
+
+        <div class="pt-2">
           <a
-            href="/works/verori"
-            class="text-foreground font-semibold border-b border-dashed border-foreground/45 hover:border-foreground transition-colors"
+            href="/about"
+            class="group inline-flex h-11 w-full sm:w-fit items-center gap-2.5 border border-foreground/30 px-6 text-xs uppercase tracking-wider font-medium text-foreground transition-colors duration-150 hover:border-foreground hover:bg-foreground hover:text-background focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground"
           >
-            my own Micro-SaaS
-          </a>{" "}
-          and helping clients turn prototypes into resilient production systems.
-        </p>
+            <span>More about me</span>
+            <ArrowUp
+              width={14}
+              height={14}
+              class="rotate-45 transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            />
+          </a>
+        </div>
       </div>
 
-      <a
-        href="/about"
-        class="group inline-flex h-12 w-fit items-center justify-center gap-2 border border-foreground/30 px-6 text-xs sm:text-sm font-mono uppercase tracking-wider text-foreground transition-colors duration-200 hover:border-foreground hover:bg-foreground hover:text-background"
-      >
-        <span>More about me</span>
-        <ArrowUp
-          width={15}
-          height={15}
-          class="rotate-45 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-        />
-      </a>
-    </div>
+      <figure class="col-span-6 sm:col-span-4 flex flex-col border border-foreground/20 bg-background group">
+        <div class="relative aspect-4/5 w-full overflow-hidden bg-foreground/5">
+          <Image
+            src={Me}
+            alt="Portrait of Mel Adry, Full-Stack Engineer"
+            widths={[400, 720]}
+            sizes="(min-width: 640px) 34vw, 100vw"
+            class="h-full w-full object-cover grayscale transition-all duration-500 ease-out group-hover:grayscale-0 group-hover:scale-[1.03]"
+          />
+        </div>
 
-    <div class="md:col-span-5 relative aspect-square md:aspect-4/5 w-full max-w-md mx-auto md:ml-auto group">
-      <div class="absolute inset-0 border border-foreground/20 bg-foreground/5 overflow-hidden shadow-xl">
-        <Image
-          src={Me}
-          alt="Portrait of Mel Adry, Full-Stack Engineer"
-          widths={[400, 720]}
-          sizes="(min-width: 768px) 40vw, 100vw"
-          class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 ease-out group-hover:scale-105"
-        />
-      </div>
-
-      <div
-        class="hidden sm:block absolute -inset-2 border border-dashed border-foreground/20 -z-10 translate-x-4 translate-y-4 transition-transform duration-500 group-hover:translate-x-5 group-hover:translate-y-5"
-      ></div>
+        <figcaption class="flex items-center justify-between border-t border-foreground/20 px-3.5 py-2.5 text-[11px] font-mono uppercase tracking-wider text-foreground/60">
+          <span>Mel Adry</span>
+          <span>Remote / Async-Ready</span>
+        </figcaption>
+      </figure>
     </div>
   </div>
 </SectionLayout>

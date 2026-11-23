@@ -5,40 +5,53 @@ import ArrowUp from "@/assets/icons/arrow-up.svg";
 const email = "hello@meladry.dev";
 ---
 
-<SectionLayout id="contact-cta" class="py-20 sm:py-28">
-  <div class="max-w-4xl mx-auto w-full border border-dashed border-foreground/30 p-8 sm:p-16 flex flex-col items-center text-center relative bg-background">
-    <span class="absolute -top-3 left-6 bg-background px-2 text-xs font-mono uppercase text-foreground/60 tracking-widest">
-      Available for work
-    </span>
+<SectionLayout id="contact-cta" class="gap-12 sm:gap-16 py-16 sm:py-24">
+  <div class="flex flex-col gap-6">
+    <div class="h-[3px] w-full bg-foreground" aria-hidden="true"></div>
 
-    <h2 class="text-3xl sm:text-4xl md:text-6xl font-bold -tracking-tight-2 leading-[1.1] mb-6 text-balance">
-      Let's build something <br class="hidden sm:block" /> resilient.
-    </h2>
+    <div class="grid grid-cols-6 sm:grid-cols-12 gap-x-6 gap-y-8 items-start">
+      <div class="col-span-6 sm:col-span-2 flex sm:flex-col justify-between sm:justify-start gap-2 pt-1">
+        <span class="text-xs uppercase tracking-wider font-medium text-foreground/60">
+          03 / Contact
+        </span>
+        <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-foreground/70">
+          <span class="h-2 w-2 bg-emerald-500" aria-hidden="true"></span>
+          <span>Open to roles</span>
+        </span>
+      </div>
 
-    <p class="text-foreground/65 text-base sm:text-xl max-w-[45ch] mb-10 text-balance">
-      Whether you need a secure SaaS platform built from scratch, or an existing codebase fixed and hardened for production, I'm ready to help.
-    </p>
+      <div class="col-span-6 sm:col-span-10 flex flex-col gap-8">
+        <div class="flex flex-col gap-4">
+          <h2 class="text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] leading-[1.06] text-foreground max-w-[18ch]">
+            Let's build resilient systems together.
+          </h2>
 
-    <a
-      href="/contact"
-      class="group inline-flex h-14 w-full sm:w-auto items-center justify-center gap-2 border border-foreground bg-foreground px-10 text-xs sm:text-sm font-mono uppercase tracking-wider text-background transition-all duration-300 hover:bg-background hover:text-foreground"
-    >
-      <span>Start a project</span>
-      <ArrowUp
-        width={16}
-        height={16}
-        class="rotate-45 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-      />
-    </a>
+          <p class="text-base sm:text-lg leading-relaxed text-foreground/75 max-w-[52ch] text-pretty">
+            Looking for a full-stack engineer for your team or need an existing codebase hardened for production? Reach out to discuss full-time roles, contract work or technical architecture.
+          </p>
+        </div>
 
-    <span class="mt-6 text-xs font-mono text-foreground/50 uppercase tracking-widest">
-      Or email me directly at{" "}
-      <a
-        href={`mailto:${email}`}
-        class="text-foreground/80 hover:text-foreground underline decoration-foreground/30 underline-offset-4 transition-colors"
-      >
-        {email}
-      </a>
-    </span>
+        <div class="flex flex-col sm:flex-row sm:items-center gap-4 pt-4 border-t border-foreground/20">
+          <a
+            href="/contact"
+            class="group inline-flex h-12 w-full sm:w-auto items-center justify-center gap-2.5 bg-foreground px-8 text-xs uppercase tracking-wider font-medium text-background transition-colors duration-150 hover:bg-foreground/85 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground"
+          >
+            <span>Get in touch</span>
+            <ArrowUp
+              width={15}
+              height={15}
+              class="rotate-45 transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            />
+          </a>
+
+          <a
+            href={`mailto:${email}`}
+            class="inline-flex h-12 w-full sm:w-auto items-center justify-center border border-foreground/30 px-6 text-xs font-mono uppercase tracking-wider text-foreground/80 transition-colors duration-150 hover:border-foreground hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground"
+          >
+            {email}
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
 </SectionLayout>

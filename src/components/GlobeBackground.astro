@@ -31,9 +31,8 @@ const {
 >
   <canvas
     id="globe-canvas"
-    class="w-[150vw] h-[150vw] md:w-[80vw] md:h-[80vw] mix-blend-multiply"
-    style={`max-width: ${maxSize}px; max-height: ${maxSize}px; transform: translate(${xOffset}, ${yOffset}); will-change: transform;`}
-  ></canvas>
+    class="globe-canvas w-[130vw] h-[130vw] md:w-[80vw] md:h-[80vw] md:mix-blend-multiply"
+    style={`max-width: ${maxSize}px; max-height: ${maxSize}px; --gx: ${xOffset}; --gy: ${yOffset};`}></canvas>
 </div>
 
 <script define:vars={{ speed, tilt, latCount, lonCount, lineColor }}>
@@ -212,3 +211,15 @@ const {
     }
   }
 </script>
+
+<style>
+  .globe-canvas {
+    transform: translate(0, 8%);
+    will-change: transform;
+  }
+  @media (min-width: 768px) {
+    .globe-canvas {
+      transform: translate(var(--gx), var(--gy));
+    }
+  }
+</style>

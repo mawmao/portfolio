@@ -9,90 +9,117 @@ import PostgreSQL from "@/assets/icons/postgresql.svg";
 
 import Overlay from "../Overlay.astro";
 import SectionLayout from "@/layouts/SectionLayout.astro";
-import ArrowUp from "@/assets/icons/arrow-up.svg";
 import GlobeBackground from "../GlobeBackground.astro";
 
 const stack = [
   { name: "Next.js", icon: NextJS },
   { name: "React", icon: ReactJS },
   { name: "TypeScript", icon: TypeScript },
-  { name: "NodeJS", icon: NodeJS },
-  { name: "PostgreSQL", icon: PostgreSQL },
+  { name: "Node.js", icon: NodeJS },
+  { name: "PostgreSQL (RLS)", icon: PostgreSQL },
   { name: "Supabase", icon: Supabase },
   { name: "Tailwind", icon: Tailwind },
 ];
+
+const label = "col-span-6 sm:col-span-2 text-xs uppercase tracking-wider font-medium text-foreground/60";
+const content = "col-span-6 sm:col-span-10";
 ---
 
-<SectionLayout id="hero" class="min-h-[460px] sm:min-h-[640px] justify-between gap-12 pt-12 sm:pt-20 pb-8">
+<SectionLayout
+  id="hero"
+  class="relative isolate overflow-hidden min-h-[85svh] sm:min-h-[680px] justify-between gap-14 sm:gap-16 pt-8! pb-8"
+>
   <GlobeBackground />
-  <Overlay opacity={12} />
+  <Overlay opacity={10} />
 
-  <div class="flex flex-col gap-6 sm:gap-8 max-w-4xl">
-    <div class="flex items-center gap-2.5">
-      <span class="relative flex h-2.5 w-2.5">
-        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-      </span>
-      <span class="text-xs font-mono uppercase tracking-widest text-foreground/65">
-        Available for new projects
-      </span>
-    </div>
+  <div class="flex flex-col gap-12 sm:gap-16">
+    <div class="hero-rule h-[3px] w-full bg-foreground" aria-hidden="true"></div>
 
-    <div class="flex flex-col gap-4 sm:gap-6 max-w-4xl">
-      <h1 class="font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl -tracking-tight-2 leading-[1.15] text-balance">
-        I build <br class="hidden sm:block" />
-        <span class="inline-block border border-dashed border-foreground/40 px-3 py-0.5 bg-background/90">
-          secure SaaS platforms
+    <div class="grid grid-cols-6 sm:grid-cols-12 gap-x-4 gap-y-8 sm:gap-y-12 items-baseline">
+      <div class={label}>Full-stack engineer</div>
+      <div class={`${content} flex items-center gap-2.5 text-[13px] font-medium text-foreground/90`}>
+        <span class="relative flex h-2 w-2" aria-hidden="true">
+          <span class="motion-safe:animate-ping absolute inline-flex h-full w-full bg-emerald-500 opacity-75"></span>
+          <span class="relative inline-flex h-2 w-2 bg-emerald-500"></span>
         </span>
-        <br class="hidden sm:block" /> for web and mobile
+        <span>Available for full-time &amp; contract roles</span>
+      </div>
+
+      <div class={`${label} hidden sm:block self-start pt-3`}>Overview</div>
+
+      <h1
+        class="col-span-6 sm:col-span-10 font-semibold text-[clamp(2.5rem,6vw,5.5rem)] leading-[1.04] tracking-[-0.035em] text-foreground"
+      >
+        <span class="block">I build full-stack systems</span>
+        <span class="block text-foreground/65">that eliminate operational bottlenecks.</span>
       </h1>
 
-      <p class="text-lg sm:text-xl md:text-2xl text-foreground/70 max-w-[48ch] leading-snug text-balance">
-        I turn{" "}
-        <span class="text-foreground font-medium border-b border-dashed border-foreground/40">
-          complex business workflows
-        </span>{" "}
-        into clean, resilient software. From database architecture to mobile deployment.
-      </p>
-    </div>
-
-    <div class="flex flex-wrap items-center gap-3 sm:gap-4 mt-2">
-      <a
-        href="/works"
-        class="group inline-flex h-12 items-center justify-center gap-2 bg-foreground px-7 sm:px-8 text-xs sm:text-sm font-mono uppercase tracking-wider text-background transition-colors duration-200 hover:bg-foreground/85"
+      <div
+        class="col-span-6 sm:col-span-10 sm:col-start-3 grid grid-cols-6 sm:grid-cols-10 gap-x-4 gap-y-8 items-end pt-2"
       >
-        <span>View my work</span>
-        <ArrowUp
-          width={15}
-          height={15}
-          class="rotate-90 transition-transform duration-200 group-hover:translate-x-1"
-        />
-      </a>
+        <p
+          class="col-span-6 sm:col-span-6 max-w-[46ch] text-base sm:text-lg leading-relaxed text-foreground/80 text-pretty"
+        >
+          Full-stack delivery from <strong class="font-medium text-foreground">PostgreSQL Row-Level Security</strong> to <strong
+            class="font-medium text-foreground">offline-capable mobile</strong
+          >. I build reliable internal tools and customer-facing products that save engineering hours and support
+          growth.
+        </p>
 
-      <a
-        href="/contact"
-        class="group inline-flex h-12 items-center justify-center gap-2 border border-foreground/30 bg-background/80 px-7 sm:px-8 text-xs sm:text-sm font-mono uppercase tracking-wider text-foreground transition-colors duration-200 hover:border-foreground hover:bg-foreground hover:text-background"
-      >
-        <span>Get in touch</span>
-      </a>
+        <div class="col-span-6 sm:col-span-4 flex flex-col sm:flex-row sm:justify-end gap-3 sm:gap-4">
+          <a
+            href="/works"
+            class="inline-flex h-11 w-full sm:w-auto items-center justify-center bg-foreground px-7 text-sm font-medium text-background transition-colors duration-150 hover:bg-foreground/85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground"
+          >
+            View my work
+          </a>
+          <a
+            href="/contact"
+            class="inline-flex h-11 w-full sm:w-auto items-center justify-center border border-foreground/30 px-6 text-sm font-medium text-foreground transition-colors duration-150 hover:border-foreground hover:bg-foreground hover:text-background focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground"
+          >
+            Get in touch
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 
-  <ul
-    aria-label="Technology stack"
-    class="flex flex-wrap justify-start md:justify-end items-center gap-x-3 gap-y-2 border-t border-dashed border-foreground/20 pt-6"
-  >
-    {
-      stack.map(({ name, icon: Icon }) => (
-        <li
-          class="inline-flex items-center gap-1.5 text-xs sm:text-[13px] font-mono text-foreground/65 select-none
-               not-last:after:ml-2 sm:not-last:after:ml-3 not-last:after:h-3
-               not-last:after:w-px not-last:after:bg-foreground/25"
-        >
-          <Icon width={16} height={16} aria-hidden="true" />
-          <span>{name}</span>
-        </li>
-      ))
-    }
-  </ul>
+  <div class="grid grid-cols-6 sm:grid-cols-12 gap-x-4 gap-y-6 border-t border-foreground pt-4">
+    <div class={label}>Focus</div>
+    <p class={`${content} text-sm sm:text-base font-medium text-foreground/85`}>
+      Secure SaaS, internal tools, and offline-first mobile.
+    </p>
+
+    <div class={label}>Stack</div>
+    <ul
+      aria-label="Technology stack"
+      class="col-span-6 sm:col-span-10 grid grid-cols-2 sm:flex sm:flex-wrap gap-x-4 gap-y-3 sm:gap-x-5 sm:gap-y-3"
+    >
+      {
+        stack.map(({ name, icon: Icon }) => (
+          <li class="flex min-w-0 items-center gap-2 text-[13px] font-medium text-foreground/80 select-none">
+            <Icon width={18} height={18} aria-hidden="true" class="shrink-0" />
+            <span class="truncate">{name}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
 </SectionLayout>
+
+<style>
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-rule {
+      transform-origin: left center;
+      animation: rule-draw 900ms cubic-bezier(0.2, 0.7, 0.1, 1) both;
+    }
+    @keyframes rule-draw {
+      from {
+        transform: scaleX(0);
+      }
+      to {
+        transform: scaleX(1);
+      }
+    }
+  }
+</style>

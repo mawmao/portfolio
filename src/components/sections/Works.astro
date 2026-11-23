@@ -1,6 +1,5 @@
 ---
 import WorkEntry from "@/components/WorkEntry.astro";
-import Separator from "../ui/Separator.astro";
 import SectionLayout from "@/layouts/SectionLayout.astro";
 import ArrowUp from "@/assets/icons/arrow-up.svg";
 import { works } from "@/data/works";
@@ -8,42 +7,48 @@ import { works } from "@/data/works";
 const featuredWorks = works.filter((work) => work.featured);
 ---
 
-<SectionLayout id="works" class="gap-12 sm:gap-16 py-12 sm:py-20">
-  <div class="flex items-center justify-between gap-4">
-    <h2 class="text-sm sm:text-base text-foreground font-bold w-fit flex items-center gap-1.5">
-      <span class="font-mono text-foreground/45 select-none">//</span>
-      <span class="font-mono font-normal uppercase tracking-widest text-foreground/75">Selected Works</span>
-      <span class="font-mono animate-pulse select-none">_</span>
-    </h2>
+<SectionLayout id="works" class="gap-12 sm:gap-16 py-16 sm:py-24">
+  <div class="flex flex-col gap-6">
+    <div class="h-[3px] w-full bg-foreground" aria-hidden="true"></div>
 
-    <a
-      href="/works"
-      class="group inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-widest text-foreground/60 hover:text-foreground transition-colors"
-    >
-      <span>All Works</span>
-      <ArrowUp
-        width={13}
-        height={13}
-        class="rotate-45 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-      />
-    </a>
+    <div class="grid grid-cols-6 sm:grid-cols-12 gap-x-4 gap-y-4 items-baseline">
+      <span class="col-span-6 sm:col-span-2 text-xs uppercase tracking-wider font-medium text-foreground/60">
+        01 / Selected Works
+      </span>
+
+      <div class="col-span-6 sm:col-span-10 flex flex-wrap items-baseline justify-between gap-4">
+        <h2 class="text-2xl sm:text-3xl font-semibold tracking-[-0.025em] text-foreground">
+          Production systems &amp; case studies
+        </h2>
+
+        <a
+          href="/works"
+          class="group inline-flex items-center gap-1.5 border-b border-foreground/40 pb-0.5 text-xs uppercase tracking-wider font-medium text-foreground/80 hover:border-foreground hover:text-foreground transition-colors"
+        >
+          <span>View all works ({works.length})</span>
+          <ArrowUp
+            width={13}
+            height={13}
+            class="rotate-45 transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+          />
+        </a>
+      </div>
+    </div>
   </div>
 
-  <div class="flex flex-col gap-12 sm:gap-16">
+  <div class="flex flex-col divide-y divide-foreground/20 border-t border-b border-foreground/20">
     {
       featuredWorks.map((work, index) => (
-        <>
-          <WorkEntry
-            title={work.title}
-            tags={work.tags}
-            organization={work.organization}
-            description={work.description}
-            images={work.images}
-            href={`/works/${work.slug}`}
-            reverse={index % 2 !== 0}
-          />
-          {index !== featuredWorks.length - 1 && <Separator hide />}
-        </>
+        <WorkEntry
+          index={index + 1}
+          title={work.title}
+          tags={work.tags}
+          organization={work.organization}
+          description={work.description}
+          images={work.images}
+          href={`/works/${work.slug}`}
+          isPrivate={work.isPrivate}
+        />
       ))
     }
   </div>
