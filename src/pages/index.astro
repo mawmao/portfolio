@@ -3,7 +3,6 @@ import Hero from "@/components/sections/Hero.astro";
 import Works from "@/components/sections/Works.astro";
 import AboutPreview from "@/components/sections/AboutPreview.astro";
 import ContactCTA from "@/components/sections/ContactCTA.astro";
-import Separator from "@/components/ui/Separator.astro";
 import Layout from "@/layouts/Layout.astro";
 
 const personSchema = {
@@ -24,11 +23,8 @@ const personSchema = {
 >
   <main class="w-full min-w-0 flex flex-col flex-1">
     <Hero />
-    <Separator />
     <Works />
-    <Separator />
     <AboutPreview />
-    <Separator />
     <ContactCTA />
   </main>
 </Layout>

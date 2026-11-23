@@ -1,7 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import ArrowUp from "@/assets/icons/arrow-up.svg";
-import Separator from "@/components/ui/Separator.astro";
 
 const email = "hello@meladry.dev";
 const github = "https://github.com/mawmao";
@@ -11,247 +10,257 @@ const twitter = "https://x.com/meladryco";
 const formSpreeId = "https://formspree.io/f/mdeelzro";
 
 const inquiryTypes = [
+  "Full-Time / Contract Role",
   "SaaS MVP Build",
   "Internal Tool / Dashboard",
   "Codebase Audit & RLS Hardening",
-  "Full-Time / Contract Role",
 ];
 
 const socials = [
   { name: "GitHub", handle: "@mawmao", href: github },
   { name: "LinkedIn", handle: "/in/meladryco", href: linkedIn },
-  { name: "X / Twitter", handle: "@meladryco", href: twitter },
+  { name: "X", handle: "@meladryco", href: twitter },
 ];
 ---
 
 <Layout
   title="Contact | Mel Adry | Full-Stack Engineer"
-  description="Have a SaaS idea, need a secure dashboard, or want to harden your existing app? Let's discuss your next project."
+  description="Reach out to Mel Adry to discuss full-time engineering roles, contract work or production software architecture."
 >
-  <main class="w-full min-w-0 flex flex-col flex-1 py-12 sm:py-20 lg:py-28">
-    <section aria-labelledby="contact-heading" class="flex flex-col gap-6 pb-12 sm:pb-16 max-w-4xl">
-      <div class="flex flex-wrap items-center justify-between gap-4">
-        <div class="text-sm sm:text-base text-foreground font-bold w-fit flex items-center gap-1.5">
-          <span class="font-mono text-foreground/45 select-none">//</span>
-          <span class="font-mono font-normal uppercase tracking-widest text-foreground/75">Initiate Contact</span>
-          <span class="font-mono animate-pulse select-none">_</span>
+  <main class="w-full min-w-0 flex flex-col flex-1 gap-16 sm:gap-24 py-12 sm:py-20">
+    {/* 01 / Page Header */}
+    <section aria-labelledby="contact-heading" class="flex flex-col gap-6">
+      <div class="h-[3px] w-full bg-foreground" aria-hidden="true"></div>
+
+      <div class="grid grid-cols-6 sm:grid-cols-12 gap-x-6 gap-y-6 items-start">
+        <div class="col-span-6 sm:col-span-2 flex sm:flex-col justify-between sm:justify-start gap-2 pt-1">
+          <span class="text-xs uppercase tracking-wider font-medium text-foreground/60">
+            01 / Contact
+          </span>
+          <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-foreground/70">
+            <span class="relative flex h-2 w-2">
+              <span class="motion-safe:animate-ping absolute inline-flex h-full w-full bg-emerald-500 opacity-75"></span>
+              <span class="relative inline-flex h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span>Available</span>
+          </span>
         </div>
 
-        <div class="inline-flex items-center gap-2.5">
-          <span class="relative flex h-2 w-2">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-          </span>
-          <span class="text-xs font-mono uppercase tracking-widest text-foreground/65">
-            Available for new projects
-          </span>
+        <div class="col-span-6 sm:col-span-10 flex flex-col gap-5">
+          <h1
+            id="contact-heading"
+            class="text-4xl sm:text-6xl lg:text-7xl font-semibold tracking-[-0.035em] leading-[1.02] text-foreground"
+          >
+            Let's talk
+          </h1>
+
+          <p class="text-base sm:text-xl leading-relaxed text-foreground/75 max-w-[52ch] text-pretty">
+            Looking to hire a full-stack engineer, build a secure product from scratch or harden an existing codebase? Send a note below or email me directly.
+          </p>
         </div>
       </div>
-
-      <h1
-        id="contact-heading"
-        class="font-bold text-5xl sm:text-6xl md:text-7xl lg:text-8xl uppercase -tracking-tight-2 leading-[0.95] text-balance"
-      >
-        Let's talk.
-      </h1>
-
-      <p class="text-lg sm:text-xl md:text-2xl text-foreground/70 max-w-[48ch] leading-snug">
-        Have a SaaS idea, need a secure dashboard, or want to harden your existing codebase? Whether you're building
-        from scratch or fixing what's broken, I'm ready to help.
-      </p>
     </section>
 
-    <Separator />
+    {/* 02 / Direct Channels & Inquiry Form */}
+    <section aria-label="Contact Details and Inquiry Form" class="flex flex-col gap-6">
+      <div class="h-[3px] w-full bg-foreground" aria-hidden="true"></div>
 
-    <section
-      aria-label="Contact Details and Inquiry Form"
-      class="pt-12 sm:pt-16 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20"
-    >
-      <aside class="lg:col-span-5 flex flex-col gap-10">
-        <div class="flex flex-col gap-6">
-          <h2
-            class="text-xs font-mono uppercase tracking-widest text-foreground/50 border-b border-dashed border-foreground/20 pb-2.5"
-          >
-            Direct Channels
-          </h2>
+      <div class="grid grid-cols-6 lg:grid-cols-12 gap-x-8 gap-y-12 items-start">
+        {/* Direct Channels & Availability Rail */}
+        <aside class="col-span-6 lg:col-span-5 flex flex-col gap-10">
+          <div class="flex flex-col gap-5">
+            <h2 class="text-xs uppercase tracking-wider font-medium text-foreground/60">
+              02 / Direct Channels
+            </h2>
 
-          <div class="flex flex-col gap-2">
-            <span class="text-xs font-mono uppercase tracking-widest text-foreground/50">Email</span>
-            <div class="flex flex-wrap items-center gap-3">
-              <a
-                href={`mailto:${email}`}
-                class="text-xl sm:text-2xl font-medium hover:underline decoration-foreground/40 underline-offset-4 break-all"
-              >
-                {email}
-              </a>
-              <button
-                type="button"
-                id="copy-email-btn"
-                data-email={email}
-                aria-label="Copy email address"
-                class="inline-flex h-8 items-center gap-1.5 border border-dashed border-foreground/30 px-2.5 text-[11px] font-mono uppercase tracking-widest text-foreground/70 hover:border-foreground hover:text-foreground transition-colors cursor-pointer"
-              >
-                <span id="copy-email-label">Copy</span>
-              </button>
+            <div class="flex flex-col gap-2 border-t border-foreground/20 pt-5">
+              <span class="text-xs font-mono uppercase tracking-wider text-foreground/50">
+                Email
+              </span>
+              <div class="flex flex-wrap items-center gap-3">
+                <a
+                  href={`mailto:${email}`}
+                  class="text-xl sm:text-2xl font-semibold tracking-[-0.02em] text-foreground underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground transition-colors break-all"
+                >
+                  {email}
+                </a>
+                <button
+                  type="button"
+                  id="copy-email-btn"
+                  data-email={email}
+                  aria-label="Copy email address"
+                  class="inline-flex h-8 items-center border border-foreground/25 px-3 text-[11px] font-mono uppercase tracking-wider text-foreground/75 hover:border-foreground hover:bg-foreground hover:text-background transition-colors cursor-pointer"
+                >
+                  <span id="copy-email-label">Copy</span>
+                </button>
+              </div>
             </div>
+
+            <dl class="flex flex-col border border-foreground/20 divide-y divide-foreground/15 text-xs font-mono uppercase tracking-wider text-foreground/60">
+              <div class="flex justify-between gap-4 px-4 py-3">
+                <dt class="shrink-0">Base</dt>
+                <dd class="text-foreground text-right">Iloilo, Philippines</dd>
+              </div>
+              <div class="flex justify-between gap-4 px-4 py-3">
+                <dt class="shrink-0">Local Time</dt>
+                <dd id="contact-local-time" class="text-foreground text-right">UTC+8</dd>
+              </div>
+              <div class="flex justify-between gap-4 px-4 py-3">
+                <dt class="shrink-0">Availability</dt>
+                <dd class="text-foreground text-right">Remote Worldwide</dd>
+              </div>
+            </dl>
           </div>
 
-          <dl
-            class="flex flex-col border border-dashed border-foreground/20 p-5 font-mono text-xs uppercase tracking-widest text-foreground/60 bg-foreground/[0.015] mt-2"
-          >
-            <div class="flex justify-between gap-4 border-b border-dashed border-foreground/15 pb-3">
-              <dt class="shrink-0">Base</dt>
-              <dd class="text-foreground text-right">Iloilo, Philippines</dd>
-            </div>
-            <div class="flex justify-between gap-4 border-b border-dashed border-foreground/15 py-3">
-              <dt class="shrink-0">Local Time</dt>
-              <dd id="contact-local-time" class="text-foreground text-right">UTC+8</dd>
-            </div>
-            <div class="flex justify-between gap-4 pt-3">
-              <dt class="shrink-0">Availability</dt>
-              <dd class="text-foreground text-right">Remote Worldwide</dd>
-            </div>
-          </dl>
-        </div>
+          <div class="flex flex-col gap-3">
+            <h2 class="text-xs uppercase tracking-wider font-medium text-foreground/60">
+              Profiles
+            </h2>
 
-        <div class="flex flex-col gap-4">
-          <h2
-            class="text-xs font-mono uppercase tracking-widest text-foreground/50 border-b border-dashed border-foreground/20 pb-2.5"
-          >
-            Profiles
-          </h2>
-
-          <ul
-            class="flex flex-col divide-y divide-dashed divide-foreground/15 border-b border-dashed border-foreground/15"
-          >
-            {
-              socials.map(({ name, handle, href }) => (
-                <li>
-                  <a
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="group flex items-center justify-between py-3 text-sm transition-colors hover:text-foreground"
-                  >
-                    <span class="font-medium">{name}</span>
-                    <span class="inline-flex items-center gap-2 font-mono text-xs text-foreground/50 group-hover:text-foreground transition-colors">
-                      <span>{handle}</span>
-                      <ArrowUp
-                        width={13}
-                        height={13}
-                        class="rotate-45 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                      />
-                    </span>
-                  </a>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-      </aside>
-
-      <div class="lg:col-span-7">
-        <form
-          id="contact-form"
-          action={formSpreeId}
-          method="POST"
-          class="flex flex-col gap-6 border border-dashed border-foreground/25 bg-foreground/[0.01] p-6 sm:p-10"
-        >
-          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" />
-
-          <div class="flex flex-col gap-2.5">
-            <span class="text-xs font-mono uppercase tracking-widest text-foreground/60">
-              What are we building? <span class="text-foreground/40">(Optional)</span>
-            </span>
-            <div class="flex flex-wrap gap-2" role="group" aria-label="Project inquiry type">
+            <ul class="flex flex-col divide-y divide-foreground/20 border-t border-b border-foreground/20">
               {
-                inquiryTypes.map((type) => (
-                  <label class="cursor-pointer">
-                    <input type="checkbox" name="scope" value={type} class="peer sr-only" />
-                    <span class="inline-flex items-center border border-dashed border-foreground/30 px-3 py-1.5 text-xs font-mono text-foreground/70 transition-colors peer-checked:border-solid peer-checked:border-foreground peer-checked:bg-foreground peer-checked:text-background hover:border-foreground/60">
-                      {type}
-                    </span>
-                  </label>
+                socials.map(({ name, handle, href }) => (
+                  <li>
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="group flex items-center justify-between py-3.5 text-sm transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground"
+                    >
+                      <span class="font-medium text-foreground">{name}</span>
+                      <span class="inline-flex items-center gap-2 font-mono text-xs text-foreground/60 group-hover:text-foreground transition-colors">
+                        <span>{handle}</span>
+                        <ArrowUp
+                          width={13}
+                          height={13}
+                          aria-hidden="true"
+                          class="rotate-45 transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                        />
+                      </span>
+                    </a>
+                  </li>
                 ))
               }
-            </div>
+            </ul>
           </div>
+        </aside>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div class="flex flex-col gap-2">
-              <label for="name" class="text-xs font-mono uppercase tracking-widest text-foreground/65">
-                Name <span aria-hidden="true">*</span>
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                required
-                autocomplete="name"
-                class="w-full bg-background border border-foreground/25 px-4 py-3 text-sm focus:outline-none focus:border-foreground transition-colors placeholder:text-foreground/30"
-              />
-            </div>
-
-            <div class="flex flex-col gap-2">
-              <label for="email" class="text-xs font-mono uppercase tracking-widest text-foreground/65">
-                Email <span aria-hidden="true">*</span>
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                required
-                autocomplete="email"
-                class="w-full bg-background border border-foreground/25 px-4 py-3 text-sm focus:outline-none focus:border-foreground transition-colors placeholder:text-foreground/30"
-              />
-            </div>
-          </div>
-
-          <div class="flex flex-col gap-2">
-            <label for="message" class="text-xs font-mono uppercase tracking-widest text-foreground/65">
-              Project Details <span aria-hidden="true">*</span>
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              required
-              rows="6"
-              class="w-full bg-background border border-foreground/25 px-4 py-3 text-sm focus:outline-none focus:border-foreground transition-colors resize-y placeholder:text-foreground/30"
-              placeholder="Briefly describe your project goals, current stack, and ideal timeline..."></textarea>
-          </div>
-
-          <div
-            id="form-status"
-            role="status"
-            aria-live="polite"
-            class="hidden border border-dashed px-4 py-3 text-xs font-mono uppercase tracking-wider"
+        {/* Inquiry Form */}
+        <div class="col-span-6 lg:col-span-7">
+          <form
+            id="contact-form"
+            action={formSpreeId}
+            method="POST"
+            class="flex flex-col gap-6 border border-foreground/20 bg-background p-6 sm:p-10"
           >
-          </div>
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" />
 
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
-            <button
-              type="submit"
-              id="submit-btn"
-              class="group inline-flex h-12 w-full sm:w-fit cursor-pointer items-center justify-center gap-2 bg-foreground px-8 text-xs sm:text-sm font-mono uppercase tracking-wider text-background transition-colors duration-200 hover:bg-foreground/85 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground"
+            <div class="flex flex-col gap-3">
+              <span class="text-xs font-mono uppercase tracking-wider text-foreground/65">
+                Topic <span class="text-foreground/45">(Optional)</span>
+              </span>
+              <div class="flex flex-wrap gap-2" role="group" aria-label="Inquiry topic">
+                {
+                  inquiryTypes.map((type) => (
+                    <label class="cursor-pointer">
+                      <input type="checkbox" name="scope" value={type} class="peer sr-only" />
+                      <span class="inline-flex items-center border border-foreground/25 px-3 py-1.5 text-xs font-medium text-foreground/75 transition-colors peer-checked:border-foreground peer-checked:bg-foreground peer-checked:text-background peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-foreground hover:border-foreground/60">
+                        {type}
+                      </span>
+                    </label>
+                  ))
+                }
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="flex flex-col gap-2">
+                <label for="name" class="text-xs font-mono uppercase tracking-wider text-foreground/65">
+                  Name <span aria-hidden="true">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  autocomplete="name"
+                  placeholder="Jane Doe"
+                  class="w-full bg-background border border-foreground/25 px-4 py-3 text-sm text-foreground focus:outline-none focus:border-foreground transition-colors placeholder:text-foreground/35"
+                />
+              </div>
+
+              <div class="flex flex-col gap-2">
+                <label for="email" class="text-xs font-mono uppercase tracking-wider text-foreground/65">
+                  Email <span aria-hidden="true">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  autocomplete="email"
+                  placeholder="jane@company.com"
+                  class="w-full bg-background border border-foreground/25 px-4 py-3 text-sm text-foreground focus:outline-none focus:border-foreground transition-colors placeholder:text-foreground/35"
+                />
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-2">
+              <label for="message" class="text-xs font-mono uppercase tracking-wider text-foreground/65">
+                Details <span aria-hidden="true">*</span>
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                required
+                rows="6"
+                class="w-full bg-background border border-foreground/25 px-4 py-3 text-sm text-foreground focus:outline-none focus:border-foreground transition-colors resize-y placeholder:text-foreground/35"
+                placeholder="Share details about the role, project scope, current stack or timeline..."
+              ></textarea>
+            </div>
+
+            <div
+              id="form-status"
+              role="status"
+              aria-live="polite"
+              class="hidden border px-4 py-3 text-xs font-mono uppercase tracking-wider"
             >
-              <span id="submit-btn-text">Send Message</span>
-              <ArrowUp
-                width={15}
-                height={15}
-                class="rotate-90 transition-transform duration-200 group-hover:translate-x-1"
-              />
-            </button>
+            </div>
 
-            <p class="text-xs font-mono text-foreground/50">Replies within 24 hours.</p>
-          </div>
-        </form>
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-3 border-t border-foreground/15">
+              <button
+                type="submit"
+                id="submit-btn"
+                class="group inline-flex h-11 w-full sm:w-fit cursor-pointer items-center justify-center gap-2.5 bg-foreground px-8 text-xs uppercase tracking-wider font-medium text-background transition-colors duration-150 hover:bg-foreground/85 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground"
+              >
+                <span id="submit-btn-text">Send message</span>
+                <ArrowUp
+                  width={14}
+                  height={14}
+                  aria-hidden="true"
+                  class="rotate-45 transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                />
+              </button>
+
+              <p class="text-xs font-mono uppercase tracking-wider text-foreground/50">
+                Replies within 24 hours
+              </p>
+            </div>
+          </form>
+        </div>
       </div>
     </section>
   </main>
 </Layout>
 
 <script>
+  let contactController: AbortController | null = null;
+
   function initContactPage() {
+    contactController?.abort();
+    contactController = new AbortController();
+    const { signal } = contactController;
+
     const timeEl = document.getElementById("contact-local-time");
     if (timeEl) {
       const formatter = new Intl.DateTimeFormat("en-US", {
@@ -266,18 +275,22 @@ const socials = [
     const copyBtn = document.getElementById("copy-email-btn");
     const copyLabel = document.getElementById("copy-email-label");
     if (copyBtn && copyLabel) {
-      copyBtn.addEventListener("click", async () => {
-        const emailValue = copyBtn.getAttribute("data-email") || "";
-        try {
-          await navigator.clipboard.writeText(emailValue);
-          copyLabel.textContent = "Copied";
-          setTimeout(() => {
-            copyLabel.textContent = "Copy";
-          }, 2000);
-        } catch {
-          copyLabel.textContent = "Failed";
-        }
-      });
+      copyBtn.addEventListener(
+        "click",
+        async () => {
+          const emailValue = copyBtn.getAttribute("data-email") || "";
+          try {
+            await navigator.clipboard.writeText(emailValue);
+            copyLabel.textContent = "Copied";
+            setTimeout(() => {
+              copyLabel.textContent = "Copy";
+            }, 2000);
+          } catch {
+            copyLabel.textContent = "Failed";
+          }
+        },
+        { signal },
+      );
     }
 
     const form = document.getElementById("contact-form");
@@ -286,36 +299,40 @@ const socials = [
     const submitText = document.getElementById("submit-btn-text");
 
     if (form instanceof HTMLFormElement && statusEl && submitBtn instanceof HTMLButtonElement && submitText) {
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        submitBtn.disabled = true;
-        submitText.textContent = "Sending...";
-        statusEl.className = "hidden";
+      form.addEventListener(
+        "submit",
+        async (e) => {
+          e.preventDefault();
+          submitBtn.disabled = true;
+          submitText.textContent = "Sending...";
+          statusEl.className = "hidden";
 
-        try {
-          const response = await fetch(form.action, {
-            method: "POST",
-            body: new FormData(form),
-            headers: { Accept: "application/json" },
-          });
+          try {
+            const response = await fetch(form.action, {
+              method: "POST",
+              body: new FormData(form),
+              headers: { Accept: "application/json" },
+            });
 
-          if (response.ok) {
-            form.reset();
-            statusEl.textContent = "Message received. I'll get back to you within 24 hours.";
+            if (response.ok) {
+              form.reset();
+              statusEl.textContent = "Message received. I will get back to you within 24 hours.";
+              statusEl.className =
+                "border border-emerald-500/50 bg-emerald-500/10 px-4 py-3 text-xs font-mono uppercase tracking-wider text-foreground";
+            } else {
+              throw new Error("Submission failed");
+            }
+          } catch {
+            statusEl.textContent = "Submission failed. Please email hello@meladry.dev directly.";
             statusEl.className =
-              "border border-dashed border-emerald-500/50 bg-emerald-500/10 px-4 py-3 text-xs font-mono uppercase tracking-wider text-foreground";
-          } else {
-            throw new Error("Submission failed");
+              "border border-red-500/50 bg-red-500/10 px-4 py-3 text-xs font-mono uppercase tracking-wider text-foreground";
+          } finally {
+            submitBtn.disabled = false;
+            submitText.textContent = "Send message";
           }
-        } catch {
-          statusEl.textContent = "Something went wrong. Please email hello@meladry.dev directly.";
-          statusEl.className =
-            "border border-dashed border-red-500/50 bg-red-500/10 px-4 py-3 text-xs font-mono uppercase tracking-wider text-foreground";
-        } finally {
-          submitBtn.disabled = false;
-          submitText.textContent = "Send Message";
-        }
-      });
+        },
+        { signal },
+      );
     }
   }
 
