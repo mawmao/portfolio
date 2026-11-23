@@ -1,36 +1,55 @@
 ---
+import ArrowUp from "@/assets/icons/arrow-up.svg";
+
 const currentYear = new Date().getFullYear();
+
+const socialLinks = [
+  { name: "GitHub", href: "https://github.com/mawmao" },
+  { name: "LinkedIn", href: "https://linkedin.com/in/meladryco" },
+  { name: "X", href: "https://x.com/meladryco" },
+];
 ---
 
-<footer
-  class="border-t border-dashed border-foreground/20 mt-16 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono uppercase tracking-widest text-foreground/55"
->
-  <p>© {currentYear} Mel Adry. All rights reserved.</p>
+<footer class="mt-20 pb-10">
+  <div class="h-[3px] w-full bg-foreground mb-6" aria-hidden="true"></div>
 
-  <div class="flex items-center gap-5">
-    <a
-      href="https://github.com/mawmao"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="hover:text-foreground transition-colors"
-    >
-      GitHub
-    </a>
-    <a
-      href="https://linkedin.com/in/meladryco"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="hover:text-foreground transition-colors"
-    >
-      LinkedIn
-    </a>
-    <a
-      href="https://x.com/meladryco"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="hover:text-foreground transition-colors"
-    >
-      X / Twitter
-    </a>
+  <div class="grid grid-cols-6 sm:grid-cols-12 gap-x-4 gap-y-6 items-baseline text-xs">
+    <div class="col-span-6 sm:col-span-2 flex sm:flex-col justify-between sm:justify-start gap-1">
+      <span class="font-semibold uppercase tracking-wider text-foreground">
+        Mel Adry
+      </span>
+      <span class="font-mono text-[11px] uppercase tracking-wider text-foreground/55">
+        © {currentYear}
+      </span>
+    </div>
+
+    <div class="col-span-6 sm:col-span-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <p class="font-mono uppercase tracking-wider text-foreground/60">
+        Full-Stack Engineer — Philippines (UTC+8)
+      </p>
+
+      <ul class="flex flex-wrap items-center gap-6" aria-label="Social and professional links">
+        {
+          socialLinks.map(({ name, href }) => (
+            <li>
+              <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group inline-flex items-center gap-1 uppercase tracking-wider font-medium text-foreground/70 hover:text-foreground transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground"
+              >
+                <span>{name}</span>
+                <ArrowUp
+                  width={12}
+                  height={12}
+                  aria-hidden="true"
+                  class="rotate-45 opacity-60 transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100"
+                />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
   </div>
 </footer>

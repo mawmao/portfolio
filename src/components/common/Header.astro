@@ -2,10 +2,10 @@
 import Github from "@/assets/icons/github.svg";
 
 const navLinks = [
-  { name: "index", path: "/" },
-  { name: "works", path: "/works" },
-  { name: "about", path: "/about" },
-  { name: "contact", path: "/contact" },
+  { name: "Index", path: "/" },
+  { name: "Works", path: "/works" },
+  { name: "About", path: "/about" },
+  { name: "Contact", path: "/contact" },
 ];
 
 const currentPath = Astro.url.pathname;
@@ -15,62 +15,71 @@ const basePath = currentPath === "/" ? "/" : `/${currentPath.split("/")[1]}`;
 <header
   id="site-header"
   data-scrolled="false"
-  class="top-0 sticky z-20 h-[76px] sm:h-[80px] flex items-center justify-between shrink-0 bg-background/95 backdrop-blur-xs border-b border-dashed border-transparent transition-colors duration-150 data-[scrolled=true]:border-foreground/20"
+  class="sticky top-0 z-20 shrink-0 bg-background/95 backdrop-blur-xs border-b border-transparent transition-colors duration-150 data-[scrolled=true]:border-foreground/20"
 >
-  <a
-    href="/"
-    class="interactive-link group inline-flex items-center shrink-0 py-1"
-    aria-label="Mel Adry - Home"
-  >
-    <span
-      class="flex items-center justify-center font-mono text-sm sm:text-base font-bold uppercase tracking-tighter text-foreground leading-none transition-colors duration-200 group-hover:text-foreground/75"
+  <div class="grid grid-cols-6 sm:grid-cols-12 gap-x-4 items-center h-[72px] sm:h-[80px]">
+    <div class="col-span-2 sm:col-span-2 flex items-center">
+      <a
+        href="/"
+        class="interactive-link group inline-flex items-center gap-2 py-1 text-sm sm:text-base font-semibold tracking-[-0.02em] text-foreground transition-opacity hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground"
+        aria-label="Mel Adry - Home"
+      >
+        <span>Mel Adry</span>
+      </a>
+    </div>
+
+    <nav
+      aria-label="Main navigation"
+      class="col-span-4 sm:col-span-10 flex items-center justify-end sm:justify-between"
     >
-      Mel Adry
-    </span>
-  </a>
+      <ul class="flex items-center gap-4 sm:gap-7">
+        {
+          navLinks.map(({ name, path }) => {
+            const isActive = path === basePath;
 
-  <nav aria-label="Main navigation">
-    <ul class="flex gap-3 sm:gap-6 items-center">
-      {
-        navLinks.map(({ name, path }) => {
-          const isActive = path === basePath;
+            return (
+              <li>
+                <a
+                  href={path}
+                  aria-current={isActive ? "page" : undefined}
+                  class:list={[
+                    "interactive-link text-xs uppercase tracking-wider transition-colors py-1 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground",
+                    isActive
+                      ? "font-semibold text-foreground underline decoration-2 decoration-foreground underline-offset-[6px]"
+                      : "font-medium text-foreground/60 hover:text-foreground",
+                  ]}
+                >
+                  {name}
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
 
-          return (
-            <li>
-              <a
-                href={path}
-                aria-current={isActive ? "page" : undefined}
-                class:list={[
-                  "interactive-link text-xs sm:text-sm uppercase tracking-wider transition-opacity",
-                  isActive
-                    ? "font-medium underline decoration-foreground underline-offset-4 opacity-100"
-                    : "opacity-55 hover:opacity-100",
-                ]}
-              >
-                {name}
-              </a>
-            </li>
-          );
-        })
-      }
-
-      <li class="pl-1 sm:pl-5 border-l inline-flex border-dashed border-foreground/20">
+      <div class="hidden sm:flex items-center gap-5 pl-6 border-l border-foreground/20">
         <a
-          class="interactive-link inline-flex items-center justify-center opacity-75 hover:opacity-100 transition-opacity"
+          class="interactive-link inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-foreground/65 hover:text-foreground transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground"
           href="https://github.com/mawmao"
           target="_blank"
-          aria-label="GitHub (opens in a new tab)"
+          aria-label="GitHub profile (opens in a new tab)"
           rel="noopener noreferrer"
         >
-          <Github width={20} height={20} aria-hidden="true" />
+          <Github width={17} height={17} aria-hidden="true" />
+          <span>GitHub</span>
         </a>
-      </li>
-    </ul>
-  </nav>
+      </div>
+    </nav>
+  </div>
 </header>
 
 <script>
+  let scrollController: AbortController | null = null;
+
   function initHeaderScroll() {
+    scrollController?.abort();
+    scrollController = new AbortController();
+
     const header = document.querySelector<HTMLElement>("#site-header");
     if (!header) return;
 
@@ -79,7 +88,10 @@ const basePath = currentPath === "/" ? "/" : `/${currentPath.split("/")[1]}`;
     };
 
     updateHeader();
-    window.addEventListener("scroll", updateHeader, { passive: true });
+    window.addEventListener("scroll", updateHeader, {
+      passive: true,
+      signal: scrollController.signal,
+    });
   }
 
   initHeaderScroll();
