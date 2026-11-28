@@ -24,202 +24,46 @@ const {
 } = Astro.props;
 ---
 
+
 <div
   aria-hidden="true"
-  class="absolute inset-0 overflow-hidden pointer-events-none -z-10 flex items-center justify-center"
-  style={`opacity: ${opacity}%;`}
+  class="globe-background absolute inset-0 -z-10 overflow-hidden pointer-events-none flex items-center justify-center"
 >
-  <canvas
-    id="globe-canvas"
-    class="globe-canvas w-[130vw] h-[130vw] md:w-[80vw] md:h-[80vw] md:mix-blend-multiply"
-    style={`max-width: ${maxSize}px; max-height: ${maxSize}px; --gx: ${xOffset}; --gy: ${yOffset};`}></canvas>
+  <video
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+    class="globe-video"
+  >
+    <source src="/videos/globe.webm" type="video/webm" />
+    <source src="/videos/globe.mp4" type="video/mp4" />
+  </video>
 </div>
 
-<script define:vars={{ speed, tilt, latCount, lonCount, lineColor }}>
-  const canvas = document.getElementById("globe-canvas");
-  const ctx = canvas instanceof HTMLCanvasElement ? canvas.getContext("2d", { alpha: true }) : null;
-
-  if (canvas && ctx) {
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    let width = 0;
-    let height = 0;
-    let radius = 0;
-    let centerX = 0;
-    let centerY = 0;
-
-    let rotationY = 0;
-    let isVisible = true;
-    let animationFrameId = null;
-
-    const points = [];
-    const lines = [];
-
-    const cosTilt = Math.cos(tilt);
-    const sinTilt = Math.sin(tilt);
-
-    function generateGlobe() {
-      points.length = 0;
-      lines.length = 0;
-
-      for (let i = 0; i <= latCount; i++) {
-        const lat = (i / latCount) * Math.PI - Math.PI / 2;
-        for (let j = 0; j < lonCount; j++) {
-          const lon = (j / lonCount) * Math.PI * 2;
-          const x = Math.cos(lat) * Math.cos(lon);
-          const y = Math.sin(lat);
-          const z = Math.cos(lat) * Math.sin(lon);
-          points.push({ x, y, z });
-        }
-      }
-
-      for (let i = 0; i <= latCount; i++) {
-        for (let j = 0; j < lonCount; j++) {
-          const current = i * lonCount + j;
-          const next = i * lonCount + ((j + 1) % lonCount);
-          lines.push({ start: current, end: next });
-        }
-      }
-
-      for (let j = 0; j < lonCount; j++) {
-        for (let i = 0; i < latCount; i++) {
-          const current = i * lonCount + j;
-          const next = (i + 1) * lonCount + j;
-          lines.push({ start: current, end: next });
-        }
-      }
-    }
-
-    function resize() {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const rect = canvas.getBoundingClientRect();
-
-      width = rect.width;
-      height = rect.height;
-
-      canvas.width = width * dpr;
-      canvas.height = height * dpr;
-
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-      centerX = width / 2;
-      centerY = height / 2;
-      radius = Math.min(width, height) * 0.4;
-
-      if (prefersReducedMotion) {
-        drawFrame();
-      }
-    }
-
-    function drawFrame() {
-      ctx.clearRect(0, 0, width, height);
-
-      if (!prefersReducedMotion) {
-        rotationY += speed;
-      }
-
-      const cosRotY = Math.cos(rotationY);
-      const sinRotY = Math.sin(rotationY);
-
-      const projectedPoints = new Array(points.length);
-
-      for (let i = 0; i < points.length; i++) {
-        const p = points[i];
-
-        const x = p.x * cosRotY - p.z * sinRotY;
-        let z = p.z * cosRotY + p.x * sinRotY;
-
-        const y = p.y * cosTilt - z * sinTilt;
-        z = z * cosTilt + p.y * sinTilt;
-
-        const scale = 1 / (1 + z * 0.5);
-
-        projectedPoints[i] = {
-          x: centerX + x * radius * scale,
-          y: centerY + y * radius * scale,
-          z,
-        };
-      }
-
-      const buckets = Array.from({ length: 5 }, () => []);
-
-      for (let i = 0; i < lines.length; i++) {
-        const line = lines[i];
-        const p1 = projectedPoints[line.start];
-        const p2 = projectedPoints[line.end];
-
-        const avgZ = (p1.z + p2.z) / 2;
-        const bucketIndex = Math.min(4, Math.max(0, Math.floor((1 - avgZ) * 2.5)));
-
-        buckets[bucketIndex].push(p1, p2);
-      }
-
-      ctx.lineWidth = 1;
-
-      for (let i = 0; i < 5; i++) {
-        if (buckets[i].length === 0) continue;
-
-        const lineOpacity = 0.1 + i * 0.1;
-
-        ctx.beginPath();
-        ctx.strokeStyle = `rgba(${lineColor}, ${lineOpacity})`;
-
-        for (let j = 0; j < buckets[i].length; j += 2) {
-          const p1 = buckets[i][j];
-          const p2 = buckets[i][j + 1];
-          ctx.moveTo(p1.x, p1.y);
-          ctx.lineTo(p2.x, p2.y);
-        }
-
-        ctx.stroke();
-      }
-    }
-
-    function tick() {
-      if (!isVisible || prefersReducedMotion) return;
-      drawFrame();
-      animationFrameId = requestAnimationFrame(tick);
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            isVisible = true;
-            if (!prefersReducedMotion && !animationFrameId) {
-              animationFrameId = requestAnimationFrame(tick);
-            }
-          } else {
-            isVisible = false;
-            if (animationFrameId) {
-              cancelAnimationFrame(animationFrameId);
-              animationFrameId = null;
-            }
-          }
-        });
-      },
-      { threshold: 0 },
-    );
-
-    window.addEventListener("resize", resize);
-
-    generateGlobe();
-    resize();
-    observer.observe(canvas);
-
-    if (!prefersReducedMotion) {
-      animationFrameId = requestAnimationFrame(tick);
-    }
-  }
-</script>
-
 <style>
-  .globe-canvas {
-    transform: translate(0, 8%);
-    will-change: transform;
+  .globe-video {
+    width: 130vw;
+    height: 130vw;
+    max-width: 1200px;
+    max-height: 1200px;
+    object-fit: contain;
+    transform: translate(25%, 0);
+    opacity: 0.12;
+    mix-blend-mode: multiply;
   }
+
   @media (min-width: 768px) {
-    .globe-canvas {
-      transform: translate(var(--gx), var(--gy));
+    .globe-video {
+      width: 80vw;
+      height: 80vw;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .globe-video {
+      visibility: hidden;
     }
   }
 </style>

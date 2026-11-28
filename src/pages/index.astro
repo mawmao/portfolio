@@ -4,6 +4,7 @@ import Works from "@/components/sections/Works.astro";
 import AboutPreview from "@/components/sections/AboutPreview.astro";
 import ContactCTA from "@/components/sections/ContactCTA.astro";
 import Layout from "@/layouts/Layout.astro";
+import GlobeBackground from "@/components/GlobeBackground.astro";
 
 const personSchema = {
   "@context": "https://schema.org",
@@ -22,6 +23,7 @@ const personSchema = {
   schema={personSchema}
 >
   <main class="w-full min-w-0 flex flex-col flex-1">
+    <GlobeBackground />
     <Hero />
     <Works />
     <AboutPreview />
